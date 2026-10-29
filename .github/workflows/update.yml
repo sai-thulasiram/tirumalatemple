@@ -6,9 +6,9 @@ on:
     - cron: "45 4,16 * * *"   # 10:15 and 22:15 IST
   workflow_dispatch:
     inputs:
-      pages:
-        description: "Feed pages to read (50 bulletins each); raise for a backfill"
-        default: "1"
+      years:
+        description: "Years of history to keep filled in"
+        default: "3"
   push:
     branches: [main]
     paths: ["src/**", "scripts/**", "site.config.json", "docs/data/plan.json"]
@@ -30,9 +30,10 @@ jobs:
           python-version: "3.12"
       - name: Parser tests
         run: python tests/test_parse.py
+      - name: Install panchang library
+        run: pip install ephem==4.2.1
       - name: Fetch bulletins
-        if: github.event_name != 'push'
-        run: python scripts/scrape.py --pages "${{ github.event.inputs.pages || '1' }}"
+        run: python scripts/scrape.py --min-years "${{ github.event.inputs.years || '3' }}"
       - name: Build page
         run: python scripts/build.py
       - name: Commit changes

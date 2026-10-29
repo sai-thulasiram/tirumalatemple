@@ -24,6 +24,7 @@ No server, no database and no paid services. Python standard library only.
 |---|---|
 | `src/index.template.html` | The page. Edit this, not `docs/index.html`. |
 | `docs/data/bulletins.json` | Every daily bulletin, one record per day |
+| `docs/data/panchang.json` | Tithi and lunar month for every day, computed at build time by `scripts/panchang.py` |
 | `docs/data/plan.json` | Festival dates, Ekadasi/Pournami dates and the quota release pattern. Edit by hand. |
 | `scripts/parse.py` | Turns bulletin text into a record. Tests in `tests/test_parse.py`. |
 | `site.config.json` | Your domain and Google verification code |
@@ -60,7 +61,7 @@ New sites usually take a few days to a few weeks to appear in results.
 ## Everyday use
 
 - **Run an update now:** Actions → *Update bulletins* → **Run workflow**.
-- **Backfill older years:** same button, set *pages* to e.g. `20` (50 bulletins per page).
+- **History depth:** each run keeps three years of bulletins filled in. To go further back, Run workflow with *years* set to e.g. `6`.
 - **Update festival dates or the quota pattern:** edit `docs/data/plan.json` and push.
 - **Test the parser:** `python tests/test_parse.py`
 - **Preview locally:** `python scripts/build.py && cd docs && python -m http.server` then open http://localhost:8000

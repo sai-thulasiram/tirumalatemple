@@ -14,6 +14,9 @@ import html
 import json
 import os
 import re
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 DOCS = os.path.join(ROOT, "docs")
@@ -46,6 +49,11 @@ def sev(h):
 
 
 def main():
+    try:  # tithi table for the page; needs the ephem package
+        import panchang
+        panchang.main()
+    except ImportError:
+        print("ephem not installed; keeping existing panchang.json")
     cfg = load("site.config.json")
     url = (cfg.get("siteUrl") or "").rstrip("/")
     name = cfg.get("siteName") or "Tirumala Darshan Planner"
@@ -74,6 +82,16 @@ def main():
                        f"<td>{f2(r.get('annaLakh'))}</td><td>{fint(r.get('hospital'))}</td><td class=\"l\">{html.escape(q)}</td>"
                        f"<td>{html.escape(w)}</td></tr>")
         pre["rows"] = "".join(trs)
+    try:
+        pan = load("docs/data/panchang.json")
+        i = (dt.date.fromisoformat(today) - dt.date.fromisoformat(pan["start"])).days
+        m, t, a = pan["days"][i]
+        names = "Pratipada Dvitiya Tritiya Chaturthi Panchami Shashthi Saptami Ashtami Navami Dashami Ekadashi Dvadashi Trayodashi Chaturdashi Purnima".split()
+        n = "Amavasya" if t == 30 else names[(t - 1) % 15]
+        pk = "Shukla paksha" if t <= 15 else "Krishna paksha"
+        pre["tithi"] = f'{n}<small>{pk} · {"Adhika " if a else ""}{pan["masa"][m]} masam</small>'
+    except (OSError, KeyError, IndexError, ValueError):
+        pass
     occ = [o for o in plan.get("occasions", []) if (o.get("end") or o["start"]) >= today]
     if occ:
         pre["occ"] = "".join(

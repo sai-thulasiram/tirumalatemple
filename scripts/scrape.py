@@ -2,8 +2,8 @@
 into docs/data/bulletins.json.
 
 Usage:
-    python scripts/scrape.py              # newest bulletins (first page of the feed)
-    python scripts/scrape.py --pages 40   # backfill: walk 40 pages of the archive
+    python scripts/scrape.py                 # newest bulletins; also backfills until 3 years are covered
+    python scripts/scrape.py --min-years 5   # keep going back until 5 years are covered
 
 It tries the site's WordPress JSON feed first and falls back to the HTML
 category pages if the feed is unavailable. Only standard library modules
@@ -43,12 +43,15 @@ def get(url: str, retries: int = 3) -> str:
     raise RuntimeError(f"GET {url} failed: {last}")
 
 
-def from_feed(pages: int) -> list[dict]:
+def from_feed(pages: int, known: set, target: str | None) -> list[dict]:
+    """Read the feed newest-first. Stop after `pages` pages, or earlier once a
+    page brings nothing new and history already reaches back to `target`."""
     cats = json.loads(get(f"{BASE}/wp-json/wp/v2/categories?slug=darshan"))
     if not cats:
         raise RuntimeError("darshan category not found in feed")
     cid = cats[0]["id"]
     out = []
+    earliest = min(known) if known else None
     for page in range(1, pages + 1):
         url = f"{BASE}/wp-json/wp/v2/posts?categories={cid}&per_page=50&page={page}&_fields=title,content"
         try:
@@ -59,11 +62,19 @@ def from_feed(pages: int) -> list[dict]:
             raise
         if not posts:
             break
+        fresh = 0
         for p in posts:
             text = p.get("title", {}).get("rendered", "") + "\n" + p.get("content", {}).get("rendered", "")
             rec = parse_bulletin(text)
             if rec:
                 out.append(rec)
+                if rec["date"] not in known:
+                    fresh += 1
+                if earliest is None or rec["date"] < earliest:
+                    earliest = rec["date"]
+        reached = target is None or (earliest is not None and earliest <= target)
+        if fresh == 0 and reached:
+            break
         time.sleep(1)
     return out
 
@@ -116,17 +127,22 @@ def merge(new: list[dict]) -> tuple[int, int]:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--pages", type=int, default=1, help="feed pages to read (50 posts each) or HTML pages (10 each)")
+    ap.add_argument("--pages", type=int, default=40, help="most feed pages to read in one run (50 bulletins each)")
+    ap.add_argument("--min-years", type=float, default=3, help="keep reading older pages until history covers this many years")
     args = ap.parse_args()
+    path = os.path.join(DATA, "bulletins.json")
+    known = {r["date"] for r in json.load(open(path))["days"]} if os.path.exists(path) else set()
+    target = (dt.date.today() - dt.timedelta(days=int(365.25 * args.min_years))).isoformat() if args.min_years else None
     try:
-        recs = from_feed(args.pages)
+        recs = from_feed(args.pages, known, target)
         src = "feed"
     except Exception as e:  # feed blocked or changed: fall back to HTML
         print(f"feed unavailable ({e}); using HTML pages", file=sys.stderr)
-        recs = from_html(max(args.pages, 1) * 5 if args.pages > 1 else 1)
+        recs = from_html(1)
         src = "html"
     added, changed = merge(recs)
-    print(f"{src}: parsed {len(recs)} bulletins, {added} new, {changed} updated")
+    days = json.load(open(path))["days"]
+    print(f"{src}: parsed {len(recs)} bulletins, {added} new, {changed} updated; history {days[0]['date']} to {days[-1]['date']}")
     return 0
 
 
