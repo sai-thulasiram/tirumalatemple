@@ -551,7 +551,7 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
   }
 
   function renderWeekday(){
-    const rows=S.rows; const by=[[],[],[],[],[],[],[]], sp=[[],[],[],[],[],[],[]];
+    const rows=S.rows.slice(-365); const by=[[],[],[],[],[],[],[]], sp=[[],[],[],[],[],[],[]];
     rows.forEach(r=>{ if(r.waitHours!=null){const d=dow(r.situationDate);by[d].push(r.waitHours);sp[d].push(r.queueFull?1:0)} });
     const order=[1,2,3,4,5,6,0];
     const av=order.map(d=>({d,a:avg(by[d]),n:by[d].length,sp:avg(sp[d])}));
@@ -562,7 +562,7 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
     const mxs=Math.max(...valid.map(x=>x.sp||0))||1;
     $('spill').innerHTML=av.map(x=>`<span>${DOW[x.d]}</span><div class="bar"><span style="width:${x.sp==null?0:(x.sp/mxs*100).toFixed(1)}%;background:var(--warn)"></span></div><span class="r">${x.sp==null?'—':Math.round(x.sp*100)+'% of mornings'}</span>`).join('');
     const names=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    $('wkNote').textContent=`Across ${rows.length} days on record, ${names[best.d]} mornings average the shortest wait (${best.a.toFixed(1)} h) and ${names[worst.d]} the longest (${worst.a.toFixed(1)} h). Arriving the evening before a quiet morning, and avoiding long weekends and school holidays, matters more than the weekday alone.`;
+    $('wkNote').textContent=`Over the last ${rows.length} days on record, ${names[best.d]} mornings average the shortest wait (${best.a.toFixed(1)} h) and ${names[worst.d]} the longest (${worst.a.toFixed(1)} h). Arriving the evening before a quiet morning, and avoiding long weekends and school holidays, matters more than the weekday alone.`;
   }
 
   function renderLegend(){
@@ -572,7 +572,7 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
   function renderCalendar(){
     const rows=S.rows; if(!rows.length) return;
     const bySit={}; rows.forEach(r=>{bySit[r.situationDate]=r});
-    const first=dt(rows[0].situationDate), last=dt(rows[rows.length-1].situationDate);
+    const last=dt(rows[rows.length-1].situationDate); const f0=dt(rows[0].situationDate), f1=new Date(Date.UTC(last.getUTCFullYear()-1,last.getUTCMonth(),1)); const first=f0>f1?f0:f1;
     const today=istToday();
     let html=''; let y=last.getUTCFullYear(), m=last.getUTCMonth();
     const fy=first.getUTCFullYear(), fm=first.getUTCMonth();
@@ -721,7 +721,7 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
   // ---- Check your dates ----
   const LVL=['Light','Moderate','Busy','Very busy','Peak'];
   const DOWL=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  function wkAvgs(){ const by=[[],[],[],[],[],[],[]]; S.rows.forEach(r=>{ if(r.waitHours!=null) by[dow(r.situationDate)].push(r.waitHours) }); return by.map(avg) }
+  function wkAvgs(){ const by=[[],[],[],[],[],[],[]]; S.rows.slice(-365).forEach(r=>{ if(r.waitHours!=null) by[dow(r.situationDate)].push(r.waitHours) }); return by.map(avg) }
   function dayInfo(d,maps,wk){
     const OCC=(S.plan&&S.plan.occasions)||[];
     const occ=OCC.filter(o=>o.start<=d&&(o.end||o.start)>=d);
