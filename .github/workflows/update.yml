@@ -1,0 +1,46 @@
+name: Update bulletins
+
+on:
+  schedule:
+    # TTD posts the previous day's bulletin in the morning IST.
+    - cron: "45 3 * * *"   # 09:15 IST
+    - cron: "45 6 * * *"   # 12:15 IST, catches late posts
+  workflow_dispatch:
+    inputs:
+      pages:
+        description: "Feed pages to read (50 bulletins each); raise for a backfill"
+        default: "1"
+  push:
+    branches: [main]
+    paths: ["src/**", "scripts/**", "site.config.json", "docs/data/plan.json"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Parser tests
+        run: python tests/test_parse.py
+      - name: Fetch bulletins
+        if: github.event_name != 'push'
+        run: python scripts/scrape.py --pages "${{ github.event.inputs.pages || '1' }}"
+      - name: Build page
+        run: python scripts/build.py
+      - name: Commit changes
+        run: |
+          git config user.name "bulletin-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Update bulletins $(date -u +%F)"
+          git push

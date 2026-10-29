@@ -1,0 +1,302 @@
+{
+ "quotaSource": "TTD releases each month's quota about three months ahead on a fixed pattern. Its notices for December 2026 and January 2027 both used the days shown. Dates for later months are projected from that pattern; TTD confirms each one a few days before.",
+ "quotaPattern": [
+  {
+   "day": 19,
+   "time": "10:00 AM",
+   "name": "Arjitha sevas: electronic lucky dip registration",
+   "note": "Suprabhatam, Thomala, Archana, Ashtadala Pada Padmaradhana. Registration open for 2 days, then pay within 2 days if selected."
+  },
+  {
+   "day": 22,
+   "time": "10:00 AM",
+   "name": "Kalyanotsavam, Unjal Seva, Arjitha Brahmotsavam, Sahasradeepalankara",
+   "note": "First come, first served."
+  },
+  {
+   "day": 22,
+   "time": "3:00 PM",
+   "name": "Virtual seva participation with darshan slot"
+  },
+  {
+   "day": 23,
+   "time": "10:00 AM",
+   "name": "Angapradakshinam tokens"
+  },
+  {
+   "day": 23,
+   "time": "11:00 AM",
+   "name": "SRIVANI Trust donor darshan"
+  },
+  {
+   "day": 23,
+   "time": "3:00 PM",
+   "name": "Senior citizens, differently abled, chronically ill quota"
+  },
+  {
+   "day": 24,
+   "time": "10:00 AM",
+   "name": "₹300 Special Entry Darshan",
+   "note": "The most contested quota. Log in a few minutes early; popular dates sell out within the hour."
+  },
+  {
+   "day": 24,
+   "time": "3:00 PM",
+   "name": "Rooms in Tirumala and Tirupati"
+  }
+ ],
+ "occasions": [
+  {
+   "name": "Rama Ekadasi",
+   "start": "2026-11-05",
+   "end": "2026-11-05",
+   "past": [
+    {
+     "start": "2025-10-17",
+     "end": "2025-10-17"
+    }
+   ],
+   "status": "expected",
+   "note": "Karthika masam Ekadasi."
+  },
+  {
+   "name": "Deepavali",
+   "start": "2026-11-08",
+   "end": "2026-11-08",
+   "past": [
+    {
+     "start": "2025-10-20",
+     "end": "2025-10-20"
+    }
+   ],
+   "status": "expected",
+   "note": "Deepavali Asthanam at the Srivari temple; AP public holiday."
+  },
+  {
+   "name": "Pushpayagam",
+   "start": "2026-11-15",
+   "end": "2026-11-16",
+   "past": [
+    {
+     "start": "2025-10-30",
+     "end": "2025-10-30"
+    }
+   ],
+   "status": "expected",
+   "note": "Flower offering to the Malayappa Swamy; some arjitha sevas are cancelled that day."
+  },
+  {
+   "name": "Kaisika Ekadasi and Dwadasi",
+   "start": "2026-11-20",
+   "end": "2026-11-21",
+   "past": [
+    {
+     "start": "2025-11-01",
+     "end": "2025-11-02"
+    }
+   ],
+   "status": "expected",
+   "note": "Uttana Ekadasi; Ugra Srinivasa procession at dawn on Dwadasi."
+  },
+  {
+   "name": "Karthika Pournami Deepotsavam",
+   "start": "2026-11-24",
+   "end": "2026-11-24",
+   "past": [
+    {
+     "start": "2025-11-05",
+     "end": "2025-11-05"
+    }
+   ],
+   "status": "expected",
+   "note": "Full moon of Karthika, with lamps lit across the temple."
+  },
+  {
+   "name": "Tiruchanur Padmavathi Ammavari Brahmotsavam",
+   "start": "2026-12-05",
+   "end": "2026-12-14",
+   "past": [
+    {
+     "start": "2025-11-17",
+     "end": "2025-11-25"
+    }
+   ],
+   "status": "confirmed",
+   "note": "At Tiruchanur near Tirupati. Panchami Theertham on the last day draws the biggest crowd."
+  },
+  {
+   "name": "Vaikuntha Ekadasi and Vaikuntha Dwara darshan",
+   "start": "2026-12-20",
+   "end": "2026-12-29",
+   "past": [
+    {
+     "start": "2025-12-30",
+     "end": "2026-01-08"
+    }
+   ],
+   "status": "expected",
+   "note": "Ten days of Vaikuntha Dwara darshan, overlapping Christmas holidays. TTD usually issues dedicated tokens and suspends most other darshan types."
+  },
+  {
+   "name": "New Year's Day",
+   "start": "2027-01-01",
+   "end": "2027-01-01",
+   "past": [
+    {
+     "start": "2026-01-01",
+     "end": "2026-01-01"
+    }
+   ],
+   "status": "confirmed",
+   "note": "Last year it fell inside the Vaikuntha Dwara window."
+  },
+  {
+   "name": "Bhogi, Sankranti, Kanuma",
+   "start": "2027-01-13",
+   "end": "2027-01-15",
+   "past": [
+    {
+     "start": "2026-01-13",
+     "end": "2026-01-16"
+    }
+   ],
+   "status": "expected",
+   "note": "Harvest festival; schools in AP and Telangana close for about a week."
+  },
+  {
+   "name": "Ratha Saptami",
+   "start": "2027-02-13",
+   "end": "2027-02-13",
+   "past": [
+    {
+     "start": "2026-01-25",
+     "end": "2026-01-25"
+    }
+   ],
+   "status": "expected",
+   "note": "One-day 'mini Brahmotsavam': seven vahanams from sunrise to night."
+  },
+  {
+   "name": "Maha Shivaratri",
+   "start": "2027-03-06",
+   "end": "2027-03-06",
+   "past": [
+    {
+     "start": "2026-02-15",
+     "end": "2026-02-15"
+    }
+   ],
+   "status": "expected",
+   "note": "Pilgrims combine Srikalahasti and Tirumala."
+  },
+  {
+   "name": "Ugadi",
+   "start": "2027-04-07",
+   "end": "2027-04-07",
+   "past": [
+    {
+     "start": "2026-03-20",
+     "end": "2026-03-20"
+    }
+   ],
+   "status": "expected",
+   "note": "Telugu new year; Ugadi Asthanam at the temple."
+  },
+  {
+   "name": "Sri Rama Navami",
+   "start": "2027-04-15",
+   "end": "2027-04-15",
+   "past": [
+    {
+     "start": "2026-03-27",
+     "end": "2026-03-27"
+    }
+   ],
+   "status": "expected",
+   "note": "Hanumantha vahanam at night."
+  },
+  {
+   "name": "Summer holidays",
+   "start": "2027-05-01",
+   "end": "2027-06-10",
+   "past": [
+    {
+     "start": "2026-05-01",
+     "end": "2026-06-10"
+    }
+   ],
+   "status": "approx",
+   "note": "The heaviest stretch of the year outside festivals. Last year the queue spilled outside the complex on most mornings."
+  }
+ ],
+ "recurring": {
+  "ekadasi": {
+   "past": [
+    "2025-10-17",
+    "2025-11-01",
+    "2025-11-15",
+    "2025-12-01",
+    "2025-12-15",
+    "2026-01-14",
+    "2026-01-29",
+    "2026-02-13",
+    "2026-02-27",
+    "2026-03-14",
+    "2026-03-29",
+    "2026-04-13",
+    "2026-04-27",
+    "2026-05-12",
+    "2026-05-28",
+    "2026-06-11",
+    "2026-06-26",
+    "2026-07-10",
+    "2026-07-25",
+    "2026-08-08",
+    "2026-08-23",
+    "2026-09-07",
+    "2026-09-22",
+    "2026-10-07",
+    "2026-10-21"
+   ],
+   "upcoming": [
+    "2026-11-05",
+    "2026-11-20",
+    "2026-12-05",
+    "2026-12-20",
+    "2027-01-02",
+    "2027-01-18",
+    "2027-02-01",
+    "2027-02-16",
+    "2027-03-03",
+    "2027-03-18",
+    "2027-04-01",
+    "2027-04-16"
+   ]
+  },
+  "pournami": {
+   "past": [
+    "2025-11-05",
+    "2025-12-04",
+    "2026-01-03",
+    "2026-02-01",
+    "2026-04-02",
+    "2026-05-01",
+    "2026-05-31",
+    "2026-06-29",
+    "2026-07-29",
+    "2026-08-28",
+    "2026-09-26",
+    "2026-10-26"
+   ],
+   "upcoming": [
+    "2026-11-24",
+    "2026-12-24",
+    "2027-01-22",
+    "2027-02-20",
+    "2027-03-22",
+    "2027-04-20"
+   ]
+  }
+ },
+ "calendarSource": "Dates from Hindu panchang calendars and TTD announcements; those marked expected are not yet confirmed by TTD."
+}

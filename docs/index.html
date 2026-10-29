@@ -1,0 +1,824 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tirumala Darshan Planner: Crowd Calendar, Wait Times and TTD Ticket Release Dates</title>
+<meta name="description" content="Plan your Tirumala visit with a shorter wait. Check any dates for expected crowds, compare festivals with last year, see Sarva Darshan queue history and when TTD releases ₹300 tickets and rooms.">
+<meta name="keywords" content="Tirumala darshan crowd, Tirupati crowd today, Sarva Darshan waiting time, TTD 300 rupees ticket release date, TTD quota release, Vaikuntha Ekadasi crowd, Tirumala hundi collection, best time to visit Tirumala">
+<link rel="canonical" href="https://tirumalatemple.in/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#2F2B78">
+<meta name="author" content="Tirumala Darshan Planner">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tirumala Darshan Planner">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="Tirumala Darshan Planner: when to go, how crowded it gets, when tickets open">
+<meta property="og:description" content="A year of TTD's daily bulletins turned into a crowd calendar, a festival-by-festival comparison and a ticket release calendar for planning a Tirumala visit.">
+<meta property="og:url" content="https://tirumalatemple.in/">
+<meta property="og:image" content="https://tirumalatemple.in/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tirumala Darshan Planner: crowd calendar and ticket dates">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tirumala Darshan Planner">
+<meta name="twitter:description" content="Check your dates for expected crowds and see when TTD tickets open.">
+<meta name="twitter:image" content="https://tirumalatemple.in/og.png">
+
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebSite", "name": "Tirumala Darshan Planner", "url": "https://tirumalatemple.in/", "inLanguage": "en-IN"}, {"@context": "https://schema.org", "@type": "WebApplication", "name": "Tirumala Darshan Planner", "url": "https://tirumalatemple.in/", "applicationCategory": "TravelApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}, "description": "Crowd calendar, Sarva Darshan wait history and TTD ticket release dates for planning a visit to Sri Venkateswara Swamy Temple, Tirumala."}, {"@context": "https://schema.org", "@type": "Dataset", "name": "Tirumala daily darshan bulletins", "description": "Daily pilgrims, tonsures, hundi collection, laddu sales, Annaprasadam and Sarva Darshan queue status at Tirumala, compiled from TTD's public daily bulletins on news.tirumala.org. May contain gaps or errors.", "url": "https://tirumalatemple.in/", "isAccessibleForFree": true, "temporalCoverage": "2025-10-17/2026-10-27", "spatialCoverage": {"@type": "Place", "name": "Tirumala, Andhra Pradesh, India", "geo": {"@type": "GeoCoordinates", "latitude": 13.6833, "longitude": 79.3474}}, "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://tirumalatemple.in/data/bulletins.json"}], "dateModified": "2026-10-27"}]</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Yatra+One&family=Source+Sans+3:wght@400;600;700&family=Tiro+Telugu&display=swap">
+<style>
+/* Layout: masthead with this morning's queue, yesterday's bulletin tiles, then the planner (weekday bars, day-by-day wait calendar, ticket windows, events), trends, and the full ledger */
+:root{
+  --bg:#FBF6EC; --surface:#FFFDF8; --ink:#3A1F14; --muted:#7A5E4E; --line:#EADCC6;
+  --gold:#A8730C; --gold-soft:#F6E7C1; --indigo:#8E1B1B; --indigo-soft:#F5DFD6;
+  --ok:#2E7A4E; --warn:#A86200; --crit:#B3261E;
+  --s0:#C9E6C9; --s1:#EDE3A6; --s2:#F2C27A; --s3:#E8875A; --s4:#B8352E; --s-none:#F0E8DA;
+  --temple:#B07A12; --band:#8E1B1B;
+  --display:"Marcellus", Georgia, "Times New Roman", serif;
+  --body:"Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --title:"Yatra One", "Marcellus", Georgia, serif;
+  --telugu:"Tiro Telugu", "Noto Sans Telugu", serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#1C100C; --surface:#26170F; --ink:#F6EBDD; --muted:#C2A992; --line:#3D2A1F;
+  --gold:#E6B655; --gold-soft:#3D2C12; --indigo:#F0A58F; --indigo-soft:#45231B;
+  --ok:#6CC98F; --warn:#E8A84F; --crit:#F27A70;
+  --s0:#2A5236; --s1:#5C5626; --s2:#7E5A1E; --s3:#8E3F25; --s4:#B3332C; --s-none:#33241A;
+  --temple:#E6B655; --band:#C9472F;
+  color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#1C100C; --surface:#26170F; --ink:#F6EBDD; --muted:#C2A992; --line:#3D2A1F;
+  --gold:#E6B655; --gold-soft:#3D2C12; --indigo:#F0A58F; --indigo-soft:#45231B;
+  --ok:#6CC98F; --warn:#E8A84F; --crit:#F27A70;
+  --s0:#2A5236; --s1:#5C5626; --s2:#7E5A1E; --s3:#8E3F25; --s4:#B3332C; --s-none:#33241A;
+  --temple:#E6B655; --band:#C9472F;
+  color-scheme:dark }
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;font-variant-numeric:tabular-nums}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance}
+h1{font-size:clamp(30px,5vw,44px);line-height:1.1}
+h2{font-size:26px}
+h3{font-size:18px}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+section{display:flex;flex-direction:column;gap:16px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px}
+.sec-head p{margin:0;max-width:62ch}
+
+/* masthead */
+.mast{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px;align-items:start}
+.mast-title{display:flex;flex-direction:column;gap:10px;min-width:0}
+.telugu{font-family:var(--telugu);font-size:20px;color:var(--gold)}
+.status{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:13px;color:var(--muted)}
+.chip .dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.chip.fresh .dot{background:var(--ok)} .chip.stale .dot{background:var(--warn)}
+.queue{background:var(--indigo);color:var(--bg);border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.queue .eyebrow{color:inherit;opacity:.75}
+.queue .big{font-family:var(--display);font-size:clamp(38px,6vw,54px);line-height:1}
+.queue .where{font-size:15px;opacity:.9}
+.sev{display:inline-block;padding:2px 10px;border-radius:999px;font-size:13px;font-weight:600;background:var(--bg);width:max-content}
+.sev.s0{color:var(--ok)} .sev.s1,.sev.s2{color:var(--warn)} .sev.s3,.sev.s4{color:var(--crit)}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:end}
+.tile .lab{grid-column:1/-1;font-size:13px;color:var(--muted);font-weight:600}
+.tile .val{font-size:26px;font-weight:700;line-height:1.15}
+.tile .delta{font-size:12.5px;color:var(--muted)}
+.tile .delta b{font-weight:600}
+.tile .delta .up{color:var(--ok)} .tile .delta .down{color:var(--crit)}
+.tile svg{grid-row:2/4;grid-column:2;width:110px;height:38px}
+
+/* panels */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+
+/* weekday */
+.wk{display:grid;grid-template-columns:44px minmax(0,1fr) 120px;gap:8px 12px;align-items:center;font-size:14px}
+.wk .bar{height:18px;border-radius:4px;background:var(--indigo-soft);position:relative;overflow:hidden}
+.wk .bar span{position:absolute;inset:0 auto 0 0;background:var(--indigo);border-radius:4px}
+.wk .best span{background:var(--ok)}
+.wk .r{color:var(--muted);text-align:right;font-size:13px}
+.callout{border-left:3px solid var(--gold);padding:4px 0 4px 12px;margin:0;max-width:65ch}
+
+/* calendar */
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted);align-items:center}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:3px;margin-right:5px;vertical-align:-2px}
+.cal{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px 22px}
+.month h3{font-size:16px;margin-bottom:6px}
+.grid7{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+.grid7 .dn{font-size:10.5px;color:var(--muted);text-align:center}
+.cell{aspect-ratio:1;max-width:100%;border-radius:4px;background:var(--s-none);font-size:10.5px;display:flex;align-items:flex-start;justify-content:flex-end;padding:2px 3px;color:var(--ink);opacity:.95}
+.cell.blank{background:transparent}
+.cell.today{outline:2px solid var(--gold);outline-offset:1px}
+.cell[data-s="0"]{background:var(--s0)} .cell[data-s="1"]{background:var(--s1)} .cell[data-s="2"]{background:var(--s2)} .cell[data-s="3"]{background:var(--s3)} .cell[data-s="4"]{background:var(--s4);color:#fff}
+
+/* tickets */
+.months{display:flex;flex-wrap:wrap;gap:6px}
+button.tab{font:inherit;font-size:14px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+button.tab[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button.tab:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.quota{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.quota li{display:grid;grid-template-columns:118px minmax(0,1fr) auto;gap:4px 14px;padding:10px 0;border-top:1px solid var(--line);align-items:baseline}
+.quota li:first-child{border-top:0}
+.quota .when{font-weight:700}
+.quota .when small{display:block;font-weight:400;color:var(--muted);font-size:12.5px}
+.quota .what small{display:block;color:var(--muted);font-size:13px}
+.pill{font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.pill.open{background:var(--indigo-soft);color:var(--indigo)}
+.pill.soon{background:var(--gold-soft);color:var(--gold)}
+.pill.past{background:var(--s-none);color:var(--muted)}
+.next{background:var(--gold-soft);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.next b{font-size:18px}
+
+/* events */
+.events{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.events li{display:grid;grid-template-columns:130px minmax(0,1fr);gap:4px 14px}
+.events .d{font-weight:700;font-size:14px}
+.events .n small{display:block;color:var(--muted);font-size:13px}
+.tag{font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-left:6px}
+.tag.high{color:var(--crit)} .tag.medium{color:var(--warn)}
+
+.steps{display:flex;flex-wrap:wrap;gap:8px}
+.steps a{display:inline-flex;align-items:center;gap:8px;padding:8px 14px 8px 8px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:600;font-size:14px}
+.steps a b{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--indigo);color:var(--bg);font-size:13px}
+.steps a.aside{padding-left:14px;color:var(--muted);font-weight:400}
+.steps a:hover{border-color:var(--indigo)}
+.steps a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.stepn{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--gold-soft);color:var(--gold);font-size:18px;margin-right:10px;vertical-align:3px}
+section{scroll-margin-top:16px}
+.note-src{margin:0;font-size:13px;color:var(--muted);border-left:3px solid var(--warn);padding:2px 0 2px 10px;max-width:60ch}
+.note-src a{color:var(--indigo)}
+/* date checker */
+.checker{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px max(16px,2vw);gap:18px}
+.pick{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:flex-end}
+.pick label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600;color:var(--muted)}
+.pick input{font:inherit;font-size:16px;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);min-width:0}
+.pick input:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+.quick{display:flex;flex-wrap:wrap;gap:6px}
+.verdict{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 18px;align-items:center;padding:16px 18px;border-radius:12px;background:var(--bg)}
+.verdict .lvl{font-family:var(--display);font-size:30px;line-height:1;padding:10px 16px;border-radius:10px;grid-row:span 3}
+.verdict .lvl[data-s="0"]{background:var(--s0)} .verdict .lvl[data-s="1"]{background:var(--s1)} .verdict .lvl[data-s="2"]{background:var(--s2)} .verdict .lvl[data-s="3"]{background:var(--s3)} .verdict .lvl[data-s="4"]{background:var(--s4);color:#fff}
+.verdict .lead{font-size:16px;font-weight:600}
+.verdict .sub{font-size:14px;color:var(--muted)}
+.verdict .alt{font-size:14px;grid-column:2}
+.verdict .alt button{font:inherit;font-size:13px;font-weight:600;border:0;background:none;color:var(--indigo);text-decoration:underline;cursor:pointer;padding:0}
+.days{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.days li{border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;font-size:13.5px;background:var(--surface)}
+.days .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.days .top b{font-size:15px}
+.days .ly{color:var(--muted)}
+.days .tg{display:flex;flex-wrap:wrap;gap:4px}
+.days .tg span{font-size:12px;padding:1px 8px;border-radius:999px;background:var(--gold-soft);color:var(--gold);font-weight:600}
+.days .tg span.soft{background:var(--indigo-soft);color:var(--indigo);font-weight:400}
+.pillS{font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.pillS[data-s="0"]{background:var(--s0)} .pillS[data-s="1"]{background:var(--s1)} .pillS[data-s="2"]{background:var(--s2)} .pillS[data-s="3"]{background:var(--s3)} .pillS[data-s="4"]{background:var(--s4);color:#fff}
+.pillS:not([data-s]){background:var(--s-none);color:var(--muted)}
+@media (max-width:520px){ .verdict{grid-template-columns:minmax(0,1fr)} .verdict .lvl{grid-row:auto;justify-self:start} .verdict .alt{grid-column:1} }
+
+/* occasions */
+.occ{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.occ>li.o{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:96px minmax(0,1fr) minmax(0,300px);gap:6px 18px;align-items:start}
+.occ .dt{display:flex;flex-direction:column;line-height:1.15}
+.occ .dt b{font-family:var(--display);font-size:26px;font-weight:400}
+.occ .dt span{font-size:12.5px;color:var(--muted)}
+.occ .nm{display:flex;flex-direction:column;gap:3px;min-width:0}
+.occ .nm strong{font-size:16.5px}
+.occ .nm small{color:var(--muted);font-size:13px}
+.occ .hist{display:flex;flex-direction:column;gap:4px;font-size:13.5px;border-left:1px solid var(--line);padding-left:16px;min-width:0}
+.occ .hist .k{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.occ .hist .row{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+.occ .in{font-size:12px;font-weight:600;color:var(--gold)}
+.badge{font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.badge.b-hi{background:var(--s4);color:#fff}
+.badge.b-up{background:var(--s3);color:var(--ink)}
+.badge.b-eq{background:var(--s1);color:var(--ink)}
+.badge.b-lo{background:var(--s0);color:var(--ink)}
+.badge.b-na{background:var(--s-none);color:var(--muted)}
+.tk{font-size:13px;font-weight:600;margin-top:4px;padding:3px 9px;border-radius:6px;width:max-content;max-width:100%}
+.tk.soon{background:var(--gold-soft);color:var(--gold)}
+.tk.gone{background:var(--s-none);color:var(--muted);font-weight:400}
+.statrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.stat{display:flex;flex-direction:column}
+.stat b{font-size:22px}
+.stat span{font-size:12.5px;color:var(--muted)}
+.dates{display:flex;flex-wrap:wrap;gap:6px}
+.dates span{font-size:13px;padding:3px 9px;border-radius:6px;background:var(--indigo-soft);color:var(--indigo)}
+@media (max-width:820px){ .occ>li.o{grid-template-columns:80px minmax(0,1fr)} .occ .hist{grid-column:1/-1;border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:8px} }
+
+/* chart */
+.controls{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;justify-content:space-between}
+.chart{position:relative;width:100%;min-height:240px}
+.chart svg{display:block;width:100%;height:240px}
+.readout{font-size:14px;min-height:21px}
+.readout b{font-weight:700}
+
+/* table */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);max-height:560px}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:820px}
+th,td{padding:8px 12px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child,td.l,th.l{text-align:left}
+thead th{position:sticky;top:0;background:var(--surface);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td .w{display:inline-block;min-width:44px;padding:1px 7px;border-radius:5px;text-align:center}
+.empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}
+footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:6px;max-width:75ch}
+footer a{color:var(--indigo)}
+
+@media (max-width:820px){
+  .mast,.two{grid-template-columns:minmax(0,1fr)}
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:480px){
+  .tiles{grid-template-columns:minmax(0,1fr)}
+  .quota li{grid-template-columns:minmax(0,1fr) auto}
+  .quota .what{grid-column:1/-1;grid-row:2}
+  .events li{grid-template-columns:minmax(0,1fr)}
+  .wk{grid-template-columns:40px minmax(0,1fr) 92px}
+}
+@media (prefers-reduced-motion:no-preference){ .wk .bar span{transition:width .4s ease} }
+
+/* devotional dressing */
+body{position:relative;overflow-x:hidden}
+.bg-temple{position:fixed;right:-4vw;bottom:-2vh;width:min(78vw,760px);height:auto;color:var(--temple);opacity:.075;pointer-events:none;z-index:0}
+.wrap{position:relative;z-index:1}
+.toran{height:22px;background:var(--band);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='22'%3E%3Cpath d='M0 0h40v3H0z'/%3E%3Cpath d='M20 3C12 8 12.5 15 20 22 27.5 15 28 8 20 3z'/%3E%3Cpath d='M0 3C-2 7-1 11 0 13zM40 3c2 4 1 8 0 10z'/%3E%3C/svg%3E") repeat-x;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='22'%3E%3Cpath d='M0 0h40v3H0z'/%3E%3Cpath d='M20 3C12 8 12.5 15 20 22 27.5 15 28 8 20 3z'/%3E%3Cpath d='M0 3C-2 7-1 11 0 13zM40 3c2 4 1 8 0 10z'/%3E%3C/svg%3E") repeat-x;opacity:.85}
+.toran.gold{background:var(--gold);height:14px;opacity:.5}
+h1{font-family:var(--title);color:var(--indigo);letter-spacing:.01em}
+.invocation{font-family:var(--display);color:var(--gold);font-size:15px;letter-spacing:.06em}
+.queue{background:linear-gradient(160deg,var(--indigo),color-mix(in srgb,var(--indigo) 70%,#000));color:#FFF6E6;border:1px solid color-mix(in srgb,var(--gold) 50%,transparent);box-shadow:inset 0 0 0 4px color-mix(in srgb,var(--gold) 18%,transparent)}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .queue{color:#2A120C;background:linear-gradient(160deg,#F0C77A,#E1A94E)} }
+:root[data-theme="dark"] .queue{color:#2A120C;background:linear-gradient(160deg,#F0C77A,#E1A94E)}
+.panel,.tile,.occ>li.o,.days li,.checker{background:color-mix(in srgb,var(--surface) 92%,transparent)}
+.checker{border:1px solid color-mix(in srgb,var(--gold) 45%,var(--line));box-shadow:0 1px 0 var(--gold-soft)}
+h2{color:var(--ink)}
+.sec-head h2::after{content:"";display:block;width:56px;height:3px;border-radius:2px;background:var(--gold);margin-top:8px}
+
+/* darshan guide */
+.dtypes{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.dtype{background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.dtype h3{font-size:18px;color:var(--indigo)}
+.dtype .aka{font-size:12.5px;color:var(--muted);margin-top:-4px}
+.dtype .cost{font-weight:700;font-size:14px}
+.dtype .cost.free{color:var(--ok)}
+.dtype p{margin:0;font-size:14.5px}
+.dtype .best{font-size:13.5px;background:var(--gold-soft);color:var(--ink);padding:6px 10px;border-radius:8px}
+.chooser{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin:0;padding:0;list-style:none}
+.chooser li{font-size:14.5px;padding:10px 12px;border-left:3px solid var(--gold);background:color-mix(in srgb,var(--surface) 90%,transparent);border-radius:0 8px 8px 0}
+.chooser b{display:block;font-size:13px;color:var(--muted);font-weight:600}
+.daysteps{margin:0;padding:0;list-style:none;counter-reset:st;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.daysteps li{counter-increment:st;position:relative;padding:12px 14px 12px 52px;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--surface) 92%,transparent);font-size:14.5px}
+.daysteps li::before{content:counter(st);position:absolute;left:14px;top:12px;width:26px;height:26px;border-radius:50%;background:var(--indigo);color:var(--bg);display:grid;place-items:center;font-weight:700;font-size:13px}
+.daysteps strong{display:block;margin-bottom:2px}
+.gloss{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:4px 24px;margin:0}
+.gloss div{padding:8px 0;border-bottom:1px solid var(--line)}
+.gloss dt{font-weight:700;font-size:14.5px}
+.gloss dd{margin:2px 0 0;font-size:14px;color:var(--muted)}
+details.more{border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--surface) 92%,transparent)}
+details.more>summary{cursor:pointer;padding:14px 18px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+details.more>summary::-webkit-details-marker{display:none}
+details.more>summary::after{content:"Show";color:var(--indigo);font-weight:600}
+details.more[open]>summary::after{content:"Hide"}
+details.more>summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:16px}
+.tip{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<svg class="bg-temple" viewBox="0 0 800 520" aria-hidden="true" focusable="false"><g fill="currentColor">
+<path d="M0 520V430c60-40 110-70 170-60s90 40 150 30 90-60 160-62 110 40 170 38 100-30 150-26v200z" opacity=".55"/>
+<path d="M0 520v-50c80-30 150-20 220-30s120-50 200-46 140 46 210 40 120-20 170-14v100z"/>
+<rect x="250" y="430" width="300" height="34" rx="3"/><rect x="270" y="400" width="260" height="34" rx="3"/>
+<rect x="300" y="300" width="200" height="104"/>
+<path d="M300 300h200l-14-30H314z"/><path d="M322 268h156l-12-28H334z"/><path d="M344 238h112l-10-26h-92z"/>
+<path d="M360 210c0-44 18-70 40-70s40 26 40 70z"/>
+<path d="M396 140v-26h8v26z"/><circle cx="400" cy="104" r="12"/><path d="M394 96l6-22 6 22z"/>
+<rect x="330" y="318" width="26" height="70" rx="13" opacity=".35"/><rect x="444" y="318" width="26" height="70" rx="13" opacity=".35"/><path d="M380 404v-60a20 20 0 0 1 40 0v60z" opacity=".35"/>
+<path d="M120 470v-80l-18-20h52l-18 20v80z" opacity=".6"/><path d="M680 470v-80l-18-20h52l-18 20v80z" opacity=".6"/>
+</g></svg>
+<div class="toran" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="mast">
+    <div class="mast-title">
+      <span class="invocation">Om Namo Venkatesaya</span>
+      <span class="eyebrow">Sri Venkateswara Swamy Temple · Tirumala</span>
+      <h1>Tirumala Darshan Planner</h1>
+      <span class="telugu" lang="te">శ్రీవారి దర్శనం · రోజువారీ వివరాలు</span>
+      <p class="muted" style="margin:0;max-width:58ch;font-size:17px">Planning a visit to Srivari? Pick your dates and see how crowded they are likely to be, which darshan suits your family, and the exact day tickets go on sale. Built from a year of TTD's own daily reports.</p>
+      <p class="note-src">Figures are collected from TTD's website and news reports and may sometimes be incomplete or wrong. Confirm dates and tickets on <a href="https://ttdevasthanams.ap.gov.in" target="_blank" rel="noopener">ttdevasthanams.ap.gov.in</a> before you travel.</p>
+      <div class="status" id="status"><!--PRE:status--><span class="chip fresh"><span class="dot"></span>Latest bulletin covers 27 Oct 2026</span><span class="chip">347 days of history</span><!--/PRE--></div>
+    </div>
+    <div class="queue" id="queue">
+      <span class="eyebrow">Free darshan queue</span>
+      <!--PRE:queue--><div class="big">8 h</div>
+      <div class="where">10 of 31 compartments in use · morning of 28 Oct 2026</div><!--/PRE-->
+    </div>
+  </header>
+
+  <section id="check" class="checker">
+    <div class="sec-head"><h2>When are you planning to go?</h2><p class="muted small">Choose the day you reach Tirumala and the day you leave. We look at the same days last year, and at last year's festival if one falls in your trip, to estimate the crowd.</p></div>
+    <form class="pick" id="pickForm" autocomplete="off">
+      <label for="dFrom">Reaching Tirumala<input type="date" id="dFrom" required></label>
+      <label for="dTo">Leaving<input type="date" id="dTo" required></label>
+      <div class="quick" role="group" aria-label="Quick picks">
+        <button type="button" class="tab" id="qWeekend" data-q="weekend">Next weekend</button>
+        <button type="button" class="tab" id="qMidweek" data-q="midweek">Next Tue–Wed</button>
+        <button type="button" class="tab" id="qMonth" data-q="month">Try a month later</button>
+      </div>
+    </form>
+    <div id="verdict" class="verdict"><span class="muted">Choose your dates above to see how crowded they are likely to be.</span></div>
+    <ol class="days" id="dayList"></ol>
+  </section>
+
+  <section id="guide">
+    <div class="sec-head"><h2>Which darshan is right for me?</h2><p class="muted small">There are several ways to have darshan of Sri Venkateswara Swamy. Most are free. Rules change from time to time, so confirm on TTD's site before you go.</p></div>
+    <ul class="chooser">
+      <li><b>Short on time</b>Book ₹300 Special Entry Darshan online, or get a free SSD time-slot token in Tirupati.</li>
+      <li><b>Travelling with parents over 65</b>Book the free senior citizens quota when it opens each month.</li>
+      <li><b>Walking up the hill</b>Ask for a Divya Darshan token on the footpath.</li>
+      <li><b>Flexible and patient</b>Join the free Sarva Darshan queue. Check the expected wait on this page first.</li>
+    </ul>
+    <div class="dtypes">
+      <article class="dtype"><h3>Sarva Darshan</h3><span class="aka">The free general queue</span><span class="cost free">Free · no booking</span>
+        <p>Walk into the Vaikuntam Queue Complex in Tirumala and wait your turn. Food, water and milk are given in the queue.</p>
+        <span class="best">Wait ranges from a few hours to more than a day. This page shows how long it was each morning.</span></article>
+      <article class="dtype"><h3>SSD time-slot token</h3><span class="aka">Slotted Sarva Darshan</span><span class="cost free">Free · token in Tirupati</span>
+        <p>Collect a token with a darshan time at TTD's counters in Tirupati: Srinivasam, Vishnu Nivasam and the Bhudevi Complex. Carry the original Aadhaar of every adult.</p>
+        <span class="best">Tokens are limited each day and TTD pauses them on very crowded days.</span></article>
+      <article class="dtype"><h3>₹300 Special Entry</h3><span class="aka">Special Entry Darshan (SED)</span><span class="cost">₹300 per person · book online</span>
+        <p>Book a time slot on ttdevasthanams.ap.gov.in. Tickets for a month go on sale about three months ahead and sell out fast. Traditional dress is required.</p>
+        <span class="best">See "When do tickets go on sale?" below for the exact day and time.</span></article>
+      <article class="dtype"><h3>Divya Darshan</h3><span class="aka">For pilgrims who walk up</span><span class="cost free">Free · token on the footpath</span>
+        <p>Climb by the Alipiri or Srivari Mettu steps. TTD gives walkers a darshan token on the way. Counters and timings change, so ask at the start of the path.</p>
+        <span class="best">A walk of several hours; start early and carry water.</span></article>
+      <article class="dtype"><h3>Senior citizens and differently abled</h3><span class="aka">Dedicated quota</span><span class="cost free">Free · book online</span>
+        <p>A separate darshan slot for those aged 65 and above and for differently abled devotees, released online each month. Carry age proof or the disability certificate.</p>
+        <span class="best">Opens on the 23rd at 3 PM, about three months ahead.</span></article>
+      <article class="dtype"><h3>Sevas and SRIVANI</h3><span class="aka">Arjitha sevas and the SRIVANI Trust</span><span class="cost">Paid · book online</span>
+        <p>Sevas such as Suprabhatam and Kalyanotsavam are allotted by an online lucky dip or first come, first served. SRIVANI darshan is for donors to the SRIVANI Trust.</p>
+        <span class="best">Both open each month around the 19th to the 23rd.</span></article>
+    </div>
+  </section>
+
+  <nav class="steps" aria-label="Sections">
+    <span class="muted small" style="align-self:center">More detail:</span>
+    <a href="#guide">Which darshan is right for me?</a>
+    <a href="#weekdays"><b>1</b>Quieter days of the week</a>
+    <a href="#festivals"><b>2</b>Festivals coming up</a>
+    <a href="#tickets"><b>3</b>When tickets go on sale</a>
+    <a href="#onday">On the day</a>
+    <a href="#numbers" class="aside">TTD's daily numbers</a>
+  </nav>
+
+  <section id="weekdays">
+    <div class="sec-head"><h2><span class="stepn">1</span>Which days of the week are quieter?</h2><p class="muted small">Wait is TTD's morning estimate for free Sarva Darshan without SSD tokens. Holders of ₹300 tickets or SSD tokens wait far less, but the same days are busy for everyone: rooms, Annaprasadam and the laddu counters.</p></div>
+    <div class="two">
+      <div class="panel">
+        <h3>Average morning wait by weekday</h3>
+        <div class="wk" id="weekday"></div>
+        <p class="callout small" id="wkNote"></p>
+      </div>
+      <div class="panel">
+        <h3>How often the queue spills outside the complex</h3>
+        <p class="small muted" style="margin:0">When all 31 compartments of Vaikuntam Queue Complex II fill, the line runs outside (Silathoranam, Krishna Teja guest house, Octopus building, Bata Gangamma temple). Share of mornings where that happened:</p>
+        <div class="wk" id="spill"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="festivals">
+    <div class="sec-head"><h2><span class="stepn">2</span>Festivals and auspicious days coming up</h2><p class="muted small">Each upcoming occasion sits beside the same occasion last year. "Busier" compares pilgrims per day with the two weeks either side; the queue figure is the longest morning wait over those days.</p></div>
+    <ol class="occ" id="occ"><!--PRE:occ--><li class="o"><span class="dt"><b>5 Nov</b></span><span class="nm"><strong>Rama Ekadasi</strong><small>Karthika masam Ekadasi.</small></span><span class="hist"></span></li><li class="o"><span class="dt"><b>8 Nov</b></span><span class="nm"><strong>Deepavali</strong><small>Deepavali Asthanam at the Srivari temple; AP public holiday.</small></span><span class="hist"></span></li><li class="o"><span class="dt"><b>15 Nov</b></span><span class="nm"><strong>Pushpayagam</strong><small>Flower offering to the Malayappa Swamy; some arjitha sevas are cancelled that day.</small></span><span class="hist"></span></li><li class="o"><span class="dt"><b>20 Nov</b></span><span class="nm"><strong>Kaisika Ekadasi and Dwadasi</strong><small>Uttana Ekadasi; Ugra Srinivasa procession at dawn on Dwadasi.</small></span><span class="hist"></span></li><li class="o"><span class="dt"><b>24 Nov</b></span><span class="nm"><strong>Karthika Pournami Deepotsavam</strong><small>Full moon of Karthika, with lamps lit across the temple.</small></span><span class="hist"></span></li><li class="o"><span class="dt"><b>5 Dec</b></span><span class="nm"><strong>Tiruchanur Padmavathi Ammavari Brahmotsavam</strong><small>At Tiruchanur near Tirupati. Panchami Theertham on the last day draws the biggest crowd.</small></span><span class="hist"></span></li><li class="o"><span class="dt"><b>20 Dec</b></span><span class="nm"><strong>Vaikuntha Ekadasi and Vaikuntha Dwara darshan</strong><small>Ten days of Vaikuntha Dwara darshan, overlapping Christmas holidays. TTD usually issues dedicated tokens and suspends most other darshan types.</small></span><span class="hist"></span></li><li class="o"><span class="dt"><b>1 Jan</b></span><span class="nm"><strong>New Year&#x27;s Day</strong><small>Last year it fell inside the Vaikuntha Dwara window.</small></span><span class="hist"></span></li><li class="o"><span class="dt"><b>13 Jan</b></span><span class="nm"><strong>Bhogi, Sankranti, Kanuma</strong><small>Harvest festival; schools in AP and Telangana close for about a week.</small></span><span class="hist"></span></li><li class="o"><span class="dt"><b>13 Feb</b></span><span class="nm"><strong>Ratha Saptami</strong><small>One-day &#x27;mini Brahmotsavam&#x27;: seven vahanams from sunrise to night.</small></span><span class="hist"></span></li><li class="o"><span class="dt"><b>6 Mar</b></span><span class="nm"><strong>Maha Shivaratri</strong><small>Pilgrims combine Srikalahasti and Tirumala.</small></span><span class="hist"></span></li><li class="o"><span class="dt"><b>7 Apr</b></span><span class="nm"><strong>Ugadi</strong><small>Telugu new year; Ugadi Asthanam at the temple.</small></span><span class="hist"></span></li><li class="o"><span class="dt"><b>15 Apr</b></span><span class="nm"><strong>Sri Rama Navami</strong><small>Hanumantha vahanam at night.</small></span><span class="hist"></span></li><li class="o"><span class="dt"><b>1 May</b></span><span class="nm"><strong>Summer holidays</strong><small>The heaviest stretch of the year outside festivals. Last year the queue spilled outside the complex on most mornings.</small></span><span class="hist"></span></li><!--/PRE--></ol>
+    <div class="two">
+      <div class="panel" id="ekPanel"><h3>Ekadasi</h3><p class="small muted" style="margin:0">Loading…</p></div>
+      <div class="panel" id="poPanel"><h3>Pournami (full moon) Garuda Seva</h3><p class="small muted" style="margin:0">Loading…</p></div>
+    </div>
+    <div class="panel">
+      <div class="sec-head"><h3>Last year, day by day: how long was the free queue?</h3>
+        <div class="legend" id="legend"></div></div>
+      <div class="cal" id="cal"><div class="empty">The calendar fills in from the bulletin history.</div></div>
+    </div>
+  </section>
+
+  <section id="tickets">
+    <div class="sec-head"><h2><span class="stepn">3</span>When do tickets go on sale?</h2><p class="muted small" id="quotaSrc"></p></div>
+    <p class="callout small" style="margin:0">Choose the month you plan to visit to see when its tickets go on sale. Quotas usually sell out the day they open, so set a reminder. Missed them? TTD also issues free SSD (Slotted Sarva Darshan) time-slot tokens at counters in Tirupati, subject to a daily limit.</p>
+    <div class="panel">
+      <div class="next" id="nextRelease"><span class="eyebrow">Next release</span><b>—</b></div>
+      <div class="months" id="monthTabs" role="group" aria-label="Darshan month"></div>
+      <ul class="quota" id="quota"></ul>
+    </div>
+  </section>
+
+  <section id="onday">
+    <div class="sec-head"><h2>On the day of darshan</h2><p class="muted small">A simple checklist for first-time visitors.</p></div>
+    <ol class="daysteps">
+      <li><strong>Reach Tirumala</strong>Take a TTD or APSRTC bus or a taxi from Tirupati, about an hour up the ghat road, or walk up the footpath. Vehicles and bags are checked at Alipiri.</li>
+      <li><strong>Leave phones and bags</strong>Mobile phones, cameras and large bags are not allowed inside the temple. Use the free deposit counters near the queue complex.</li>
+      <li><strong>Dress traditionally</strong>Men: dhoti, or kurta-pyjama, or shirt and trousers. Women: saree, half-saree or churidar with dupatta. Required for ₹300 and seva tickets.</li>
+      <li><strong>Carry ID</strong>Bring the original Aadhaar of everyone named on your ticket or token. Report at your slot time.</li>
+      <li><strong>Tonsure, if you have a vow</strong>Hair offering is free at the Kalyanakatta halls. Most pilgrims do it before darshan and bathe after.</li>
+      <li><strong>Laddu and Annaprasadam</strong>Collect laddu prasadam at the laddu counters after darshan; extra laddus can be bought. Free meals are served at the Annaprasadam complex all day.</li>
+    </ol>
+    <h3>Words you will see</h3>
+    <dl class="gloss">
+      <div><dt>Compartments</dt><dd>Waiting halls in the Vaikuntam Queue Complex. When all 31 are full, the queue continues outside.</dd></div>
+      <div><dt>"Outside line at Silathoranam"</dt><dd>The queue has run out of the halls and along the road. Silathoranam, ATGH and Krishna Teja guest house are nearby landmarks; Octopus building and Bata Gangamma temple mean a very long line.</dd></div>
+      <div><dt>Direct line</dt><dd>No waiting in the halls. Devotees walk straight through.</dd></div>
+      <div><dt>Quota</dt><dd>The batch of tickets TTD releases online for a month, usually three months ahead.</dd></div>
+      <div><dt>Srivari hundi</dt><dd>The offering box in the temple. TTD reports the cash counted each day.</dd></div>
+      <div><dt>Kalyanakatta</dt><dd>The halls where devotees offer their hair (tonsure).</dd></div>
+      <div><dt>Annaprasadam</dt><dd>Free meals TTD serves to every pilgrim.</dd></div>
+      <div><dt>Brahmotsavam and Garuda Seva</dt><dd>The temple's biggest annual festival and its most crowded evening procession.</dd></div>
+      <div><dt>Vaikuntha Dwara darshan</dt><dd>Ten days around Vaikuntha Ekadasi when devotees pass through the sacred northern gate. Usually by special token only.</dd></div>
+    </dl>
+  </section>
+
+  <section id="numbers">
+    <div class="sec-head"><h2>TTD's daily numbers</h2><p class="muted small">For the curious: how many devotees had darshan each day, tonsures, hundi, laddus and Annaprasadam.</p></div>
+    <details class="more" id="moreNums"><summary>Show the daily figures, charts and full history</summary><div class="inner">
+    <h3 id="tilesHead">Latest bulletin</h3>
+    <div class="tiles" id="tiles"><div class="empty" style="grid-column:1/-1">Bulletin figures appear here once the history loads.</div></div>
+    <div class="panel">
+      <h3>Trends</h3>
+      <div class="controls">
+        <div class="months" id="metricTabs" role="group" aria-label="Measure"></div>
+        <div class="months" id="rangeTabs" role="group" aria-label="Range"></div>
+      </div>
+      <div class="readout" id="readout">&nbsp;</div>
+      <div class="chart" id="chart"></div>
+      <div class="legend"><span><i style="background:var(--indigo)"></i>Weekday</span><span><i style="background:var(--gold)"></i>Saturday or Sunday</span></div>
+    </div>
+    <h3 style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px">Every bulletin <span class="muted small" id="count" style="font-family:var(--body)"></span></h3>
+    <div class="tbl"><table>
+      <thead><tr><th class="l">Date</th><th class="l">Day</th><th>Pilgrims</th><th>Tonsures</th><th>Hundi (₹ Cr)</th><th>Laddus (lakh)</th><th>Annaprasadam (lakh)</th><th>Ashwini Hospital</th><th class="l">Queue next morning</th><th>Wait</th></tr></thead>
+      <tbody id="tbody"><!--PRE:rows--><tr><td>27 Oct 2026</td><td class="l">Tue</td><td>79,774</td><td>21,886</td><td>4.84</td><td>4.01</td><td>2.04</td><td>3,072</td><td class="l">10 compartments</td><td>8 h</td></tr><tr><td>26 Oct 2026</td><td class="l">Mon</td><td>69,697</td><td>25,781</td><td>4.64</td><td>3.34</td><td>1.71</td><td>3,226</td><td class="l">31 compartments</td><td>8 h</td></tr><tr><td>25 Oct 2026</td><td class="l">Sun</td><td>85,369</td><td>26,414</td><td>4.13</td><td>3.93</td><td>2.43</td><td>3,185</td><td class="l">31 compartments</td><td>15 h</td></tr><tr><td>24 Oct 2026</td><td class="l">Sat</td><td>81,768</td><td>34,018</td><td>3.57</td><td>4.35</td><td>2.48</td><td>3,371</td><td class="l">Outside line at Silathoranam</td><td>18 h</td></tr><tr><td>23 Oct 2026</td><td class="l">Fri</td><td>70,496</td><td>29,327</td><td>3.95</td><td>3.77</td><td>2.28</td><td>—</td><td class="l">Outside line at ATGH</td><td>12-15 h</td></tr><tr><td>22 Oct 2026</td><td class="l">Thu</td><td>65,113</td><td>26,391</td><td>3.82</td><td>3.71</td><td>1.71</td><td>2,677</td><td class="l">26 compartments</td><td>10 h</td></tr><tr><td>21 Oct 2026</td><td class="l">Wed</td><td>73,226</td><td>24,754</td><td>2.66</td><td>3.63</td><td>1.58</td><td>2,217</td><td class="l">12 compartments</td><td>6 h</td></tr><tr><td>20 Oct 2026</td><td class="l">Tue</td><td>83,745</td><td>19,391</td><td>2.99</td><td>3.73</td><td>1.90</td><td>5,005</td><td class="l">9 compartments</td><td>6-8 h</td></tr><tr><td>19 Oct 2026</td><td class="l">Mon</td><td>85,431</td><td>22,966</td><td>3.20</td><td>4.44</td><td>2.37</td><td>9,269</td><td class="l">6 compartments</td><td>6-8 h</td></tr><tr><td>18 Oct 2026</td><td class="l">Sun</td><td>76,422</td><td>32,141</td><td>3.33</td><td>4.38</td><td>2.78</td><td>9,011</td><td class="l">31 compartments</td><td>12 h</td></tr><tr><td>17 Oct 2026</td><td class="l">Sat</td><td>83,806</td><td>34,449</td><td>3.17</td><td>4.73</td><td>2.41</td><td>8,353</td><td class="l">Outside line at Krishna Teja guest house</td><td>12 h</td></tr><tr><td>16 Oct 2026</td><td class="l">Fri</td><td>77,759</td><td>28,977</td><td>2.96</td><td>4.08</td><td>—</td><td>13,540</td><td class="l">31 compartments</td><td>12 h</td></tr><tr><td>15 Oct 2026</td><td class="l">Thu</td><td>72,337</td><td>33,548</td><td>3.87</td><td>4.00</td><td>2.29</td><td>8,419</td><td class="l">Outside line at Silathoranam</td><td>18 h</td></tr><tr><td>14 Oct 2026</td><td class="l">Wed</td><td>84,289</td><td>31,474</td><td>3.33</td><td>4.53</td><td>2.00</td><td>8,754</td><td class="l">27 compartments</td><td>6-8 h</td></tr><tr><td>13 Oct 2026</td><td class="l">Tue</td><td>84,179</td><td>29,644</td><td>3.01</td><td>4.49</td><td>2.05</td><td>6,269</td><td class="l">23 compartments</td><td>8-10 h</td></tr><tr><td>12 Oct 2026</td><td class="l">Mon</td><td>83,322</td><td>31,312</td><td>2.93</td><td>3.45</td><td>1.69</td><td>3,676</td><td class="l">17 compartments</td><td>8 h</td></tr><tr><td>11 Oct 2026</td><td class="l">Sun</td><td>71,759</td><td>20,867</td><td>3.37</td><td>4.04</td><td>1.62</td><td>2,478</td><td class="l">Direct line</td><td>Direct</td></tr><tr><td>10 Oct 2026</td><td class="l">Sat</td><td>79,737</td><td>24,326</td><td>3.71</td><td>3.66</td><td>1.83</td><td>3,148</td><td class="l">16 compartments</td><td>8 h</td></tr><tr><td>9 Oct 2026</td><td class="l">Fri</td><td>68,187</td><td>23,923</td><td>4.55</td><td>4.29</td><td>1.61</td><td>2,619</td><td class="l">10 compartments</td><td>8 h</td></tr><tr><td>8 Oct 2026</td><td class="l">Thu</td><td>66,404</td><td>20,856</td><td>4.63</td><td>4.15</td><td>1.82</td><td>2,752</td><td class="l">16 compartments</td><td>8-12 h</td></tr><tr><td>7 Oct 2026</td><td class="l">Wed</td><td>78,777</td><td>28,244</td><td>4.35</td><td>4.14</td><td>2.02</td><td>4,075</td><td class="l">26 compartments</td><td>10-12 h</td></tr><tr><td>6 Oct 2026</td><td class="l">Tue</td><td>73,629</td><td>27,525</td><td>5.33</td><td>3.91</td><td>1.75</td><td>3,334</td><td class="l">31 compartments</td><td>12 h</td></tr><tr><td>5 Oct 2026</td><td class="l">Mon</td><td>83,252</td><td>28,683</td><td>4.56</td><td>4.58</td><td>1.82</td><td>3,068</td><td class="l">10 compartments</td><td>6-8 h</td></tr><tr><td>4 Oct 2026</td><td class="l">Sun</td><td>90,292</td><td>27,329</td><td>4.61</td><td>4.36</td><td>2.74</td><td>4,174</td><td class="l">21 compartments</td><td>8-10 h</td></tr><tr><td>3 Oct 2026</td><td class="l">Sat</td><td>91,296</td><td>32,805</td><td>5.06</td><td>4.67</td><td>3.19</td><td>4,516</td><td class="l">Outside line at Silathoranam</td><td>18 h</td></tr><tr><td>2 Oct 2026</td><td class="l">Fri</td><td>78,445</td><td>40,098</td><td>4.30</td><td>4.16</td><td>3.30</td><td>4,818</td><td class="l">Outside line at Octopus building</td><td>30 h</td></tr><tr><td>1 Oct 2026</td><td class="l">Thu</td><td>78,026</td><td>31,166</td><td>5.12</td><td>4.21</td><td>3.13</td><td>2,962</td><td class="l">Outside line at Silathoranam</td><td>18 h</td></tr><tr><td>30 Sep 2026</td><td class="l">Wed</td><td>78,723</td><td>37,664</td><td>4.63</td><td>4.48</td><td>3.04</td><td>3,834</td><td class="l">Outside line at Octopus building</td><td>24 h</td></tr><tr><td>29 Sep 2026</td><td class="l">Tue</td><td>77,082</td><td>34,039</td><td>4.22</td><td>4.13</td><td>2.90</td><td>4,094</td><td class="l">Outside line at Silathoranam</td><td>24 h</td></tr><tr><td>28 Sep 2026</td><td class="l">Mon</td><td>84,171</td><td>36,671</td><td>4.26</td><td>4.16</td><td>2.61</td><td>3,926</td><td class="l">Outside line at Silathoranam</td><td>20-24 h</td></tr><tr><td>27 Sep 2026</td><td class="l">Sun</td><td>83,578</td><td>31,137</td><td>5.07</td><td>4.39</td><td>2.88</td><td>3,631</td><td class="l">Outside line at Silathoranam</td><td>18 h</td></tr><tr><td>26 Sep 2026</td><td class="l">Sat</td><td>82,181</td><td>37,633</td><td>3.94</td><td>4.89</td><td>2.82</td><td>3,893</td><td class="l">Outside line at Silathoranam</td><td>20-24 h</td></tr><tr><td>25 Sep 2026</td><td class="l">Fri</td><td>66,014</td><td>31,092</td><td>4.44</td><td>4.23</td><td>2.25</td><td>3,421</td><td class="l">Outside line at Silathoranam</td><td>15-20 h</td></tr><tr><td>24 Sep 2026</td><td class="l">Thu</td><td>67,534</td><td>25,411</td><td>3.40</td><td>3.95</td><td>2.05</td><td>2,832</td><td class="l">31 compartments</td><td>12 h</td></tr><tr><td>23 Sep 2026</td><td class="l">Wed</td><td>67,632</td><td>24,909</td><td>2.91</td><td>3.42</td><td>1.76</td><td>2,798</td><td class="l">31 compartments</td><td>15 h</td></tr><tr><td>22 Sep 2026</td><td class="l">Tue</td><td>82,198</td><td>23,743</td><td>3.37</td><td>4.58</td><td>1.83</td><td>3,603</td><td class="l">Direct line</td><td>Direct</td></tr><tr><td>21 Sep 2026</td><td class="l">Mon</td><td>65,223</td><td>27,112</td><td>3.52</td><td>4.29</td><td>1.81</td><td>—</td><td class="l">3 compartments</td><td>4 h</td></tr><tr><td>20 Sep 2026</td><td class="l">Sun</td><td>72,019</td><td>25,431</td><td>3.50</td><td>4.64</td><td>2.03</td><td>3,736</td><td class="l">6 compartments</td><td>6 h</td></tr><tr><td>19 Sep 2026</td><td class="l">Sat</td><td>83,589</td><td>27,828</td><td>4.17</td><td>4.77</td><td>—</td><td>3,684</td><td class="l">31 compartments</td><td>8 h</td></tr><tr><td>18 Sep 2026</td><td class="l">Fri</td><td>76,060</td><td>32,248</td><td>3.00</td><td>4.56</td><td>2.21</td><td>4,208</td><td class="l">Outside line at Silathoranam</td><td>18 h</td></tr><tr><td>17 Sep 2026</td><td class="l">Thu</td><td>68,265</td><td>26,959</td><td>4.16</td><td>3.21</td><td>1.72</td><td>3,572</td><td class="l">31 compartments</td><td>15 h</td></tr><tr><td>16 Sep 2026</td><td class="l">Wed</td><td>71,196</td><td>22,581</td><td>2.46</td><td>3.69</td><td>1.61</td><td>3,212</td><td class="l">4 compartments</td><td>4 h</td></tr><tr><td>15 Sep 2026</td><td class="l">Tue</td><td>61,361</td><td>18,722</td><td>4.70</td><td>3.20</td><td>1.84</td><td>3,189</td><td class="l">8 compartments</td><td>4 h</td></tr><tr><td>14 Sep 2026</td><td class="l">Mon</td><td>88,210</td><td>30,192</td><td>4.23</td><td>4.36</td><td>2.67</td><td>3,398</td><td class="l">—</td><td>4 h</td></tr><tr><td>13 Sep 2026</td><td class="l">Sun</td><td>90,842</td><td>39,852</td><td>4.66</td><td>4.33</td><td>2.98</td><td>4,108</td><td class="l">—</td><td>15-20 h</td></tr><tr><td>12 Sep 2026</td><td class="l">Sat</td><td>81,724</td><td>38,361</td><td>4.04</td><td>4.39</td><td>2.58</td><td>3,839</td><td class="l">—</td><td>24 h</td></tr><tr><td>11 Sep 2026</td><td class="l">Fri</td><td>72,408</td><td>28,691</td><td>4.39</td><td>4.58</td><td>2.53</td><td>4,039</td><td class="l">31 compartments</td><td>18 h</td></tr><tr><td>10 Sep 2026</td><td class="l">Thu</td><td>69,771</td><td>25,888</td><td>6.94</td><td>4.42</td><td>2.65</td><td>4,091</td><td class="l">—</td><td>15-20 h</td></tr><tr><td>9 Sep 2026</td><td class="l">Wed</td><td>77,670</td><td>33,904</td><td>3.95</td><td>4.59</td><td>3.04</td><td>3,932</td><td class="l">—</td><td>24 h</td></tr><tr><td>8 Sep 2026</td><td class="l">Tue</td><td>71,297</td><td>32,783</td><td>5.59</td><td>3.72</td><td>2.90</td><td>4,194</td><td class="l">—</td><td>24 h</td></tr><tr><td>7 Sep 2026</td><td class="l">Mon</td><td>69,440</td><td>36,255</td><td>4.75</td><td>4.03</td><td>2.69</td><td>4,171</td><td class="l">Outside line</td><td>24 h</td></tr><tr><td>5 Sep 2026</td><td class="l">Sat</td><td>84,176</td><td>36,673</td><td>4.08</td><td>4.74</td><td>3.01</td><td>4,230</td><td class="l">Outside line</td><td>24 h</td></tr><tr><td>4 Sep 2026</td><td class="l">Fri</td><td>68,374</td><td>35,241</td><td>4.03</td><td>4.19</td><td>2.82</td><td>3,861</td><td class="l">Outside line at Silathoranam</td><td>20-24 h</td></tr><tr><td>3 Sep 2026</td><td class="l">Thu</td><td>68,433</td><td>30,229</td><td>4.68</td><td>4.08</td><td>2.73</td><td>3,745</td><td class="l">Outside line at Silathoranam</td><td>18-24 h</td></tr><tr><td>2 Sep 2026</td><td class="l">Wed</td><td>79,215</td><td>36,740</td><td>4.45</td><td>4.45</td><td>2.62</td><td>3,508</td><td class="l">Outside line at Silathoranam</td><td>18 h</td></tr><tr><td>1 Sep 2026</td><td class="l">Tue</td><td>78,310</td><td>34,573</td><td>4.58</td><td>4.14</td><td>2.52</td><td>—</td><td class="l">31 compartments</td><td>12 h</td></tr><tr><td>31 Aug 2026</td><td class="l">Mon</td><td>77,042</td><td>36,698</td><td>4.50</td><td>4.14</td><td>2.09</td><td>3,151</td><td class="l">27 compartments</td><td>8-12 h</td></tr><tr><td>30 Aug 2026</td><td class="l">Sun</td><td>81,687</td><td>34,938</td><td>4.36</td><td>4.05</td><td>2.19</td><td>3,161</td><td class="l">12 compartments</td><td>8 h</td></tr><tr><td>29 Aug 2026</td><td class="l">Sat</td><td>85,246</td><td>34,085</td><td>4.30</td><td>4.51</td><td>2.23</td><td>3,081</td><td class="l">20 compartments</td><td>10-12 h</td></tr><tr><td>28 Aug 2026</td><td class="l">Fri</td><td>71,803</td><td>28,685</td><td>4.04</td><td>4.25</td><td>2.54</td><td>3,505</td><td class="l">31 compartments</td><td>12 h</td></tr><!--/PRE--></tbody>
+    </table></div>
+    </div></details>
+  </section>
+
+  <div class="toran gold" aria-hidden="true"></div>
+  <footer>
+    <span>Figures come from TTD's own daily bulletins on <a href="https://news.tirumala.org/category/darshan/" target="_blank" rel="noopener">news.tirumala.org</a>. Each bulletin covers the previous day; the queue line describes the morning it was published. Book only on TTD's official site, <a href="https://ttdevasthanams.ap.gov.in" target="_blank" rel="noopener">ttdevasthanams.ap.gov.in</a>.</span>
+    <span>This is an independent page, not affiliated with TTD. The data is gathered from TTD's website and news reports, so it can sometimes be missing, delayed or incorrect. Festival dates marked expected may change. Days missing from the archive appear as grey cells.</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const S={rows:[],meta:null,plan:null,metric:'pilgrims',range:90,month:null};
+  const $=id=>document.getElementById(id);
+  const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const MONL=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const fInt=v=>v==null?'—':Math.round(v).toLocaleString('en-IN');
+  const f2=v=>v==null?'—':v.toFixed(2);
+  const METRICS=[
+    {k:'pilgrims',label:'Pilgrims',full:'Pilgrims who had darshan',fmt:fInt,ax:v=>(v/1000).toFixed(0)+'k'},
+    {k:'tonsures',label:'Tonsures',full:'Tonsures (Kalyanakatta)',fmt:fInt,ax:v=>(v/1000).toFixed(0)+'k'},
+    {k:'hundiCr',label:'Hundi',full:'Srivari hundi',fmt:v=>v==null?'—':'₹'+v.toFixed(2)+' Cr',ax:v=>'₹'+(+v.toFixed(1))},
+    {k:'ladduLakh',label:'Laddus',full:'Laddus sold',fmt:v=>v==null?'—':v.toFixed(2)+' lakh',ax:v=>+v.toFixed(1)+'L'},
+    {k:'annaLakh',label:'Annaprasadam',full:'Annaprasadam served',fmt:v=>v==null?'—':v.toFixed(2)+' lakh',ax:v=>+v.toFixed(1)+'L'},
+    {k:'hospital',label:'Hospital',full:'Ashwini Hospital visits',fmt:fInt,ax:v=>(v/1000).toFixed(1)+'k'},
+    {k:'waitHours',label:'Wait',full:'Morning Sarva Darshan wait',fmt:v=>v==null?'—':v+' h',ax:v=>v+'h',bySituation:true}
+  ];
+  const istToday=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Kolkata'}).format(new Date());
+  const dt=iso=>new Date(iso+'T00:00:00Z');
+  const dow=iso=>dt(iso).getUTCDay();
+  const nice=iso=>{const d=dt(iso);return d.getUTCDate()+' '+MON[d.getUTCMonth()]+' '+d.getUTCFullYear()};
+  const sevOf=h=>h==null?null:h<=6?0:h<=12?1:h<=18?2:h<=24?3:4;
+  const SEVTXT=['Short wait','Moderate','Long','Very long','Extreme'];
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const avg=a=>{const b=a.filter(v=>v!=null);return b.length?b.reduce((x,y)=>x+y,0)/b.length:null};
+
+  function renderStatus(){
+    const el=$('status'); const rows=S.rows; if(!rows.length){return}
+    const last=rows[rows.length-1];
+    const today=istToday();
+    const yest=new Date(dt(today).getTime()-864e5).toISOString().slice(0,10);
+    const fresh=last.date>=yest;
+    let h=`<span class="chip ${fresh?'fresh':'stale'}"><span class="dot"></span>${fresh?'Up to date':'Waiting for the next bulletin'} · latest covers ${nice(last.date)}</span>`;
+    if(S.meta&&S.meta.lastChecked){
+      const t=new Date(S.meta.lastChecked);
+      const s=new Intl.DateTimeFormat('en-IN',{timeZone:'Asia/Kolkata',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).format(t);
+      h+=`<span class="chip">Checked ${s} IST · refreshed daily</span>`;
+    }
+    h+=`<span class="chip">${rows.length.toLocaleString('en-IN')} days of history</span>`;
+    el.innerHTML=h;
+  }
+
+  function renderQueue(){
+    const rows=S.rows; if(!rows.length) return; const r=rows[rows.length-1];
+    const s=sevOf(r.waitHours);
+    const where=r.compartments!=null?`${r.compartments} of 31 compartments in use`:(r.queueNote||'Queue position not given');
+    $('queue').innerHTML=`<span class="eyebrow">Free darshan queue · morning of ${nice(r.situationDate)}</span>
+      <div class="big">${r.waitHours===0?'Direct':(r.waitText||'—')}</div>
+      <div class="where">${esc(r.waitHours===0?'No waiting, devotees walk straight in':'Expected wait in the free queue. '+where)}</div>
+      ${s!=null?`<span class="sev s${s}">${SEVTXT[s]}</span>`:''}`;
+  }
+
+  function spark(vals){
+    const v=vals.filter(x=>x!=null); if(v.length<2) return '';
+    const W=110,H=38,p=3; const mn=Math.min(...v),mx=Math.max(...v),rg=(mx-mn)||1;
+    const pts=vals.map((x,i)=>x==null?null:[p+i*(W-2*p)/(vals.length-1),H-p-(x-mn)/rg*(H-2*p)]).filter(Boolean);
+    const line=pts.map((q,i)=>(i?'L':'M')+q[0].toFixed(1)+' '+q[1].toFixed(1)).join('');
+    const area=line+`L${pts[pts.length-1][0].toFixed(1)} ${H}L${pts[0][0].toFixed(1)} ${H}Z`;
+    const e=pts[pts.length-1];
+    return `<svg viewBox="0 0 ${W} ${H}" aria-hidden="true"><path d="${area}" fill="var(--indigo-soft)" opacity=".7"/><path d="${line}" fill="none" stroke="var(--indigo)" stroke-width="1.5"/><circle cx="${e[0]}" cy="${e[1]}" r="2.8" fill="var(--gold)"/></svg>`;
+  }
+
+  function renderTiles(){
+    const rows=S.rows; if(!rows.length) return; const r=rows[rows.length-1];
+    $('tilesHead').textContent='Bulletin for '+nice(r.date)+' ('+['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][dow(r.date)]+')';
+    const prev=rows.slice(-31,-1), last30=rows.slice(-30);
+    $('tiles').innerHTML=METRICS.filter(m=>m.k!=='waitHours').map(m=>{
+      const a=avg(prev.map(x=>x[m.k])); const v=r[m.k];
+      let d='';
+      if(a&&v!=null){const pct=(v-a)/a*100;d=`<span class="${pct>=0?'up':'down'}"><b>${pct>=0?'+':''}${pct.toFixed(0)}%</b></span> vs 30-day avg ${m.fmt(a)}`}
+      return `<div class="tile"><span class="lab">${m.full}</span><span class="val">${m.fmt(v)}</span><span class="delta">${d||'&nbsp;'}</span>${spark(last30.map(x=>x[m.k]))}</div>`;
+    }).join('');
+  }
+
+  function renderWeekday(){
+    const rows=S.rows; const by=[[],[],[],[],[],[],[]], sp=[[],[],[],[],[],[],[]];
+    rows.forEach(r=>{ if(r.waitHours!=null){const d=dow(r.situationDate);by[d].push(r.waitHours);sp[d].push(r.queueFull?1:0)} });
+    const order=[1,2,3,4,5,6,0];
+    const av=order.map(d=>({d,a:avg(by[d]),n:by[d].length,sp:avg(sp[d])}));
+    const valid=av.filter(x=>x.a!=null&&x.n>=3);
+    if(!valid.length){$('weekday').innerHTML='<div class="empty" style="grid-column:1/-1">Needs a few weeks of bulletins.</div>';return}
+    const mx=Math.max(...valid.map(x=>x.a)); const best=valid.reduce((p,c)=>c.a<p.a?c:p); const worst=valid.reduce((p,c)=>c.a>p.a?c:p);
+    $('weekday').innerHTML=av.map(x=>`<span>${DOW[x.d]}</span><div class="bar ${x===best?'best':''}"><span style="width:${x.a==null?0:(x.a/mx*100).toFixed(1)}%"></span></div><span class="r">${x.a==null?'—':x.a.toFixed(1)+' h'} · ${x.n} days</span>`).join('');
+    const mxs=Math.max(...valid.map(x=>x.sp||0))||1;
+    $('spill').innerHTML=av.map(x=>`<span>${DOW[x.d]}</span><div class="bar"><span style="width:${x.sp==null?0:(x.sp/mxs*100).toFixed(1)}%;background:var(--warn)"></span></div><span class="r">${x.sp==null?'—':Math.round(x.sp*100)+'% of mornings'}</span>`).join('');
+    const names=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    $('wkNote').textContent=`Across ${rows.length} days on record, ${names[best.d]} mornings average the shortest wait (${best.a.toFixed(1)} h) and ${names[worst.d]} the longest (${worst.a.toFixed(1)} h). Arriving the evening before a quiet morning, and avoiding long weekends and school holidays, matters more than the weekday alone.`;
+  }
+
+  function renderLegend(){
+    $('legend').innerHTML=['≤ 6 h','6–12 h','12–18 h','18–24 h','> 24 h'].map((t,i)=>`<span><i style="background:var(--s${i})"></i>${t}</span>`).join('')+'<span><i style="background:var(--s-none)"></i>No data</span>';
+  }
+
+  function renderCalendar(){
+    const rows=S.rows; if(!rows.length) return;
+    const bySit={}; rows.forEach(r=>{bySit[r.situationDate]=r});
+    const first=dt(rows[0].situationDate), last=dt(rows[rows.length-1].situationDate);
+    const today=istToday();
+    let html=''; let y=last.getUTCFullYear(), m=last.getUTCMonth();
+    const fy=first.getUTCFullYear(), fm=first.getUTCMonth();
+    while(y>fy||(y===fy&&m>=fm)){
+      const days=new Date(Date.UTC(y,m+1,0)).getUTCDate();
+      const lead=(new Date(Date.UTC(y,m,1)).getUTCDay()+6)%7;
+      let cells='<span class="dn">M</span><span class="dn">T</span><span class="dn">W</span><span class="dn">T</span><span class="dn">F</span><span class="dn">S</span><span class="dn">S</span>';
+      for(let i=0;i<lead;i++) cells+='<span class="cell blank"></span>';
+      let known=0,sum=0;
+      for(let d=1;d<=days;d++){
+        const iso=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+        const r=bySit[iso]; const s=r?sevOf(r.waitHours):null;
+        if(r&&r.waitHours!=null){known++;sum+=r.waitHours}
+        const tip=r?`${nice(iso)}: ${r.waitHours===0?'direct entry':(r.waitText||'?')} wait · ${r.compartments!=null?r.compartments+' compartments':(r.queueNote||'')}`:`${nice(iso)}: no bulletin on record`;
+        cells+=`<span class="cell${iso===today?' today':''}" ${s!=null?`data-s="${s}"`:''} title="${esc(tip)}">${d}</span>`;
+      }
+      html+=`<div class="month"><h3>${MONL[m]} ${y} <span class="muted small" style="font-family:var(--body)">${known?'avg '+(sum/known).toFixed(1)+' h':''}</span></h3><div class="grid7">${cells}</div></div>`;
+      m--; if(m<0){m=11;y--}
+    }
+    $('cal').innerHTML=html;
+  }
+
+  function quotaDates(target){ // target {y,m} (m 0-11); release month = target-3
+    let ry=target.y, rm=target.m-3; if(rm<0){rm+=12;ry--}
+    const pat=(S.plan&&S.plan.quotaPattern)||[];
+    return pat.map(q=>({...q,date:new Date(Date.UTC(ry,rm,q.day)),iso:`${ry}-${String(rm+1).padStart(2,'0')}-${String(q.day).padStart(2,'0')}`}));
+  }
+  function renderTickets(){
+    const plan=S.plan;
+    if(!plan||!plan.quotaPattern){$('quota').innerHTML='<li class="muted small">The release pattern loads with the planner data.</li>';return}
+    $('quotaSrc').textContent=plan.quotaSource||'';
+    const t=dt(istToday()); const opts=[];
+    for(let i=0;i<5;i++){const d=new Date(Date.UTC(t.getUTCFullYear(),t.getUTCMonth()+i,1));opts.push({y:d.getUTCFullYear(),m:d.getUTCMonth()})}
+    if(!S.month){ // default: the first month whose releases are still ahead
+      S.month=opts.find(o=>quotaDates(o).some(q=>q.iso>=istToday()))||opts[opts.length-1];
+    }
+    $('monthTabs').innerHTML=opts.map(o=>`<button class="tab" id="mt-${o.y}-${o.m}" aria-pressed="${o.y===S.month.y&&o.m===S.month.m}" data-y="${o.y}" data-m="${o.m}">${MON[o.m]} ${o.y}</button>`).join('');
+    const today=istToday();
+    const qs=quotaDates(S.month);
+    $('quota').innerHTML=qs.map(q=>{
+      const days=Math.round((dt(q.iso)-dt(today))/864e5);
+      const st=days<0?'<span class="pill past">Opened</span>':days===0?'<span class="pill soon">Today</span>':days<=7?`<span class="pill soon">In ${days} day${days>1?'s':''}</span>`:`<span class="pill open">In ${days} days</span>`;
+      return `<li><span class="when">${q.date.getUTCDate()} ${MON[q.date.getUTCMonth()]}<small>${esc(q.time)}</small></span><span class="what">${esc(q.name)}${q.note?`<small>${esc(q.note)}</small>`:''}</span>${st}</li>`;
+    }).join('');
+    // next release overall
+    let best=null;
+    opts.concat([{y:t.getUTCFullYear(),m:t.getUTCMonth()+5}]).forEach(o=>{const oo=o.m>11?{y:o.y+1,m:o.m-12}:o; quotaDates(oo).forEach(q=>{ if(q.iso>=today&&(!best||q.iso<best.iso||(q.iso===best.iso&&q.time<best.time))) best={...q,for:oo} })});
+    const sed=(plan.quotaPattern.find(q=>/300/.test(q.name)));
+    $('nextRelease').innerHTML=best?`<span class="eyebrow">Next release</span><b>${esc(best.name)} for ${MONL[best.for.m]} ${best.for.y}</b><span class="small">${best.date.getUTCDate()} ${MONL[best.date.getUTCMonth()]}, ${esc(best.time)} IST on ttdevasthanams.ap.gov.in</span>`:'<span class="eyebrow">Next release</span><b>—</b>';
+  }
+  const addDays=(iso,n)=>new Date(dt(iso).getTime()+n*864e5).toISOString().slice(0,10);
+  const short=iso=>{const d=dt(iso);return d.getUTCDate()+' '+MON[d.getUTCMonth()]+(d.getUTCFullYear()!==dt(istToday()).getUTCFullYear()?' '+String(d.getUTCFullYear()).slice(2):'')};
+  const rangeTxt=(a,b)=>!b||a===b?short(a):short(a)+' – '+short(b);
+  // Crowd on [start,end] vs the 14 days either side
+  function compare(start,end){
+    end=end||start; const by={},bs={}; S.rows.forEach(r=>{by[r.date]=r;bs[r.situationDate]=r});
+    const inR=[],around=[]; let wmax=null,full=0,nq=0;
+    for(let d=start;d<=end;d=addDays(d,1)){ if(by[d]&&by[d].pilgrims) inR.push(by[d].pilgrims) }
+    for(let i=1;i<=14;i++){ [addDays(start,-i),addDays(end,i)].forEach(d=>{ if(by[d]&&by[d].pilgrims) around.push(by[d].pilgrims) }) }
+    for(let d=start;d<=addDays(end,1);d=addDays(d,1)){ const r=bs[d]; if(r&&r.waitHours!=null){ nq++; wmax=wmax==null?r.waitHours:Math.max(wmax,r.waitHours); if(r.queueFull) full++ } }
+    const a=avg(inR), b=avg(around);
+    return {n:inR.length,pil:a,base:b,pct:(a&&b)?(a-b)/b*100:null,wmax,full,nq};
+  }
+  function badge(c){
+    if(!c||c.pct==null) return '<span class="badge b-na">No data</span>';
+    const p=Math.round(c.pct);
+    if(p>=12) return `<span class="badge b-hi">${p}% busier</span>`;
+    if(p>=4) return `<span class="badge b-up">${p}% busier</span>`;
+    if(p>-4) return `<span class="badge b-eq">About normal</span>`;
+    return `<span class="badge b-lo">${-p}% quieter</span>`;
+  }
+  function histLine(c,label){
+    if(!c||!c.n) return `<span class="k">${esc(label)}</span><span class="muted">No bulletin on record for those dates.</span>`;
+    const w=c.wmax==null?'queue not reported':(c.wmax===0?'direct entry':'queue up to '+c.wmax+' h');
+    return `<span class="k">${esc(label)}</span><span class="row">${badge(c)}<span>${fInt(c.pil)} pilgrims/day</span></span><span class="muted">${w}${c.full?` · line outside on ${c.full} of ${c.nq} mornings`:''}</span>`;
+  }
+  function renderEvents(){
+    const plan=S.plan||{}; const today=istToday();
+    const occ=(plan.occasions||[]).filter(o=>(o.end||o.start)>=today).sort((a,b)=>a.start<b.start?-1:1);
+    if(!occ.length){$('occ').innerHTML='<li class="empty">No upcoming occasions on file.</li>'}
+    else $('occ').innerHTML=occ.map(o=>{
+      const d=dt(o.start); const days=Math.round((d-dt(today))/864e5);
+      const past=(o.past||[])[0]; const c=past&&S.rows.length?compare(past.start,past.end):null;
+      const span=o.end&&o.end!==o.start?`to ${short(o.end)}`:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getUTCDay()];
+      let tk='';
+      if(S.plan&&S.plan.quotaPattern&&!/holidays/i.test(o.name)){
+        const qs=quotaDates({y:d.getUTCFullYear(),m:d.getUTCMonth()});
+        const sed=qs.find(q=>/300/.test(q.name)), room=qs.find(q=>/Rooms/i.test(q.name));
+        if(sed){ const left=Math.round((dt(sed.iso)-dt(today))/864e5);
+          tk=`<span class="tk ${left<0?'gone':'soon'}">${left<0?`₹300 tickets and rooms opened ${short(sed.iso)}. Check for cancellations or SSD tokens.`:`₹300 tickets open ${short(sed.iso)}, ${sed.time}${room?` · rooms ${room.time}`:''}${left<=30?` · in ${left} day${left===1?'':'s'}`:''}`}</span>` }
+      }
+      return `<li class="o"><span class="dt"><b>${d.getUTCDate()} ${MON[d.getUTCMonth()]}</b><span>${esc(span)}</span><span class="in">${days<=0?'Now':'In '+days+' day'+(days>1?'s':'')}</span></span>
+        <span class="nm"><strong>${esc(o.name)}</strong><small>${esc(o.note||'')}${o.status==='expected'?' Date expected; TTD has not confirmed it yet.':''}</small>${tk}</span>
+        <span class="hist">${past?histLine(c,'Last time · '+rangeTxt(past.start,past.end)):'<span class="k">Last time</span><span class="muted">Not in the history yet.</span>'}</span></li>`;
+    }).join('');
+    const rec=(key,el,title,blurb)=>{
+      const R=(plan.recurring||{})[key]; if(!R){$(el).innerHTML=`<h3>${title}</h3><p class="small muted" style="margin:0">Dates load with the planner data.</p>`;return}
+      const cs=(R.past||[]).map(x=>compare(x,x)).filter(c=>c.pct!=null);
+      const pct=avg(cs.map(c=>c.pct)), w=avg(cs.map(c=>c.wmax)), busier=cs.filter(c=>c.pct>=4).length;
+      const up=(R.upcoming||[]).filter(x=>x>=today).slice(0,6);
+      $(el).innerHTML=`<h3>${title}</h3><p class="small muted" style="margin:0">${blurb}</p>
+        <div class="statrow"><div class="stat"><b>${pct==null?'—':(pct>=0?'+':'')+pct.toFixed(0)+'%'}</b><span>pilgrims vs the weeks around it</span></div>
+        <div class="stat"><b>${busier} of ${cs.length}</b><span>were noticeably busier</span></div>
+        <div class="stat"><b>${w==null?'—':w.toFixed(0)+' h'}</b><span>typical longest morning wait</span></div></div>
+        <span class="eyebrow">Next dates</span><div class="dates">${up.map(x=>`<span>${short(x)} ${DOW[dow(x)]}</span>`).join('')||'<span>None on file</span>'}</div>`;
+    };
+    rec('ekadasi','ekPanel','Ekadasi','Last 12 months of Ekadasi days, Vaikuntha Ekadasi left out since it has its own entry above.');
+    rec('pournami','poPanel','Pournami (full moon) Garuda Seva','Last 12 months of full-moon days. The 3 Mar 2026 lunar eclipse closure is left out.');
+  }
+
+  function niceMax(v){if(v<=0)return 1;const p=Math.pow(10,Math.floor(Math.log10(v)));const n=v/p;return (n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10)*p}
+  function renderChart(){
+    const el=$('chart'); const m=METRICS.find(x=>x.k===S.metric);
+    let rows=S.rows.slice(S.range?-S.range:0);
+    if(!rows.length){el.innerHTML='<div class="empty">The chart appears once bulletins load.</div>';return}
+    const W=Math.max(320,el.clientWidth||640),H=240,L=46,R=8,T=10,B=26;
+    const vals=rows.map(r=>r[m.k]); const mx=niceMax(Math.max(...vals.filter(v=>v!=null),0)*1.02);
+    const iw=W-L-R, ih=H-T-B, bw=iw/rows.length;
+    let g='';
+    for(let i=0;i<=4;i++){const v=mx*i/4,y=T+ih-ih*i/4;g+=`<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="var(--line)"/><text x="${L-6}" y="${y+4}" text-anchor="end" font-size="11" fill="var(--muted)">${m.ax(v)}</text>`}
+    let bars='';
+    rows.forEach((r,i)=>{const v=r[m.k]; if(v==null)return; const h=v/mx*ih; const d=m.bySituation?dow(r.situationDate):dow(r.date); const we=d===0||d===6;
+      bars+=`<rect x="${(L+i*bw+bw*0.12).toFixed(2)}" y="${(T+ih-h).toFixed(2)}" width="${Math.max(1,bw*0.76).toFixed(2)}" height="${h.toFixed(2)}" rx="${Math.min(2,bw/4).toFixed(1)}" fill="${we?'var(--gold)':'var(--indigo)'}"/>`});
+    let xl=''; let lastM=-1;
+    rows.forEach((r,i)=>{const d=dt(r.date);if(d.getUTCMonth()!==lastM){lastM=d.getUTCMonth();const x=L+i*bw;xl+=`<line x1="${x}" x2="${x}" y1="${T+ih}" y2="${T+ih+5}" stroke="var(--muted)"/><text x="${x+3}" y="${H-8}" font-size="11" fill="var(--muted)">${MON[lastM]}${d.getUTCMonth()===0||i===0?' '+String(d.getUTCFullYear()).slice(2):''}</text>`}});
+    el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${m.full} per day"><g>${g}</g><g>${bars}</g><g>${xl}</g><rect id="hov" x="0" y="${T}" width="0" height="${ih}" fill="var(--ink)" opacity=".07"/></svg>`;
+    const svg=el.querySelector('svg'), hov=svg.querySelector('#hov');
+    const show=i=>{const r=rows[i];if(!r)return;hov.setAttribute('x',L+i*bw);hov.setAttribute('width',bw);
+      const lbl=m.bySituation?`Morning of ${nice(r.situationDate)} (${DOW[dow(r.situationDate)]})`:`${nice(r.date)} (${DOW[dow(r.date)]})`;
+      $('readout').innerHTML=`${lbl}: <b>${m.fmt(r[m.k])}</b>`};
+    svg.addEventListener('pointermove',e=>{const b=svg.getBoundingClientRect();const x=(e.clientX-b.left)/b.width*W;const i=Math.floor((x-L)/bw);if(i>=0&&i<rows.length)show(i)});
+    svg.addEventListener('pointerleave',()=>{hov.setAttribute('width',0)});
+    const lastAvg=avg(vals); $('readout').innerHTML=`${m.full}: average <b>${m.fmt(lastAvg==null?null:(m.k==='waitHours'||m.k==='hundiCr'||m.k.endsWith('Lakh')?+lastAvg.toFixed(2):lastAvg))}</b> over ${rows.length} days. Hover or tap a bar for the day.`;
+  }
+  function renderTabs(){
+    $('metricTabs').innerHTML=METRICS.map(m=>`<button class="tab" id="mtab-${m.k}" data-k="${m.k}" aria-pressed="${m.k===S.metric}">${m.label}</button>`).join('');
+    $('rangeTabs').innerHTML=[[30,'30 days'],[90,'90 days'],[365,'1 year'],[0,'All']].map(([v,t])=>`<button class="tab" id="rtab-${v}" data-r="${v}" aria-pressed="${v===S.range}">${t}</button>`).join('');
+  }
+  function renderTable(){
+    const rows=S.rows.slice().reverse();
+    $('count').textContent=rows.length?`${rows.length.toLocaleString('en-IN')} bulletins, ${nice(S.rows[0].date)} to ${nice(S.rows[S.rows.length-1].date)}`:'';
+    if(!rows.length) return;
+    $('tbody').innerHTML=rows.map(r=>{const s=sevOf(r.waitHours);
+      return `<tr><td>${nice(r.date)}</td><td class="l">${DOW[dow(r.date)]}</td><td>${fInt(r.pilgrims)}</td><td>${fInt(r.tonsures)}</td><td>${f2(r.hundiCr)}</td><td>${f2(r.ladduLakh)}</td><td>${f2(r.annaLakh)}</td><td>${fInt(r.hospital)}</td><td class="l">${r.compartments!=null?r.compartments+' compartments':esc(r.queueNote||'—')}</td><td><span class="w" ${s!=null?`style="background:var(--s${s})${s===4?';color:#fff':''}"`:''}>${r.waitHours===0?'Direct':(r.waitText||'—')}</span></td></tr>`}).join('');
+  }
+  // ---- Check your dates ----
+  const LVL=['Light','Moderate','Busy','Very busy','Peak'];
+  const DOWL=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  function wkAvgs(){ const by=[[],[],[],[],[],[],[]]; S.rows.forEach(r=>{ if(r.waitHours!=null) by[dow(r.situationDate)].push(r.waitHours) }); return by.map(avg) }
+  function dayInfo(d,maps,wk){
+    const OCC=(S.plan&&S.plan.occasions)||[];
+    const occ=OCC.filter(o=>o.start<=d&&(o.end||o.start)>=d);
+    let ly=addDays(d,-364), basis='weekday', why='';
+    // A festival day compares with the same festival last year, matched day by day
+    const fest=occ.find(o=>o.past&&o.past[0]&&!/holidays/i.test(o.name))||occ.find(o=>o.past&&o.past[0]);
+    if(fest){ const P=fest.past[0]; const i=Math.round((dt(d)-dt(fest.start))/864e5); let m=addDays(P.start,i); if(m>(P.end||P.start)) m=P.end||P.start; ly=m; basis='festival'; why=fest.name }
+    else {
+      // A year-ago day that was itself a festival would overstate an ordinary day
+      const hit=OCC.find(o=>o.past&&o.past.some(P=>P.start<=ly&&(P.end||P.start)>=ly)&&!/holidays/i.test(o.name));
+      if(hit){ basis='avg'; why=hit.name }
+    }
+    const q=basis==='avg'?null:maps.bs[ly], p=basis==='avg'?null:maps.by[ly];
+    const ok=!!(q&&q.waitHours!=null);
+    const h=ok?q.waitHours:wk[dow(d)];
+    const R=(S.plan&&S.plan.recurring)||{};
+    const ek=(R.ekadasi&&R.ekadasi.upcoming||[]).includes(d), po=(R.pournami&&R.pournami.upcoming||[]).includes(d);
+    return {d,ly,q,p,h,fromLy:ok,basis,why,occ,ek,po};
+  }
+  function scoreWindow(a,len,maps,wk){ const hs=[]; for(let i=0;i<len;i++){ const x=dayInfo(addDays(a,i),maps,wk); if(x.h!=null) hs.push(x.h) } return avg(hs) }
+  function setRange(a,b){ $('dFrom').value=a; $('dTo').value=b; try{localStorage.setItem('ttdRange',JSON.stringify([a,b]))}catch(e){} renderCheck() }
+  function nextDow(target,from){ let d=from; for(let i=0;i<8;i++){ if(dow(d)===target&&d>today()) return d; d=addDays(d,1) } return d }
+  const today=()=>istToday();
+  function initCheck(){
+    const t=today(); $('dFrom').min=t; $('dTo').min=t; $('dFrom').max=addDays(t,400); $('dTo').max=addDays(t,414);
+    let r=null; try{ r=JSON.parse(localStorage.getItem('ttdRange')||'null') }catch(e){}
+    if(r&&r[0]>=t){ $('dFrom').value=r[0]; $('dTo').value=r[1] } else { const s=nextDow(6,t); $('dFrom').value=s; $('dTo').value=addDays(s,1) }
+    $('dFrom').addEventListener('change',()=>{ if($('dTo').value<$('dFrom').value) $('dTo').value=$('dFrom').value; setRange($('dFrom').value,$('dTo').value) });
+    $('dTo').addEventListener('change',()=>{ if($('dTo').value<$('dFrom').value) $('dFrom').value=$('dTo').value; setRange($('dFrom').value,$('dTo').value) });
+    $('pickForm').addEventListener('submit',e=>e.preventDefault());
+    document.querySelectorAll('.quick button').forEach(b=>b.addEventListener('click',()=>{
+      const t=today(); const q=b.dataset.q;
+      if(q==='weekend'){const s=nextDow(6,t);setRange(s,addDays(s,1))}
+      else if(q==='midweek'){const s=nextDow(2,t);setRange(s,addDays(s,1))}
+      else { const a=$('dFrom').value||t, len=Math.round((dt($('dTo').value||a)-dt(a))/864e5); const s=addDays(a,28); setRange(s,addDays(s,len)) }
+    }));
+  }
+  function renderCheck(){
+    const a=$('dFrom').value, b0=$('dTo').value; if(!a||!b0) return;
+    let b=b0; if(Math.round((dt(b)-dt(a))/864e5)>13){ b=addDays(a,13) }
+    if(!S.rows.length){ $('verdict').innerHTML='<span class="muted">Waiting for the bulletin history to load…</span>'; return }
+    const maps={by:{},bs:{}}; S.rows.forEach(r=>{maps.by[r.date]=r;maps.bs[r.situationDate]=r});
+    const wk=wkAvgs(); const days=[];
+    for(let d=a;d<=b;d=addDays(d,1)) days.push(dayInfo(d,maps,wk));
+    const hs=days.map(x=>x.h).filter(v=>v!=null); const mx=hs.length?Math.max(...hs):null, mean=avg(hs);
+    const s=sevOf(mx); const occs=[...new Map(days.flatMap(x=>x.occ).map(o=>[o.name,o])).values()];
+    const lyN=days.filter(x=>x.fromLy).length;
+    // alternative start within ±21 days
+    const len=days.length; let best=null;
+    for(let off=-21;off<=21;off++){ if(!off) continue; const st=addDays(a,off); if(st<today()) continue; const sc=scoreWindow(st,len,maps,wk); if(sc!=null&&(!best||sc<best.sc)) best={st,sc} }
+    const alt=best&&mean!=null&&mean-best.sc>=2?best:null;
+    // tickets
+    const mDate=dt(a); const qs=S.plan&&S.plan.quotaPattern?quotaDates({y:mDate.getUTCFullYear(),m:mDate.getUTCMonth()}):[];
+    const sed=qs.find(q=>/300/.test(q.name)), room=qs.find(q=>/Rooms/i.test(q.name));
+    let tk='';
+    if(sed){ const left=Math.round((dt(sed.iso)-dt(today()))/864e5);
+      tk=left<0?`₹300 tickets and rooms for ${MONL[mDate.getUTCMonth()]} opened on ${short(sed.iso)}. Look for cancelled tickets on TTD's site, or plan on free SSD tokens.`
+        :`₹300 tickets for ${MONL[mDate.getUTCMonth()]} open ${left===0?'today':'on '+DOWL[dow(sed.iso)]+' '+short(sed.iso)}, ${sed.time}${room?`; rooms the same day at ${room.time}`:''}.`; }
+    const occTxt=occs.length?`Overlaps ${occs.map(o=>o.name).join(', ')}.`:'No major festival on these dates.';
+    $('verdict').innerHTML=`<span class="lvl" ${s!=null?`data-s="${s}"`:''}>${s!=null?LVL[s]:'Unknown'}</span>
+      <span class="lead">${rangeTxt(a,b)} · ${len} day${len>1?'s':''}${b!==b0?' (first 14 shown)':''}. Free queue likely ${mean!=null?'around '+Math.round(mean)+' h':'unknown'}${mx!=null&&mx>mean+1?', up to '+mx+' h on the busiest morning':''}.</span>
+      <span class="sub">${esc(occTxt)} ${lyN?`Festival days are compared with the same festival last year, other days with the same weekday a year earlier${lyN<len?` (${len-lyN} day${len-lyN>1?'s':''} use the weekday average instead)`:''}.`:'No matching days last year, so this uses weekday averages.'}</span>
+      <span class="sub">${esc(tk)}</span>
+      ${alt?`<span class="alt">Quieter nearby: starting <b>${DOWL[dow(alt.st)]} ${short(alt.st)}</b> averaged about ${Math.round(alt.sc)} h last year, ${Math.round(mean-alt.sc)} h shorter. <button type="button" id="useAlt" data-a="${alt.st}" data-b="${addDays(alt.st,len-1)}">Check these dates</button></span>`:''}`;
+    const ua=$('useAlt'); if(ua) ua.addEventListener('click',()=>setRange(ua.dataset.a,ua.dataset.b));
+    $('dayList').innerHTML=days.map(x=>{const sv=sevOf(x.h);
+      const head=x.basis==='festival'?`Same festival last year (${DOW[dow(x.ly)]} ${short(x.ly)})`:`A year earlier (${DOW[dow(x.ly)]} ${short(x.ly)})`;
+      const lyTxt=x.fromLy?`${head}: ${x.q.waitHours===0?'direct entry':x.q.waitText+' queue'}${x.p&&x.p.pilgrims?' · '+fInt(x.p.pilgrims)+' pilgrims':''}${x.q.queueFull?' · line outside':''}`
+        :x.basis==='avg'?`A year earlier was ${x.why}, so this uses the ${DOWL[dow(x.d)]} average: ${x.h!=null?x.h.toFixed(0)+' h':'unknown'}`
+        :`No queue figure for the matching day last year; ${DOWL[dow(x.d)]} average ${x.h!=null?x.h.toFixed(0)+' h':'unknown'}`;
+      const tags=x.occ.map(o=>`<span>${esc(o.name)}</span>`).join('')+(x.ek&&!x.occ.some(o=>/Ekadasi/.test(o.name))?'<span class="soft">Ekadasi · usually no busier</span>':'')+(x.po&&!x.occ.some(o=>/Pournami/.test(o.name))?'<span class="soft">Pournami Garuda Seva</span>':'');
+      return `<li><span class="top"><b>${DOW[dow(x.d)]} ${short(x.d)}</b><span class="pillS" ${sv!=null?`data-s="${sv}"`:''}>${sv!=null?LVL[sv]:'No data'}${x.h!=null?' · '+Math.round(x.h)+' h':''}</span></span><span class="ly">${esc(lyTxt)}</span>${tags?`<span class="tg">${tags}</span>`:''}</li>`}).join('');
+  }
+
+  function renderAll(){renderStatus();renderQueue();renderTiles();renderCheck();renderEvents();renderWeekday();renderCalendar();renderTabs();renderChart();renderTable();renderTickets()}
+
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('button.tab'); if(!b) return;
+    if(b.dataset.k){S.metric=b.dataset.k;renderTabs();renderChart()}
+    else if(b.dataset.r!=null){S.range=+b.dataset.r;renderTabs();renderChart()}
+    else if(b.dataset.y){S.month={y:+b.dataset.y,m:+b.dataset.m};renderTickets()}
+  });
+  const mn=document.getElementById('moreNums'); if(mn) mn.addEventListener('toggle',()=>{ if(mn.open) renderChart() });
+  let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(renderChart,150)});
+  renderLegend(); renderTabs(); renderTickets(); renderChart(); initCheck(); renderCheck();
+
+  (async()=>{
+    const get=async p=>{const r=await fetch(p,{cache:'no-cache'}); if(!r.ok) throw new Error(r.status); return r.json()};
+    try{
+      const [b,st,pl]=await Promise.all([get('data/bulletins.json'),get('data/status.json').catch(()=>null),get('data/plan.json').catch(()=>null)]);
+      S.meta=st; S.plan=pl; S.month=null;
+      S.rows=(b.days||[]).filter(r=>r&&r.date).sort((a,b)=>a.date<b.date?-1:1);
+      if(!S.rows.length){$('status').innerHTML='<span class="chip stale"><span class="dot"></span>No bulletins stored yet.</span>';return}
+      renderAll();
+    }catch(e){ $('status').innerHTML='<span class="chip stale"><span class="dot"></span>Could not load the bulletin history. Reload the page to try again.</span>' }
+  })();
+})();
+</script>
+</body>
+</html>
