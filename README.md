@@ -12,7 +12,7 @@ Data comes from TTD's daily bulletins on news.tirumala.org and can be missing or
 ## How it works
 
 ```
-GitHub Actions (daily, 09:15 and 12:15 IST)
+GitHub Actions (every 12 hours, 10:15 and 22:15 IST)
   └─ scripts/scrape.py   reads TTD's bulletins → docs/data/bulletins.json
   └─ scripts/build.py    writes docs/index.html with the latest figures, robots.txt, sitemap.xml, CNAME
   └─ commits docs/       → GitHub Pages serves docs/ on your domain

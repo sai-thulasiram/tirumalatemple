@@ -2,9 +2,8 @@ name: Update bulletins
 
 on:
   schedule:
-    # TTD posts the previous day's bulletin in the morning IST.
-    - cron: "45 3 * * *"   # 09:15 IST
-    - cron: "45 6 * * *"   # 12:15 IST, catches late posts
+    # Every 12 hours. TTD posts the previous day's bulletin in the morning IST.
+    - cron: "45 4,16 * * *"   # 10:15 and 22:15 IST
   workflow_dispatch:
     inputs:
       pages:
