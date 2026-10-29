@@ -702,8 +702,9 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
       let R=(plan.recurring||{})[key];
       if(S.pan&&S.rows.length){ const want=key==='ekadasi'?[11,26]:[15]; const first=S.rows[0].date, last=S.rows[S.rows.length-1].date;
         const skip=(plan.occasions||[]).filter(o=>/Vaikuntha/.test(o.name)).flatMap(o=>(o.past||[]).concat([{start:o.start,end:o.end}]));
-        const past=[],up=[]; for(let i=0;i<S.pan.days.length;i++){ const d=addDays(S.pan.start,i); const e=S.pan.days[i]; if(!want.includes(e[1])) continue;
-          if(d>=first&&d<=last&&!skip.some(r=>d>=r.start&&d<=(r.end||r.start))&&d!=='2026-03-03') past.push(d); else if(d>=today) up.push(d) }
+        const from3=addDays(today,-1096); const past=[],up=[]; for(let i=0;i<S.pan.days.length;i++){ const d=addDays(S.pan.start,i); const e=S.pan.days[i]; if(!want.includes(e[1])) continue;
+          const exd=(plan.excluded||[]).some(e=>d>=e.start&&d<=e.end);
+          if(d>=first&&d>=from3&&d<=last&&!exd&&!skip.some(r=>d>=r.start&&d<=(r.end||r.start))&&d!=='2026-03-03') past.push(d); else if(d>=today) up.push(d) }
         R={past,upcoming:up} }
       if(!R){$(el).innerHTML=`<h3>${title}</h3><p class="small muted" style="margin:0">Dates load with the planner data.</p>`;return}
       const cs=(R.past||[]).map(x=>compare(x,x)).filter(c=>c.pct!=null);
@@ -715,8 +716,8 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
         <div class="stat"><b>${w==null?'—':w.toFixed(0)+' h'}</b><span>typical longest morning wait</span></div></div>
         <span class="eyebrow">Next dates</span><div class="dates">${up.map(x=>`<span>${short(x)} ${DOW[dow(x)]}</span>`).join('')||'<span>None on file</span>'}</div>`;
     };
-    rec('ekadasi','ekPanel','Ekadasi','Every Shukla and Krishna Ekadasi in the history, by tithi at sunrise. Vaikuntha Ekadasi is left out since it has its own entry above.');
-    rec('pournami','poPanel','Pournami (full moon) Garuda Seva','Every full-moon day in the history. The 3 Mar 2026 lunar eclipse closure is left out.');
+    rec('ekadasi','ekPanel','Ekadasi','Every Shukla and Krishna Ekadasi in the last three years, by tithi at sunrise. Vaikuntha Ekadasi is left out since it has its own entry above.');
+    rec('pournami','poPanel','Pournami (full moon) Garuda Seva','Every full-moon day in the last three years. The 3 Mar 2026 lunar eclipse closure is left out.');
   }
 
   function niceMax(v){if(v<=0)return 1;const p=Math.pow(10,Math.floor(Math.log10(v)));const n=v/p;return (n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10)*p}
@@ -753,9 +754,9 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
     rows.forEach((r,i)=>{const v=r[m.k]; if(v==null)return; const h=v/mx*ih;
       let fill='var(--indigo)'; if(unit==='day'){const d=m.bySituation?dow(r.situationDate):dow(r.date); if(d===0||d===6) fill='var(--gold)'}
       bars+=`<rect x="${(L+i*bw+bw*0.12).toFixed(2)}" y="${(T+ih-h).toFixed(2)}" width="${Math.max(1,bw*0.76).toFixed(2)}" height="${h.toFixed(2)}" rx="${Math.min(2,bw/4).toFixed(1)}" fill="${fill}"/>`});
-    let xl=''; let lastM=-1, lastY=-1;
+    let xl=''; let lastM=-1, lastY=-1, lastX=-99;
     rows.forEach((r,i)=>{const d=dt(r.key||r.date); const yearOnly=unit==='month';
-      if(yearOnly?d.getUTCFullYear()!==lastY:d.getUTCMonth()!==lastM){lastM=d.getUTCMonth();lastY=d.getUTCFullYear();const x=L+i*bw;
+      if(yearOnly?d.getUTCFullYear()!==lastY:d.getUTCMonth()!==lastM){lastM=d.getUTCMonth();lastY=d.getUTCFullYear();const x=L+i*bw; if(x-lastX<34) return; lastX=x;
         xl+=`<line x1="${x}" x2="${x}" y1="${T+ih}" y2="${T+ih+5}" stroke="var(--muted)"/><text x="${x+3}" y="${H-8}" font-size="11" fill="var(--muted)">${yearOnly?lastY:MON[lastM]+(lastM===0||i===0?' '+String(lastY).slice(2):'')}</text>`}});
     el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${m.full}"><g>${g}</g><g>${bars}</g><g>${xl}</g><rect id="hov" x="0" y="${T}" width="0" height="${ih}" fill="var(--ink)" opacity=".07"/></svg>`;
     const svg=el.querySelector('svg'), hov=svg.querySelector('#hov');
@@ -795,11 +796,13 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
   // The date with the same month, paksha and tithi about `back` years earlier
   function sameTithi(iso,back){ const p=panOf(iso); if(!p) return null; const ref=addDays(iso,-Math.round(back*365.25)); let best=null;
     for(let k=-45;k<=45;k++){ const d=addDays(ref,k), q=panOf(d); if(q&&q.m===p.m&&q.t===p.t&&q.a===p.a&&(!best||Math.abs(k)<Math.abs(best.k))) best={d,k} }
-    if(!best&&p.a){ for(let k=-45;k<=45;k++){ const d=addDays(ref,k), q=panOf(d); if(q&&q.m===p.m&&q.t===p.t&&(!best||Math.abs(k)<Math.abs(best.k))) best={d,k} } }
+    if(!best){ for(let k=-45;k<=45;k++){ const d=addDays(ref,k), q=panOf(d); if(q&&q.m===p.m&&Math.abs(q.t-p.t)<=1&&(!best||Math.abs(k)<Math.abs(best.k))) best={d,k} } }
     return best?best.d:null }
   function tithiPast(iso,maxYears){ const out=[]; if(!S.rows.length) return out; const first=S.rows[0].date;
     const by={},bs={}; S.rows.forEach(r=>{by[r.date]=r;bs[r.situationDate]=r});
-    for(let y=1;y<=maxYears;y++){ const d=sameTithi(iso,y); if(!d||d<first) break; out.push({y,d,r:by[d],q:bs[d]}) } return out }
+    const ex=(S.plan&&S.plan.excluded)||[];
+    for(let y=1;y<=maxYears;y++){ const d=sameTithi(iso,y); if(!d) continue; if(d<first) break; const x=ex.find(e=>d>=e.start&&d<=e.end);
+      out.push({y,d,r:x?null:by[d],q:x?null:bs[d],ex:x}) } return out }
   function renderToday(){
     const t=istToday(), p=panOf(t), tx=tithiTxt(p);
     if(!tx){ return }
@@ -807,12 +810,14 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
     $('tithiDate').textContent=`${DOWL[dow(t)]}, ${nice(t)}. Tithi at sunrise, worked out from the positions of the sun and moon; a printed panchangam can differ by a day when the tithi changes near sunrise.`;
     const past=tithiPast(t,5);
     if(!past.length){ $('pastYears').innerHTML='<li class="none muted small">This tithi last fell before the start of the history. Older bulletins are being added automatically; check back in a day.</li>'; return }
-    $('pastYears').innerHTML=past.map(x=>{ const h=x.q&&x.q.waitHours!=null?x.q.waitHours:null, sv=sevOf(h);
+    $('pastYears').innerHTML=past.map(x=>{ if(x.ex) return `<li><span class="yr">${dt(x.d).getUTCFullYear()}</span><span class="det">${DOWL[dow(x.d)]} ${short(x.d)}<small>${esc(x.ex.reason)}, so not compared</small></span><span class="pillS">Not compared</span></li>`;
+      const h=x.q&&x.q.waitHours!=null?x.q.waitHours:null, sv=sevOf(h);
       const det=x.r?`${fInt(x.r.pilgrims)} devotees had darshan`:'No bulletin for this day';
-      const qd=x.q?(x.q.waitHours===0?'Direct entry that morning':`Free queue ${x.q.waitText||'?'} that morning`)+(x.q.queueFull?' · line outside the halls':''):'Queue not reported';
-      return `<li><span class="yr">${dt(x.d).getUTCFullYear()}</span><span class="det">${DOWL[dow(x.d)]} ${short(x.d)} · ${esc(det)}<small>${esc(qd)}</small></span><span class="pillS" ${sv!=null?`data-s="${sv}"`:''}>${sv!=null?LVL[sv]:'No data'}</span></li>` }).join('');
+      const qd=x.q?(x.q.waitHours===0?'Direct entry that morning, no waiting':(x.q.waitText?`About ${x.q.waitText} wait in the free queue that morning`:'Wait time not reported')+(x.q.queueFull?' · line outside the halls':'')):'Queue not reported';
+      const pill=sv!=null?`<span class="pillS" data-s="${sv}">${LVL[sv]}</span>`:(x.q&&x.q.queueFull?'<span class="pillS" data-s="3">Line outside</span>':'<span class="pillS">No data</span>');
+      return `<li><span class="yr">${dt(x.d).getUTCFullYear()}</span><span class="det">${DOWL[dow(x.d)]} ${short(x.d)} · ${esc(det)}<small>${esc(qd)}</small></span>${pill}</li>` }).join('');
     const hs=past.map(x=>x.q&&x.q.waitHours).filter(v=>v!=null);
-    $('tithiNote').textContent=hs.length?`On this tithi in the last ${past.length} year${past.length>1?'s':''} the morning queue averaged about ${Math.round(avg(hs))} h. Weekends and school holidays still matter: check the weekday of your visit too.`:'Festivals follow the lunar calendar, so the same tithi is usually a better guide than the same date.';
+    $('tithiNote').textContent=hs.length?`On this tithi in ${hs.length} earlier year${hs.length>1?'s':''} with queue figures, the morning wait averaged about ${Math.round(avg(hs))} h. Weekends and school holidays still matter: check the weekday of your visit too.`:'Festivals follow the lunar calendar, so the same tithi is usually a better guide than the same date.';
   }
 
   // ---- Check your dates ----

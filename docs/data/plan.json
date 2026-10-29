@@ -298,5 +298,12 @@
    ]
   }
  },
- "calendarSource": "Dates from Hindu panchang calendars and TTD announcements; those marked expected are not yet confirmed by TTD."
+ "calendarSource": "Dates from Hindu panchang calendars and TTD announcements; those marked expected are not yet confirmed by TTD.",
+ "excluded": [
+  {
+   "start": "2020-03-20",
+   "end": "2022-03-31",
+   "reason": "COVID-19 restrictions: darshan limited by tokens and quotas"
+  }
+ ]
 }
