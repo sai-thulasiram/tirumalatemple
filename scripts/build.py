@@ -48,6 +48,15 @@ def sev(h):
     return 0 if h <= 6 else 1 if h <= 12 else 2 if h <= 18 else 3 if h <= 24 else 4
 
 
+def analytics(mid: str) -> str:
+    """Google Analytics 4 tag, only when a valid Measurement ID is configured."""
+    if not re.fullmatch(r"G-[A-Z0-9]{4,15}", mid):
+        return ""
+    return (f'<script async src="https://www.googletagmanager.com/gtag/js?id={mid}"></script>\n'
+            "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}"
+            f"gtag('js',new Date());gtag('config','{mid}',{{anonymize_ip:true}});</script>")
+
+
 def main():
     try:  # tithi table for the page; needs the ephem package
         import panchang
@@ -120,6 +129,7 @@ def main():
     tpl = (tpl.replace("{{SITE_URL}}", url)
               .replace("{{SITE_NAME}}", html.escape(name))
               .replace("{{JSONLD}}", json.dumps(jsonld, ensure_ascii=False).replace("</", "<\\/"))
+              .replace("{{ANALYTICS}}", analytics(cfg.get("gaMeasurementId") or ""))
               .replace("{{GOOGLE_VERIFY}}", f'<meta name="google-site-verification" content="{html.escape(verify)}">' if verify else ""))
     if not url:  # no domain yet: drop absolute-URL tags rather than publish broken ones
         tpl = re.sub(r'\n<link rel="canonical" href="/">', "", tpl)

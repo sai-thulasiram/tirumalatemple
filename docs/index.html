@@ -27,6 +27,7 @@
 <meta name="twitter:description" content="Check your dates for expected crowds and see when TTD tickets open.">
 <meta name="twitter:image" content="https://tirumalatemple.in/og.png">
 
+
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebSite", "name": "Tirumala Darshan Planner", "url": "https://tirumalatemple.in/", "inLanguage": "en-IN"}, {"@context": "https://schema.org", "@type": "WebApplication", "name": "Tirumala Darshan Planner", "url": "https://tirumalatemple.in/", "applicationCategory": "TravelApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}, "description": "Crowd calendar, Sarva Darshan wait history and TTD ticket release dates for planning a visit to Sri Venkateswara Swamy Temple, Tirumala."}, {"@context": "https://schema.org", "@type": "Dataset", "name": "Tirumala daily darshan bulletins", "description": "Daily pilgrims, tonsures, hundi collection, laddu sales, Annaprasadam and Sarva Darshan queue status at Tirumala, compiled from TTD's public daily bulletins on news.tirumala.org. May contain gaps or errors.", "url": "https://tirumalatemple.in/", "isAccessibleForFree": true, "temporalCoverage": "2019-12-16/2026-10-28", "spatialCoverage": {"@type": "Place", "name": "Tirumala, Andhra Pradesh, India", "geo": {"@type": "GeoCoordinates", "latitude": 13.6833, "longitude": 79.3474}}, "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://tirumalatemple.in/data/bulletins.json"}], "dateModified": "2026-10-28"}]</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Yatra+One&family=Source+Sans+3:wght@400;600;700&family=Tiro+Telugu&display=swap">
@@ -502,6 +503,7 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
   <footer>
     <span>Figures come from TTD's own daily bulletins on <a href="https://news.tirumala.org/category/darshan/" target="_blank" rel="noopener">news.tirumala.org</a>. Each bulletin covers the previous day; the queue line describes the morning it was published. Book only on TTD's official site, <a href="https://ttdevasthanams.ap.gov.in" target="_blank" rel="noopener">ttdevasthanams.ap.gov.in</a>.</span>
     <span>This is an independent page, not affiliated with TTD. The data is gathered from TTD's website and news reports, so it can sometimes be missing, delayed or incorrect. Festival dates marked expected may change. Days missing from the archive appear as grey cells.</span>
+    <span>This site uses Google Analytics to count visits and see which features are used. It does not collect names or contact details.</span>
   </footer>
 </div>
 
@@ -788,6 +790,9 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
     $('thead').innerHTML=`<tr><th class="l">${v==='month'?'Month':'Week starting'}</th><th>Days</th><th>Pilgrims a day</th><th>Tonsures a day</th><th>Hundi total (₹ Cr)</th><th>Laddus a day (lakh)</th><th>Annaprasadam a day (lakh)</th><th>Typical wait</th><th>Longest wait</th><th>Line outside</th></tr>`;
     $('tbody').innerHTML=aggregate(S.rows,v).reverse().map(x=>`<tr><td>${v==='month'?MONL[dt(x.key).getUTCMonth()]+' '+dt(x.key).getUTCFullYear():nice(x.key)}</td><td>${x.n}</td><td>${fInt(x.pilgrims)}</td><td>${fInt(x.tonsures)}</td><td>${f2(x.hundiTotal)}</td><td>${f2(x.ladduLakh)}</td><td>${f2(x.annaLakh)}</td><td>${pill(x.waitHours)}</td><td>${pill(x.wmax)}</td><td>${x.full?x.full+' of '+x.n+' mornings':'—'}</td></tr>`).join('');
   }
+  // Analytics: no-op unless Google Analytics is configured in site.config.json
+  const track=(name,params)=>{ try{ if(typeof window.gtag==='function') window.gtag('event',name,params||{}) }catch(e){} };
+
   // ---- Tithi (lunar day) ----
   const TN=['Pratipada','Dvitiya','Tritiya','Chaturthi','Panchami','Shashthi','Saptami','Ashtami','Navami','Dashami','Ekadashi','Dvadashi','Trayodashi','Chaturdashi','Purnima'];
   function panOf(iso){ if(!S.pan||!S.pan.days) return null; const i=Math.round((dt(iso)-dt(S.pan.start))/864e5); const e=S.pan.days[i]; return e?{m:e[0],t:e[1],a:e[2]}:null }
@@ -844,7 +849,7 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
     return {d,ly,q,p,h,fromLy:ok,basis,why,occ,ek,po};
   }
   function scoreWindow(a,len,maps,wk){ const hs=[]; for(let i=0;i<len;i++){ const x=dayInfo(addDays(a,i),maps,wk); if(x.h!=null) hs.push(x.h) } return avg(hs) }
-  function setRange(a,b){ $('dFrom').value=a; $('dTo').value=b; try{localStorage.setItem('ttdRange',JSON.stringify([a,b]))}catch(e){} renderCheck() }
+  function setRange(a,b,how){ $('dFrom').value=a; $('dTo').value=b; try{localStorage.setItem('ttdRange',JSON.stringify([a,b]))}catch(e){} renderCheck(how||'typed') }
   function nextDow(target,from){ let d=from; for(let i=0;i<8;i++){ if(dow(d)===target&&d>today()) return d; d=addDays(d,1) } return d }
   const today=()=>istToday();
   function initCheck(){
@@ -856,12 +861,12 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
     $('pickForm').addEventListener('submit',e=>e.preventDefault());
     document.querySelectorAll('.quick button').forEach(b=>b.addEventListener('click',()=>{
       const t=today(); const q=b.dataset.q;
-      if(q==='weekend'){const s=nextDow(6,t);setRange(s,addDays(s,1))}
-      else if(q==='midweek'){const s=nextDow(2,t);setRange(s,addDays(s,1))}
-      else { const a=$('dFrom').value||t, len=Math.round((dt($('dTo').value||a)-dt(a))/864e5); const s=addDays(a,28); setRange(s,addDays(s,len)) }
+      if(q==='weekend'){const s=nextDow(6,t);setRange(s,addDays(s,1),'quick_weekend')}
+      else if(q==='midweek'){const s=nextDow(2,t);setRange(s,addDays(s,1),'quick_midweek')}
+      else { const a=$('dFrom').value||t, len=Math.round((dt($('dTo').value||a)-dt(a))/864e5); const s=addDays(a,28); setRange(s,addDays(s,len),'quick_month_later') }
     }));
   }
-  function renderCheck(){
+  function renderCheck(how){
     const a=$('dFrom').value, b0=$('dTo').value; if(!a||!b0) return;
     let b=b0; if(Math.round((dt(b)-dt(a))/864e5)>13){ b=addDays(a,13) }
     if(!S.rows.length){ $('verdict').innerHTML='<span class="muted">Waiting for the bulletin history to load…</span>'; return }
@@ -883,12 +888,14 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
       tk=left<0?`₹300 tickets and rooms for ${MONL[mDate.getUTCMonth()]} opened on ${short(sed.iso)}. Look for cancelled tickets on TTD's site, or plan on free SSD tokens.`
         :`₹300 tickets for ${MONL[mDate.getUTCMonth()]} open ${left===0?'today':'on '+DOWL[dow(sed.iso)]+' '+short(sed.iso)}, ${sed.time}${room?`; rooms the same day at ${room.time}`:''}.`; }
     const occTxt=occs.length?`Overlaps ${occs.map(o=>o.name).join(', ')}.`:'No major festival on these dates.';
+    const evk=a+b+how, nowT=Date.now(); if(how&&typeof how==='string'&&!(S.lastEv===evk&&nowT-S.lastEvT<2000)){ S.lastEv=evk; S.lastEvT=nowT; } else how=null;
+    if(how) track('check_dates',{method:how,trip_month:a.slice(0,7),days_ahead:Math.round((dt(a)-dt(today()))/864e5),trip_days:len,crowd_level:s!=null?LVL[s]:'unknown',has_festival:occs.length>0,festival:occs.map(o=>o.name).join(', ').slice(0,100)});
     $('verdict').innerHTML=`<span class="lvl" ${s!=null?`data-s="${s}"`:''}>${s!=null?LVL[s]:'Unknown'}</span>
       <span class="lead">${rangeTxt(a,b)} · ${len} day${len>1?'s':''}${b!==b0?' (first 14 shown)':''}. Free queue likely ${mean!=null?'around '+Math.round(mean)+' h':'unknown'}${mx!=null&&mx>mean+1?', up to '+mx+' h on the busiest morning':''}.</span>
       <span class="sub">${esc(occTxt)} ${lyN?`Festival days are compared with the same festival last year, other days with the same weekday a year earlier${lyN<len?` (${len-lyN} day${len-lyN>1?'s':''} use the weekday average instead)`:''}.`:'No matching days last year, so this uses weekday averages.'}</span>
       <span class="sub">${esc(tk)}</span>
       ${alt?`<span class="alt">Quieter nearby: starting <b>${DOWL[dow(alt.st)]} ${short(alt.st)}</b> averaged about ${Math.round(alt.sc)} h last year, ${Math.round(mean-alt.sc)} h shorter. <button type="button" id="useAlt" data-a="${alt.st}" data-b="${addDays(alt.st,len-1)}">Check these dates</button></span>`:''}`;
-    const ua=$('useAlt'); if(ua) ua.addEventListener('click',()=>setRange(ua.dataset.a,ua.dataset.b));
+    const ua=$('useAlt'); if(ua) ua.addEventListener('click',()=>setRange(ua.dataset.a,ua.dataset.b,'suggested_quieter'));
     $('dayList').innerHTML=days.map(x=>{const sv=sevOf(x.h);
       const head=x.basis==='festival'?`Same festival last year (${DOW[dow(x.ly)]} ${short(x.ly)})`:`A year earlier (${DOW[dow(x.ly)]} ${short(x.ly)})`;
       const lyTxt=x.fromLy?`${head}: ${x.q.waitHours===0?'direct entry':x.q.waitText+' queue'}${x.p&&x.p.pilgrims?' · '+fInt(x.p.pilgrims)+' pilgrims':''}${x.q.queueFull?' · line outside':''}`
@@ -905,12 +912,18 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
 
   document.addEventListener('click',e=>{
     const b=e.target.closest('button.tab'); if(!b) return;
-    if(b.dataset.k){S.metric=b.dataset.k;renderTabs();renderChart()}
+    if(b.dataset.k){S.metric=b.dataset.k;renderTabs();renderChart();track('chart_metric',{metric:b.dataset.k})}
     else if(b.dataset.r!=null){S.range=+b.dataset.r;renderTabs();renderChart()}
-    else if(b.dataset.y){S.month={y:+b.dataset.y,m:+b.dataset.m};renderTickets()}
-    else if(b.dataset.tv){S.tview=b.dataset.tv;renderTable()}
+    else if(b.dataset.y){S.month={y:+b.dataset.y,m:+b.dataset.m};renderTickets();track('ticket_month',{month:`${b.dataset.y}-${String(+b.dataset.m+1).padStart(2,'0')}`})}
+    else if(b.dataset.tv){S.tview=b.dataset.tv;renderTable();track('history_view',{view:b.dataset.tv})}
   });
-  const mn=document.getElementById('moreNums'); if(mn) mn.addEventListener('toggle',()=>{ if(mn.open) renderChart() });
+  const mn=document.getElementById('moreNums'); if(mn) mn.addEventListener('toggle',()=>{ if(mn.open){ renderChart(); track('open_statistics') } });
+  document.addEventListener('click',e=>{ const a=e.target.closest('a'); if(!a) return; const h=a.getAttribute('href')||'';
+    if(h.startsWith('#')) track('section_nav',{section:h.slice(1)});
+    else if(/ttdevasthanams|tirumala\.org/.test(h)) track('ttd_link',{url:h}) });
+  // sections people actually reach
+  if('IntersectionObserver' in window){ const seen=new Set(); const io=new IntersectionObserver(es=>es.forEach(x=>{ if(x.isIntersecting&&!seen.has(x.target.id)){ seen.add(x.target.id); track('section_view',{section:x.target.id}) } }),{threshold:.35});
+    document.querySelectorAll('section[id]').forEach(el=>io.observe(el)) }
   let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(renderChart,150)});
   renderLegend(); renderTabs(); renderTickets(); renderChart(); initCheck(); renderCheck();
 

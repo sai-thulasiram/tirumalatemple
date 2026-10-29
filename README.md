@@ -58,6 +58,24 @@ No server, no database and no paid services. Python standard library only.
 
 New sites usually take a few days to a few weeks to appear in results.
 
+## Analytics (Google Analytics 4)
+
+Set `"gaMeasurementId": "G-XXXXXXXXXX"` in `site.config.json` and push. Leave it empty to turn analytics off.
+
+Besides page views, the page sends these events (GA → Reports → Engagement → Events):
+
+| Event | When | Useful parameters |
+|---|---|---|
+| `check_dates` | Someone checks a date range | `method` (typed, quick_weekend, quick_midweek, quick_month_later, suggested_quieter), `trip_month`, `days_ahead`, `trip_days`, `crowd_level`, `festival` |
+| `section_view` | A section scrolls into view | `section` |
+| `section_nav` | A section link is tapped | `section` |
+| `ticket_month` | A month is chosen under ticket dates | `month` |
+| `open_statistics` | TTD's daily numbers are expanded | |
+| `chart_metric`, `history_view` | Chart measure or table grouping changed | `metric`, `view` |
+| `ttd_link` | A link to TTD's site is tapped | `url` |
+
+To see parameters such as `trip_month` in reports, register them once under Admin → Custom definitions → Create custom dimension (event scope).
+
 ## Everyday use
 
 - **Run an update now:** Actions → *Update bulletins* → **Run workflow**.
