@@ -980,7 +980,8 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
     const lyN=days.filter(x=>x.fromLy).length;
     // alternative start within ±21 days
     const len=days.length; let best=null;
-    for(let off=-21;off<=21;off++){ if(!off) continue; const st=addDays(a,off); if(st<today()) continue; const sc=scoreWindow(st,len,maps,wk); if(sc!=null&&(!best||sc<best.sc)) best={st,sc} }
+    const OCCS=(S.plan&&S.plan.occasions)||[]; const festIn=(st,n)=>OCCS.some(o=>!/holidays/i.test(o.name)&&o.start<=addDays(st,n-1)&&(o.end||o.start)>=st);
+    for(let off=-21;off<=21;off++){ if(!off) continue; const st=addDays(a,off); if(st<today()||festIn(st,len)) continue; const sc=scoreWindow(st,len,maps,wk); if(sc!=null&&(!best||sc<best.sc)) best={st,sc} }
     const alt=best&&mean!=null&&mean-best.sc>=2?best:null;
     // tickets
     const mDate=dt(a); const qs=S.plan&&S.plan.quotaPattern?quotaDates({y:mDate.getUTCFullYear(),m:mDate.getUTCMonth()}):[];
@@ -989,31 +990,31 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
     if(sed){ const left=Math.round((dt(sed.iso)-dt(today()))/864e5);
       tk=left<0?`₹300 tickets and rooms for ${MONL[mDate.getUTCMonth()]} went on sale on ${short(sed.iso)} and are usually sold out. See the options below.`
         :`₹300 tickets for ${MONL[mDate.getUTCMonth()]} open ${left===0?'today':'on '+DOWL[dow(sed.iso)]+' '+short(sed.iso)}, ${sed.time}${room?`; rooms the same day at ${room.time}`:''}.`; }
-    const occTxt=occs.length?`Overlaps ${occs.map(o=>o.name).join(', ')}.`:'No major festival on these dates.';
+    const occTxt=occs.length?`Festival on these dates: ${occs.map(o=>o.name).join(', ')}. Expect extra crowds.`:'No major festival on these dates.';
     const evk=a+b+how, nowT=Date.now(); if(how&&typeof how==='string'&&!(S.lastEv===evk&&nowT-S.lastEvT<2000)){ S.lastEv=evk; S.lastEvT=nowT; } else how=null;
     if(how) track('check_dates',{method:how,trip_month:a.slice(0,7),days_ahead:Math.round((dt(a)-dt(today()))/864e5),trip_days:len,crowd_level:s!=null?LVL[s]:'unknown',has_festival:occs.length>0,festival:occs.map(o=>o.name).join(', ').slice(0,100)});
     $('verdict').innerHTML=`<span class="lvl" ${s!=null?`data-s="${s}"`:''}>${s!=null?LVL[s]:'Unknown'}</span>
       <span class="lead">${rangeTxt(a,b)} · ${len} day${len>1?'s':''}${b!==b0?' (first 14 shown)':''}: ${s!=null?['a quiet time to go','moderately crowded','busy','very busy','one of the busiest times of the year'][s]:'crowd level unknown'}.</span>
       <span class="sub">In the free queue (no ticket) expect around <b>${mean!=null?Math.round(mean)+' h':'?'}</b>${mx!=null&&mx>mean+1?`, up to ${mx} h on the busiest morning`:''}. With a ₹300 ticket or an SSD time-slot token you wait far less, but rooms, meals and laddu counters are busy for everyone.</span>
-      <span class="sub">${esc(occTxt)} ${lyN?`Festival days are compared with the same festival last year, other days with the same weekday a year earlier${lyN<len?` (${len-lyN} day${len-lyN>1?'s':''} use the weekday average instead)`:''}.`:'No matching days last year, so this uses weekday averages.'}</span>
-      <span class="sub">${esc(tk)}</span>
-      ${tk&&/sold out/.test(tk)?`<div class="rescue"><b>Tickets sold out? You can still have darshan</b><ul>
+      <span class="sub">${esc(occTxt)}</span>
+      ${tk&&!/sold out/.test(tk)?`<span class="sub">${esc(tk)}</span>`:''}
+      ${tk&&/sold out/.test(tk)?`<div class="rescue"><b>₹300 tickets for ${MONL[mDate.getUTCMonth()]} are already sold. You can still have darshan:</b><ul>
         <li><b>SSD time-slot token (free):</b> collect it in Tirupati the day before, at Srinivasam (near the central bus stand), Vishnu Nivasam (opposite the railway station) or the Bhudevi Complex (Alipiri). Every person goes in person with original Aadhaar; tokens run out, so go early.</li>
         <li><b>Walk up by Srivari Mettu or Alipiri:</b> walkers get a Divya Darshan token on the way.</li>
         <li><b>SRIVANI (₹10,000 donation + ₹500 ticket per person):</b> same-day tickets are released online on TTD's site around 9 AM for darshan at 4 PM, up to four per family. A small offline quota is also issued at Tirupati airport.</li>
         <li><b>Free Sarva Darshan:</b> walk into the queue in Tirumala, no ticket needed. Expect the wait shown above.</li>
       </ul></div>`:''}
-      ${alt?`<span class="alt">Quieter nearby: starting <b>${DOWL[dow(alt.st)]} ${short(alt.st)}</b> averaged about ${Math.round(alt.sc)} h last year, ${Math.round(mean-alt.sc)} h shorter. <button type="button" id="useAlt" data-a="${alt.st}" data-b="${addDays(alt.st,len-1)}">Check these dates</button></span>`:''}`;
+      ${alt?`<span class="alt">Quieter option nearby: starting <b>${DOWL[dow(alt.st)]} ${short(alt.st)}</b>, the free queue was about ${Math.round(alt.sc)} h on the same days last year (${Math.round(mean-alt.sc)} h less). <button type="button" id="useAlt" data-a="${alt.st}" data-b="${addDays(alt.st,len-1)}">Check these dates</button></span>`:''}`;
     const ua=$('useAlt'); if(ua) ua.addEventListener('click',()=>setRange(ua.dataset.a,ua.dataset.b,'suggested_quieter'));
     $('dayList').innerHTML=days.map(x=>{const sv=sevOf(x.h);
       const head=x.basis==='festival'?`Same festival last year (${DOW[dow(x.ly)]} ${short(x.ly)})`:`A year earlier (${DOW[dow(x.ly)]} ${short(x.ly)})`;
-      const lyTxt=x.fromLy?`${head}: ${x.q.waitHours===0?'direct entry':x.q.waitText+' free queue'}${x.p&&x.p.pilgrims?' · '+fInt(x.p.pilgrims)+' pilgrims':''}${x.q.queueFull?' · line outside':''}`
+      const lyTxt=x.fromLy?`${head}: ${x.q.waitHours===0?'no wait in free queue':x.q.waitText+' free queue'}${x.p&&x.p.pilgrims?' · '+fInt(x.p.pilgrims)+' pilgrims':''}${x.q.queueFull?' · line outside':''}`
         :x.basis==='avg'?`A year earlier was ${x.why}, so this uses the ${DOWL[dow(x.d)]} average: ${x.h!=null?x.h.toFixed(0)+' h':'unknown'}`
         :`No queue figure for the matching day last year; ${DOWL[dow(x.d)]} average ${x.h!=null?x.h.toFixed(0)+' h':'unknown'}`;
       const tags=x.occ.map(o=>`<span>${esc(o.name)}</span>`).join('')+(x.ek&&!x.occ.some(o=>/Ekadasi/.test(o.name))?'<span class="soft">Ekadasi · usually no busier</span>':'')+(x.po&&!x.occ.some(o=>/Pournami/.test(o.name))?'<span class="soft">Pournami Garuda Seva</span>':'');
       const tt=tithiTxt(panOf(x.d)); const tp=tithiPast(x.d,2).filter(z=>z.q&&z.q.waitHours!=null);
       const tline=tt?`<span class="ti">${esc(tt.short)}</span>`:'';
-      const sline=tp.length?`<span class="st">Same tithi: ${tp.map(z=>`${dt(z.d).getUTCFullYear()} ${DOW[dow(z.d)]} ${z.q.waitHours===0?'direct':Math.round(z.q.waitHours)+' h'}`).join(' · ')}</span>`:'';
+      const sline=tp.length?`<span class="st">Same tithi in past years: ${tp.map(z=>`${dt(z.d).getUTCFullYear()} ${DOW[dow(z.d)]} ${z.q.waitHours===0?'no wait':Math.round(z.q.waitHours)+' h'}`).join(' · ')}</span>`:'';
       return `<li><span class="top"><b>${DOW[dow(x.d)]} ${short(x.d)}</b><span class="pillS" ${sv!=null?`data-s="${sv}"`:''}>${sv!=null?LVL[sv]:'No data'}</span></span>${tline}<span class="ly">${esc(lyTxt)}</span>${sline}${tags?`<span class="tg">${tags}</span>`:''}</li>`}).join('');
   }
 
