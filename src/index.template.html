@@ -281,6 +281,17 @@ h1{font-family:var(--title);color:var(--indigo);letter-spacing:.01em}
 h2{color:var(--ink)}
 .sec-head h2::after{content:"";display:block;width:56px;height:3px;border-radius:2px;background:var(--gold);margin-top:8px}
 
+/* scam warning + local tips */
+.scam{display:flex;flex-direction:column;gap:4px;padding:14px 18px;border-radius:12px;border:1px solid color-mix(in srgb,var(--crit) 45%,var(--line));border-left:5px solid var(--crit);background:color-mix(in srgb,var(--crit) 8%,var(--surface))}
+.scam strong{color:var(--crit);font-size:16.5px}
+.scam span{font-size:14.5px}
+.scam a{color:var(--indigo)}
+.num{white-space:nowrap;letter-spacing:.02em}
+.tips{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}
+.tips li{padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 92%,transparent);font-size:14.5px}
+.tips li:first-child{border-color:color-mix(in srgb,var(--crit) 40%,var(--line))}
+.tips strong{display:block;margin-bottom:3px;color:var(--indigo)}
+
 /* darshan guide */
 .dtypes{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
 .dtype{background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
@@ -370,6 +381,11 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
     <ol class="days" id="dayList"></ol>
   </section>
 
+  <aside class="scam" id="scam" role="note">
+    <strong>Never pay a broker for darshan or rooms.</strong>
+    <span>No agent, priest, hotel or "TTD staff" can get you darshan or a room for money. Book only on <a href="https://ttdevasthanams.ap.gov.in" target="_blank" rel="noopener">ttdevasthanams.ap.gov.in</a> or at TTD counters. To report someone, call TTD Vigilance on <b class="num">9866898630</b>. For booking questions, call the TTD call centre on <b class="num">155257</b>.</span>
+  </aside>
+
   <section id="guide">
     <div class="sec-head"><h2>Which darshan is right for me?</h2><p class="muted small">There are several ways to have darshan of Sri Venkateswara Swamy. Most are free. Rules change from time to time, so confirm on TTD's site before you go.</p></div>
     <ul class="chooser">
@@ -408,6 +424,7 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
     <a href="#festivals"><b>2</b>Festivals coming up</a>
     <a href="#tickets"><b>3</b>When tickets go on sale</a>
     <a href="#onday">On the day</a>
+    <a href="#local">Local tips</a>
     <a href="#numbers" class="aside">TTD's daily numbers</a>
   </nav>
 
@@ -473,6 +490,18 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
       <div><dt>Brahmotsavam and Garuda Seva</dt><dd>The temple's biggest annual festival and its most crowded evening procession.</dd></div>
       <div><dt>Vaikuntha Dwara darshan</dt><dd>Ten days around Vaikuntha Ekadasi when devotees pass through the sacred northern gate. Usually by special token only.</dd></div>
     </dl>
+  </section>
+
+  <section id="local">
+    <div class="sec-head"><h2>Tips from a Tirupati local</h2><p class="muted small">Things first-time visitors often learn the hard way.</p></div>
+    <ul class="tips">
+      <li><strong>Darshan cannot be bought from a person</strong>Anyone who says they can "arrange" darshan, a VIP break or a room for cash is cheating you, however official they look. Every ticket is in your name, booked on TTD's site or app, and checked against your Aadhaar at the queue. Report brokers to TTD Vigilance: <b class="num">9866898630</b>.</li>
+      <li><strong>Check the website address before you pay</strong>Fake sites copy TTD's look exactly; police have taken down dozens in 2026 alone. The only booking site is <b>ttdevasthanams.ap.gov.in</b>. Do not book through links sent on WhatsApp, Facebook or Instagram.</li>
+      <li><strong>Rooms in Tirumala are booked only through TTD</strong>Private "Tirumala cottage" or "guest house" booking sites are fake. If TTD rooms are full, stay in Tirupati and go up early in the morning.</li>
+      <li><strong>Much of it is free</strong>Sarva Darshan, SSD tokens, Divya Darshan, tonsure at Kalyanakatta, Annaprasadam meals, and TTD's free buses within Tirumala cost nothing. No one should charge you for these.</li>
+      <li><strong>Visit Ammavaru at Tiruchanur</strong>By tradition, many devotees also have darshan of Sri Padmavathi Ammavaru at Tiruchanur, about 5 km from Tirupati, before or after Tirumala.</li>
+      <li><strong>Pack for the weather</strong>Tirumala is on the hills and cooler than Tirupati. Nights from December to February are cold, so carry a shawl; Tirupati afternoons in April and May are very hot.</li>
+    </ul>
   </section>
 
   <section id="numbers">
