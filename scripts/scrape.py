@@ -2,8 +2,8 @@
 into docs/data/bulletins.json.
 
 Usage:
-    python scripts/scrape.py                 # newest bulletins; also backfills until 3 years are covered
-    python scripts/scrape.py --min-years 5   # keep going back until 5 years are covered
+    python scripts/scrape.py                 # newest bulletins; keeps the last 2 years
+    python scripts/scrape.py --min-years 3   # keep 3 years instead
 
 It tries the site's WordPress JSON feed first and falls back to the HTML
 category pages if the feed is unavailable. Only standard library modules
@@ -95,7 +95,7 @@ def from_html(pages: int) -> list[dict]:
     return out
 
 
-def merge(new: list[dict]) -> tuple[int, int]:
+def merge(new: list[dict], keep_from: str | None = None) -> tuple[int, int]:
     path = os.path.join(DATA, "bulletins.json")
     data = json.load(open(path)) if os.path.exists(path) else {"days": []}
     by = {r["date"]: r for r in data["days"]}
@@ -113,6 +113,8 @@ def merge(new: list[dict]) -> tuple[int, int]:
                 changed += 1
         by[r["date"]] = r
     data["days"] = sorted(by.values(), key=lambda r: r["date"])
+    if keep_from:
+        data["days"] = [r for r in data["days"] if r["date"] >= keep_from]
     with open(path, "w") as f:
         json.dump(data, f, separators=(",", ":"), ensure_ascii=False)
     status = {
@@ -128,7 +130,7 @@ def merge(new: list[dict]) -> tuple[int, int]:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--pages", type=int, default=40, help="most feed pages to read in one run (50 bulletins each)")
-    ap.add_argument("--min-years", type=float, default=3, help="keep reading older pages until history covers this many years")
+    ap.add_argument("--min-years", type=float, default=2, help="keep this many years of history (older bulletins are dropped)")
     args = ap.parse_args()
     path = os.path.join(DATA, "bulletins.json")
     known = {r["date"] for r in json.load(open(path))["days"]} if os.path.exists(path) else set()
@@ -140,7 +142,9 @@ def main() -> int:
         print(f"feed unavailable ({e}); using HTML pages", file=sys.stderr)
         recs = from_html(1)
         src = "html"
-    added, changed = merge(recs)
+    # small buffer so "same tithi N years ago" (which can shift by a few weeks) still finds its day
+    keep_from = (dt.date.today() - dt.timedelta(days=int(365.25 * args.min_years) + 60)).isoformat() if args.min_years else None
+    added, changed = merge(recs, keep_from)
     days = json.load(open(path))["days"]
     print(f"{src}: parsed {len(recs)} bulletins, {added} new, {changed} updated; history {days[0]['date']} to {days[-1]['date']}")
     return 0

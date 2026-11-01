@@ -79,7 +79,7 @@ To see parameters such as `trip_month` in reports, register them once under Admi
 ## Everyday use
 
 - **Run an update now:** Actions → *Update bulletins* → **Run workflow**.
-- **History depth:** each run keeps three years of bulletins filled in. To go further back, Run workflow with *years* set to e.g. `6`.
+- **History depth:** each run keeps the last two years of bulletins and drops older ones. To keep more, Run workflow with *years* set to e.g. `3`.
 - **Update festival dates or the quota pattern:** edit `docs/data/plan.json` and push.
 - **Test the parser:** `python tests/test_parse.py`
 - **Preview locally:** `python scripts/build.py && cd docs && python -m http.server` then open http://localhost:8000

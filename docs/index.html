@@ -29,7 +29,7 @@
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BSZSNYZTRC"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-BSZSNYZTRC',{anonymize_ip:true});</script>
-<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebSite", "name": "Tirumala Darshan Planner", "url": "https://tirumalatemple.in/", "inLanguage": "en-IN"}, {"@context": "https://schema.org", "@type": "WebApplication", "name": "Tirumala Darshan Planner", "url": "https://tirumalatemple.in/", "applicationCategory": "TravelApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}, "description": "Crowd calendar, Sarva Darshan wait history and TTD ticket release dates for planning a visit to Sri Venkateswara Swamy Temple, Tirumala."}, {"@context": "https://schema.org", "@type": "Dataset", "name": "Tirumala daily darshan bulletins", "description": "Daily pilgrims, tonsures, hundi collection, laddu sales, Annaprasadam and Sarva Darshan queue status at Tirumala, compiled from TTD's public daily bulletins on news.tirumala.org. May contain gaps or errors.", "url": "https://tirumalatemple.in/", "isAccessibleForFree": true, "temporalCoverage": "2019-12-16/2026-10-30", "spatialCoverage": {"@type": "Place", "name": "Tirumala, Andhra Pradesh, India", "geo": {"@type": "GeoCoordinates", "latitude": 13.6833, "longitude": 79.3474}}, "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://tirumalatemple.in/data/bulletins.json"}], "dateModified": "2026-10-30"}]</script>
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebSite", "name": "Tirumala Darshan Planner", "url": "https://tirumalatemple.in/", "inLanguage": "en-IN"}, {"@context": "https://schema.org", "@type": "WebApplication", "name": "Tirumala Darshan Planner", "url": "https://tirumalatemple.in/", "applicationCategory": "TravelApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}, "description": "Crowd calendar, Sarva Darshan wait history and TTD ticket release dates for planning a visit to Sri Venkateswara Swamy Temple, Tirumala."}, {"@context": "https://schema.org", "@type": "Dataset", "name": "Tirumala daily darshan bulletins", "description": "Daily pilgrims, tonsures, hundi collection, laddu sales, Annaprasadam and Sarva Darshan queue status at Tirumala, compiled from TTD's public daily bulletins on news.tirumala.org. May contain gaps or errors.", "url": "https://tirumalatemple.in/", "isAccessibleForFree": true, "temporalCoverage": "2024-09-02/2026-10-30", "spatialCoverage": {"@type": "Place", "name": "Tirumala, Andhra Pradesh, India", "geo": {"@type": "GeoCoordinates", "latitude": 13.6833, "longitude": 79.3474}}, "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://tirumalatemple.in/data/bulletins.json"}], "dateModified": "2026-10-30"}]</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Yatra+One&family=Source+Sans+3:wght@400;600;700&family=Tiro+Telugu&display=swap">
 <style>
@@ -334,7 +334,7 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
       <span class="telugu" lang="te">శ్రీవారి దర్శనం · రోజువారీ వివరాలు</span>
       <p class="muted" style="margin:0;max-width:58ch;font-size:17px">Planning a visit to Srivari? Pick your dates and see how crowded they are likely to be, which darshan suits your family, and the exact day tickets go on sale. Built from a year of TTD's own daily reports.</p>
       <p class="note-src"><b>Independent site, not run by TTD.</b> Figures are collected from TTD's website and news reports and may sometimes be incomplete or wrong. Confirm dates and tickets on <a href="https://ttdevasthanams.ap.gov.in" target="_blank" rel="noopener">ttdevasthanams.ap.gov.in</a> before you travel.</p>
-      <div class="status" id="status"><!--PRE:status--><span class="chip fresh"><span class="dot"></span>Latest bulletin covers 30 Oct 2026</span><span class="chip">2,339 days of history</span><!--/PRE--></div>
+      <div class="status" id="status"><!--PRE:status--><span class="chip fresh"><span class="dot"></span>Latest bulletin covers 30 Oct 2026</span><span class="chip">776 days of history</span><!--/PRE--></div>
     </div>
     <div class="queue" id="queue">
       <span class="eyebrow">Free darshan queue</span>
@@ -346,7 +346,7 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
   <section id="today" class="today">
     <div class="today-head">
       <span class="eyebrow">Today's tithi at Tirumala</span>
-      <h2 id="tithiName"><!--PRE:tithi-->Shashthi<small>Krishna paksha · Ashwayuja masam</small><!--/PRE--></h2>
+      <h2 id="tithiName"><!--PRE:tithi-->Saptami<small>Krishna paksha · Ashwayuja masam</small><!--/PRE--></h2>
       <p class="muted small" id="tithiDate" style="margin:0"></p>
     </div>
     <div class="today-past">
@@ -705,7 +705,7 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
       let R=(plan.recurring||{})[key];
       if(S.pan&&S.rows.length){ const want=key==='ekadasi'?[11,26]:[15]; const first=S.rows[0].date, last=S.rows[S.rows.length-1].date;
         const skip=(plan.occasions||[]).filter(o=>/Vaikuntha/.test(o.name)).flatMap(o=>(o.past||[]).concat([{start:o.start,end:o.end}]));
-        const from3=addDays(today,-1096); const past=[],up=[]; for(let i=0;i<S.pan.days.length;i++){ const d=addDays(S.pan.start,i); const e=S.pan.days[i]; if(!want.includes(e[1])) continue;
+        const from3=addDays(today,-731); const past=[],up=[]; for(let i=0;i<S.pan.days.length;i++){ const d=addDays(S.pan.start,i); const e=S.pan.days[i]; if(!want.includes(e[1])) continue;
           const exd=(plan.excluded||[]).some(e=>d>=e.start&&d<=e.end);
           if(d>=first&&d>=from3&&d<=last&&!exd&&!skip.some(r=>d>=r.start&&d<=(r.end||r.start))&&d!=='2026-03-03') past.push(d); else if(d>=today) up.push(d) }
         R={past,upcoming:up} }
@@ -719,8 +719,8 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
         <div class="stat"><b>${w==null?'—':w.toFixed(0)+' h'}</b><span>typical longest morning wait</span></div></div>
         <span class="eyebrow">Next dates</span><div class="dates">${up.map(x=>`<span>${short(x)} ${DOW[dow(x)]}</span>`).join('')||'<span>None on file</span>'}</div>`;
     };
-    rec('ekadasi','ekPanel','Ekadasi','Every Shukla and Krishna Ekadasi in the last three years, by tithi at sunrise. Vaikuntha Ekadasi is left out since it has its own entry above.');
-    rec('pournami','poPanel','Pournami (full moon) Garuda Seva','Every full-moon day in the last three years. The 3 Mar 2026 lunar eclipse closure is left out.');
+    rec('ekadasi','ekPanel','Ekadasi','Every Shukla and Krishna Ekadasi in the last two years, by tithi at sunrise. Vaikuntha Ekadasi is left out since it has its own entry above.');
+    rec('pournami','poPanel','Pournami (full moon) Garuda Seva','Every full-moon day in the last two years. The 3 Mar 2026 lunar eclipse closure is left out.');
   }
 
   function niceMax(v){if(v<=0)return 1;const p=Math.pow(10,Math.floor(Math.log10(v)));const n=v/p;return (n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10)*p}
@@ -814,7 +814,7 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
     if(!tx){ return }
     $('tithiName').innerHTML=`${esc(tx.n)}<small>${esc(tx.pk)} · ${esc(tx.masa)} masam</small>`;
     $('tithiDate').textContent=`${DOWL[dow(t)]}, ${nice(t)}. Tithi at sunrise, worked out from the positions of the sun and moon; a printed panchangam can differ by a day when the tithi changes near sunrise.`;
-    const past=tithiPast(t,5);
+    const past=tithiPast(t,2);
     if(!past.length){ $('pastYears').innerHTML='<li class="none muted small">This tithi last fell before the start of the history. Older bulletins are being added automatically; check back in a day.</li>'; return }
     $('pastYears').innerHTML=past.map(x=>{ if(x.ex) return `<li><span class="yr">${dt(x.d).getUTCFullYear()}</span><span class="det">${DOWL[dow(x.d)]} ${short(x.d)}<small>${esc(x.ex.reason)}, so not compared</small></span><span class="pillS">Not compared</span></li>`;
       const h=x.q&&x.q.waitHours!=null?x.q.waitHours:null, sv=sevOf(h);
@@ -903,7 +903,7 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
         :x.basis==='avg'?`A year earlier was ${x.why}, so this uses the ${DOWL[dow(x.d)]} average: ${x.h!=null?x.h.toFixed(0)+' h':'unknown'}`
         :`No queue figure for the matching day last year; ${DOWL[dow(x.d)]} average ${x.h!=null?x.h.toFixed(0)+' h':'unknown'}`;
       const tags=x.occ.map(o=>`<span>${esc(o.name)}</span>`).join('')+(x.ek&&!x.occ.some(o=>/Ekadasi/.test(o.name))?'<span class="soft">Ekadasi · usually no busier</span>':'')+(x.po&&!x.occ.some(o=>/Pournami/.test(o.name))?'<span class="soft">Pournami Garuda Seva</span>':'');
-      const tt=tithiTxt(panOf(x.d)); const tp=tithiPast(x.d,3).filter(z=>z.q&&z.q.waitHours!=null);
+      const tt=tithiTxt(panOf(x.d)); const tp=tithiPast(x.d,2).filter(z=>z.q&&z.q.waitHours!=null);
       const tline=tt?`<span class="ti">${esc(tt.short)}</span>`:'';
       const sline=tp.length?`<span class="st">Same tithi: ${tp.map(z=>`${dt(z.d).getUTCFullYear()} ${DOW[dow(z.d)]} ${z.q.waitHours===0?'direct':Math.round(z.q.waitHours)+' h'}`).join(' · ')}</span>`:'';
       return `<li><span class="top"><b>${DOW[dow(x.d)]} ${short(x.d)}</b><span class="pillS" ${sv!=null?`data-s="${sv}"`:''}>${sv!=null?LVL[sv]:'No data'}${x.h!=null?' · '+Math.round(x.h)+' h':''}</span></span>${tline}<span class="ly">${esc(lyTxt)}</span>${sline}${tags?`<span class="tg">${tags}</span>`:''}</li>`}).join('');

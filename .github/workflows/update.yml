@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
     inputs:
       years:
-        description: "Years of history to keep filled in"
-        default: "3"
+        description: "Years of history to keep"
+        default: "2"
   push:
     branches: [main]
     paths: ["src/**", "scripts/**", "site.config.json", "docs/data/plan.json"]
@@ -33,7 +33,7 @@ jobs:
       - name: Install panchang library
         run: pip install ephem==4.2.1
       - name: Fetch bulletins
-        run: python scripts/scrape.py --min-years "${{ github.event.inputs.years || '3' }}"
+        run: python scripts/scrape.py --min-years "${{ github.event.inputs.years || '2' }}"
       - name: Build page
         run: python scripts/build.py
       - name: Commit changes

@@ -87,7 +87,7 @@ def compute(start: dt.date, end: dt.date) -> dict:
 
 def main():
     today = dt.date.today()
-    start = dt.date(today.year - 10, 1, 1)
+    start = dt.date(today.year - 3, 1, 1)
     end = today + dt.timedelta(days=550)
     data = compute(start, end)
     with open(OUT, "w") as f:
