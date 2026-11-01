@@ -129,6 +129,8 @@ def main():
     tpl = (tpl.replace("{{SITE_URL}}", url)
               .replace("{{SITE_NAME}}", html.escape(name))
               .replace("{{JSONLD}}", json.dumps(jsonld, ensure_ascii=False).replace("</", "<\\/"))
+              .replace("{{ABOUT_NAME}}", html.escape(cfg.get("aboutName") or "a Tirupati local"))
+              .replace("{{FEEDBACK_FORM}}", (f'<p class="small" style="margin:0">Want to write a suggestion? <a id="fbForm" href="{html.escape(cfg["feedbackFormUrl"])}" target="_blank" rel="noopener">Send a short note</a></p>' if (cfg.get("feedbackFormUrl") or "").startswith("https://") else ""))
               .replace("{{ANALYTICS}}", analytics(cfg.get("gaMeasurementId") or ""))
               .replace("{{GOOGLE_VERIFY}}", f'<meta name="google-site-verification" content="{html.escape(verify)}">' if verify else ""))
     if not url:  # no domain yet: drop absolute-URL tags rather than publish broken ones

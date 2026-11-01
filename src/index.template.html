@@ -292,6 +292,19 @@ h2{color:var(--ink)}
 .tips li:first-child{border-color:color-mix(in srgb,var(--crit) 40%,var(--line))}
 .tips strong{display:block;margin-bottom:3px;color:var(--indigo)}
 
+/* about + feedback */
+.about{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:20px 28px;align-items:start}
+.about-me p{margin:8px 0 0;max-width:62ch;font-size:15.5px}
+.fb{padding:16px 18px;border-radius:14px;border:1px solid color-mix(in srgb,var(--gold) 45%,var(--line));background:color-mix(in srgb,var(--gold-soft) 70%,transparent);display:flex;flex-direction:column;gap:10px}
+.fb-row{display:flex;flex-wrap:wrap;gap:8px}
+.fbb{font:inherit;font-size:15px;font-weight:600;padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.fbb:hover{border-color:var(--indigo)}
+.fbb[aria-pressed="true"]{background:var(--indigo);color:var(--bg);border-color:var(--indigo)}
+.fbb:focus-visible,.fb .tab:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.fb-thanks{margin:0;color:var(--ok);font-weight:600}
+.fb a{color:var(--indigo);font-weight:600}
+@media (max-width:820px){ .about{grid-template-columns:minmax(0,1fr)} }
+
 /* darshan guide */
 .dtypes{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
 .dtype{background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
@@ -425,6 +438,7 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
     <a href="#tickets"><b>3</b>When tickets go on sale</a>
     <a href="#onday">On the day</a>
     <a href="#local">Local tips</a>
+    <a href="#about">About &amp; feedback</a>
     <a href="#numbers" class="aside">TTD's daily numbers</a>
   </nav>
 
@@ -526,6 +540,33 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
       <tbody id="tbody"><!--PRE:rows--><tr><td colspan="10" class="l muted">No bulletins loaded yet.</td></tr><!--/PRE--></tbody>
     </table></div>
     </div></details>
+  </section>
+
+  <section id="about" class="about">
+    <div class="about-me">
+      <h2>About this site</h2>
+      <p>Namaskaram. I am {{ABOUT_NAME}}, born and brought up in Tirupati. I studied engineering here and now work as a software engineer. Living at the foot of the hills, I see how many visitors struggle to know when to come, which darshan to choose, and whom to trust.</p>
+      <p>I built this planner in my spare time so any devotee can pick a good day, choose the right darshan and avoid being cheated. It is free, has no ads, and is not connected to TTD. Om Namo Venkatesaya.</p>
+    </div>
+    <div class="fb" id="feedback">
+      <h3>Was this page helpful?</h3>
+      <div class="fb-row" id="fbVote">
+        <button type="button" class="fbb" id="fbYes" data-v="helpful">🙏 Yes, helpful</button>
+        <button type="button" class="fbb" id="fbNo" data-v="needs_improvement">Needs improvement</button>
+      </div>
+      <div id="fbWhy" hidden>
+        <p class="small" style="margin:0 0 6px">What should be better? Tap any that apply.</p>
+        <div class="fb-row">
+          <button type="button" class="tab" data-r="hard_to_understand">Hard to understand</button>
+          <button type="button" class="tab" data-r="numbers_seem_wrong">Numbers seem wrong</button>
+          <button type="button" class="tab" data-r="missing_information">Missing information</button>
+          <button type="button" class="tab" data-r="slow_or_broken">Slow or not working</button>
+          <button type="button" class="tab" data-r="want_telugu_tamil">Want Telugu / Tamil</button>
+        </div>
+      </div>
+      <p class="small fb-thanks" id="fbThanks" hidden>Thank you. Your feedback helps improve this page.</p>
+      {{FEEDBACK_FORM}}
+    </div>
   </section>
 
   <div class="toran gold" aria-hidden="true"></div>
@@ -822,6 +863,17 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
   }
   // Analytics: no-op unless Google Analytics is configured in site.config.json
   const track=(name,params)=>{ try{ if(typeof window.gtag==='function') window.gtag('event',name,params||{}) }catch(e){} };
+
+  // Feedback: recorded as analytics events; remembered per browser
+  (function(){
+    const st=k=>{try{return localStorage.getItem(k)}catch(e){return null}}, sv=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+    const vote=st('ttdFb'); const why=$('fbWhy'), thx=$('fbThanks');
+    const mark=v=>{ document.querySelectorAll('.fbb').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.v===v))); if(why) why.hidden=v!=='needs_improvement'; if(thx) thx.hidden=false };
+    if(vote) mark(vote);
+    document.querySelectorAll('.fbb').forEach(b=>b.addEventListener('click',()=>{ const v=b.dataset.v; if(st('ttdFb')!==v){ track('feedback',{rating:v}); sv('ttdFb',v) } mark(v) }));
+    if(why) why.querySelectorAll('button[data-r]').forEach(b=>b.addEventListener('click',()=>{ if(b.getAttribute('aria-pressed')==='true') return; b.setAttribute('aria-pressed','true'); track('feedback_reason',{reason:b.dataset.r}) }));
+    const fl=$('fbForm'); if(fl) fl.addEventListener('click',()=>track('feedback_form'));
+  })();
 
   // ---- Tithi (lunar day) ----
   const TN=['Pratipada','Dvitiya','Tritiya','Chaturthi','Panchami','Shashthi','Saptami','Ashtami','Navami','Dashami','Ekadashi','Dvadashi','Trayodashi','Chaturdashi','Purnima'];

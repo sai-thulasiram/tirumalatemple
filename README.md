@@ -73,8 +73,11 @@ Besides page views, the page sends these events (GA → Reports → Engagement �
 | `open_statistics` | TTD's daily numbers are expanded | |
 | `chart_metric`, `history_view` | Chart measure or table grouping changed | `metric`, `view` |
 | `ttd_link` | A link to TTD's site is tapped | `url` |
+| `feedback` | Visitor taps Yes, helpful / Needs improvement | `rating` |
+| `feedback_reason` | Visitor picks what should be better | `reason` |
+| `feedback_form` | Visitor opens the written-feedback form | |
 
-To see parameters such as `trip_month` in reports, register them once under Admin → Custom definitions → Create custom dimension (event scope).
+To see parameters such as `trip_month` in reports, register them (also `rating` and `reason`) once under Admin → Custom definitions → Create custom dimension (event scope).
 
 ## Everyday use
 
