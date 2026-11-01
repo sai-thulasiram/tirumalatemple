@@ -186,8 +186,10 @@ section{scroll-margin-top:16px}
 .pick input{font:inherit;font-size:16px;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);min-width:0}
 .pick input:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
 .quick{display:flex;flex-wrap:wrap;gap:6px}
-.verdict{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:16px 18px;border-radius:12px;background:var(--bg)}
-.verdict>*{max-width:100%;min-width:0}
+.verdict{display:block;padding:16px 18px;border-radius:12px;background:var(--bg)}
+.verdict>*{display:block;width:auto;max-width:100%;margin:0 0 8px}
+.verdict>*:last-child{margin-bottom:0}
+.verdict .lvl{display:inline-block}
 .verdict .lvl{font-family:var(--display);font-size:28px;line-height:1;padding:8px 16px;border-radius:10px}
 .verdict .lvl[data-s="0"]{background:var(--s0)} .verdict .lvl[data-s="1"]{background:var(--s1)} .verdict .lvl[data-s="2"]{background:var(--s2)} .verdict .lvl[data-s="3"]{background:var(--s3)} .verdict .lvl[data-s="4"]{background:var(--s4);color:#fff}
 .verdict .lead{font-size:16px;font-weight:600}
