@@ -75,7 +75,7 @@ Besides page views, the page sends these events (GA → Reports → Engagement �
 | `ttd_link` | A link to TTD's site is tapped | `url` |
 | `feedback` | Visitor taps Yes, helpful / Needs improvement | `rating` |
 | `feedback_reason` | Visitor picks what should be better | `reason` |
-| `feedback_form` | Visitor opens the written-feedback form | |
+| `section_feedback` | Visitor rates one section | `section`, `rating` |
 
 To see parameters such as `trip_month` in reports, register them (also `rating` and `reason`) once under Admin → Custom definitions → Create custom dimension (event scope).
 

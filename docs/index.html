@@ -293,6 +293,14 @@ h2{color:var(--ink)}
 .tips li:first-child{border-color:color-mix(in srgb,var(--crit) 40%,var(--line))}
 .tips strong{display:block;margin-bottom:3px;color:var(--indigo)}
 
+/* per-section rating */
+.sfb{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:13px;color:var(--muted);margin-top:2px}
+.sfb button{font:inherit;font-size:12.5px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
+.sfb button:hover{border-color:var(--indigo);color:var(--ink)}
+.sfb button[aria-pressed="true"]{background:var(--indigo);border-color:var(--indigo);color:var(--bg)}
+.sfb button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.sfb-ok{color:var(--ok);font-weight:600}
+
 /* about + feedback */
 .about{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:20px 28px;align-items:start}
 .about-me p{margin:8px 0 0;max-width:62ch;font-size:15.5px}
@@ -566,7 +574,6 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
         </div>
       </div>
       <p class="small fb-thanks" id="fbThanks" hidden>Thank you. Your feedback helps improve this page.</p>
-      
     </div>
   </section>
 
@@ -873,7 +880,15 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
     if(vote) mark(vote);
     document.querySelectorAll('.fbb').forEach(b=>b.addEventListener('click',()=>{ const v=b.dataset.v; if(st('ttdFb')!==v){ track('feedback',{rating:v}); sv('ttdFb',v) } mark(v) }));
     if(why) why.querySelectorAll('button[data-r]').forEach(b=>b.addEventListener('click',()=>{ if(b.getAttribute('aria-pressed')==='true') return; b.setAttribute('aria-pressed','true'); track('feedback_reason',{reason:b.dataset.r}) }));
-    const fl=$('fbForm'); if(fl) fl.addEventListener('click',()=>track('feedback_form'));
+    // Small "Useful?" row at the end of each main section
+    const names={today:'today\'s tithi',check:'the date checker',guide:'the darshan guide',weekdays:'the weekday patterns',festivals:'the festival list',tickets:'the ticket dates',onday:'the day-of-darshan checklist',local:'the local tips',numbers:'TTD\'s daily numbers'};
+    Object.keys(names).forEach(id=>{ const sec=document.getElementById(id); if(!sec) return;
+      const row=document.createElement('div'); row.className='sfb'; const key='ttdFb_'+id, prev=st(key);
+      row.innerHTML=`<span>Was ${names[id]} useful?</span><button type="button" data-v="useful" aria-label="Useful">👍 Useful</button><button type="button" data-v="needs_improvement" aria-label="Needs improvement">Needs improvement</button><span class="sfb-ok" ${prev?'':'hidden'}>Thanks!</span>`;
+      row.querySelectorAll('button').forEach(b=>{ if(prev===b.dataset.v) b.setAttribute('aria-pressed','true');
+        b.addEventListener('click',()=>{ if(st(key)===b.dataset.v) return; sv(key,b.dataset.v); track('section_feedback',{section:id,rating:b.dataset.v});
+          row.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b))); row.querySelector('.sfb-ok').hidden=false }) });
+      sec.appendChild(row) });
   })();
 
   // ---- Tithi (lunar day) ----
