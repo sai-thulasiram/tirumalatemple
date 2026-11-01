@@ -37,6 +37,9 @@ jobs:
       - name: Build page
         run: python scripts/build.py
       - name: Commit changes
+        # Code pushes already include the built page; committing again here
+        # would start a second Pages deploy that can cancel the first.
+        if: github.event_name != 'push'
         run: |
           git config user.name "bulletin-bot"
           git config user.email "actions@users.noreply.github.com"
