@@ -48,6 +48,20 @@ def sev(h):
     return 0 if h <= 6 else 1 if h <= 12 else 2 if h <= 18 else 3 if h <= 24 else 4
 
 
+FAQ = [
+    ("How long is the wait for free darshan at Tirumala?",
+     "The free Sarva Darshan queue ranges from direct entry to more than 24 hours. TTD reports the expected wait each morning; this site shows the latest figure and the same days in past years. ₹300 Special Entry Darshan and SSD token holders wait far less."),
+    ("When are TTD ₹300 Special Entry Darshan tickets released?",
+     "TTD releases each month's ₹300 tickets online about three months ahead, usually on the 24th at 10:00 AM IST, with rooms the same day at 3:00 PM. Book only on ttdevasthanams.ap.gov.in."),
+    ("What is an SSD token?",
+     "A free Slotted Sarva Darshan token with a fixed darshan time, issued in Tirupati at Srinivasam (near the central bus stand), Vishnu Nivasam (opposite the railway station) and the Bhudevi Complex (Alipiri). Everyone must come in person with original Aadhaar; tokens run out each day."),
+    ("Which day of the week is least crowded at Tirumala?",
+     "Weekday mornings, especially Tuesday and Wednesday, usually have shorter free queues than Friday to Sunday. Festivals and school holidays matter more than the weekday."),
+    ("Can a broker or agent arrange darshan or rooms?",
+     "No. Every ticket is in the devotee's name and checked against Aadhaar. Anyone offering darshan or rooms for cash is cheating. Report brokers to TTD Vigilance on 9866898630."),
+]
+
+
 def analytics(mid: str) -> str:
     """Google Analytics 4 tag, only when a valid Measurement ID is configured."""
     if not re.fullmatch(r"G-[A-Z0-9]{4,15}", mid):
@@ -124,11 +138,23 @@ def main():
                              "geo": {"@type": "GeoCoordinates", "latitude": 13.6833, "longitude": 79.3474}},
          "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": (url or "") + "/data/bulletins.json"}],
          "dateModified": (last or {}).get("date")},
+        {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+            {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]},
     ]
+    import pages
+    try:
+        pan = load("docs/data/panchang.json")
+    except OSError:
+        pan = None
+    written, ticket_links, fest_links = pages.generate(DOCS, url, name, analytics(cfg.get("gaMeasurementId") or ""), rows, plan, pan, today)
+    links = [("Crowd today", "/today/")] + ticket_links + fest_links
+    page_links = " · ".join(f'<a href="{p}">{html.escape(n)}</a>' for n, p in links)
+
     verify = cfg.get("googleSiteVerification") or ""
     tpl = (tpl.replace("{{SITE_URL}}", url)
               .replace("{{SITE_NAME}}", html.escape(name))
               .replace("{{JSONLD}}", json.dumps(jsonld, ensure_ascii=False).replace("</", "<\\/"))
+              .replace("{{PAGE_LINKS}}", page_links)
               .replace("{{ABOUT_NAME}}", html.escape(cfg.get("aboutName") or "a Tirupati local"))
               .replace("{{ANALYTICS}}", analytics(cfg.get("gaMeasurementId") or ""))
               .replace("{{GOOGLE_VERIFY}}", f'<meta name="google-site-verification" content="{html.escape(verify)}">' if verify else ""))
@@ -139,17 +165,31 @@ def main():
         f.write(tpl)
 
     with open(os.path.join(DOCS, "robots.txt"), "w") as f:
-        f.write("User-agent: *\nAllow: /\n" + (f"Sitemap: {url}/sitemap.xml\n" if url else ""))
+        bots = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User",
+                "PerplexityBot", "Perplexity-User", "Google-Extended", "Bingbot", "Applebot", "Applebot-Extended"]
+        f.write("# Search engines and AI assistants are welcome.\n"
+                + "".join(f"User-agent: {b}\nAllow: /\n\n" for b in bots)
+                + "User-agent: *\nAllow: /\n" + (f"\nSitemap: {url}/sitemap.xml\n" if url else ""))
     if url:
         lastmod = (last or {}).get("date", today)
         with open(os.path.join(DOCS, "sitemap.xml"), "w") as f:
             f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-                    f"  <url><loc>{url}/</loc><lastmod>{lastmod}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>\n</urlset>\n")
+                    f"  <url><loc>{url}/</loc><lastmod>{lastmod}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>\n"
+                    + "".join(f"  <url><loc>{url}{p}</loc><lastmod>{lm}</lastmod><changefreq>daily</changefreq></url>\n" for p, lm in written)
+                    + "</urlset>\n")
         host = re.sub(r"^https?://", "", url)
         with open(os.path.join(DOCS, "CNAME"), "w") as f:
             f.write(host + "\n")
+    keep = {p.strip("/") for p, _ in written}
+    for sub in ("festivals", "tickets"):
+        base = os.path.join(DOCS, sub)
+        if os.path.isdir(base):
+            for d in os.listdir(base):
+                if f"{sub}/{d}" not in keep:
+                    import shutil
+                    shutil.rmtree(os.path.join(base, d))
     open(os.path.join(DOCS, ".nojekyll"), "w").close()
-    print(f"built docs/index.html ({len(rows)} days, site {url or 'no domain set'})")
+    print(f"built docs/index.html + {len(written)} pages ({len(rows)} days, site {url or 'no domain set'})")
 
 
 if __name__ == "__main__":

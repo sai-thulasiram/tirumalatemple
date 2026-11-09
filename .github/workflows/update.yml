@@ -47,3 +47,21 @@ jobs:
           if git diff --cached --quiet; then echo "No changes"; exit 0; fi
           git commit -m "Update bulletins $(date -u +%F)"
           git push
+      - name: Notify search engines (IndexNow)
+        # Bing, Yandex and others pick up changed pages within hours.
+        # Bing's index also feeds ChatGPT search and Microsoft Copilot.
+        if: github.event_name != 'push'
+        continue-on-error: true
+        run: |
+          python - <<'EOF'
+          import json, urllib.request
+          c = json.load(open("site.config.json"))
+          url, key = c["siteUrl"].rstrip("/"), c.get("indexNowKey")
+          if url and key:
+              host = url.split("://", 1)[1]
+              body = {"host": host, "key": key, "keyLocation": f"{url}/{key}.txt",
+                      "urlList": [f"{url}/", f"{url}/today/", f"{url}/llms.txt", f"{url}/data/today.json"]}
+              req = urllib.request.Request("https://api.indexnow.org/indexnow", json.dumps(body).encode(),
+                                           {"Content-Type": "application/json; charset=utf-8"})
+              print("IndexNow:", urllib.request.urlopen(req, timeout=30).status)
+          EOF

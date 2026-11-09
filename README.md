@@ -79,6 +79,18 @@ Besides page views, the page sends these events (GA → Reports → Engagement �
 
 To see parameters such as `trip_month` in reports, register them (also `rating` and `reason`) once under Admin → Custom definitions → Create custom dimension (event scope).
 
+## Pages for search engines and AI assistants
+
+`scripts/pages.py` (run by `build.py`) writes plain, text-first pages that answer one question each, because most AI agents read raw HTML and do not run JavaScript:
+
+- `/today/`: latest queue, today's tithi, next ticket release, festivals in the next six weeks
+- `/festivals/<name>-<year>/`: each upcoming occasion with last year's crowd and ticket dates (`Event` structured data)
+- `/tickets/<month>-<year>/`: every quota release date for that darshan month
+- `/llms.txt`: a plain summary and index for AI tools
+- `/data/today.json`: small JSON with the latest figures for agents
+
+The home page also carries `FAQPage` structured data, and `robots.txt` explicitly allows the main AI crawlers. Scheduled runs ping IndexNow (Bing, Yandex) with changed URLs; the key file is `docs/<indexNowKey>.txt`.
+
 ## Everyday use
 
 - **Run an update now:** Actions → *Update bulletins* → **Run workflow**.

@@ -1,0 +1,90 @@
+{
+ "site": "https://tirumalatemple.in/",
+ "generated": "2026-11-09",
+ "source": "TTD daily bulletins, news.tirumala.org",
+ "latestBulletin": {
+  "date": "2026-11-07",
+  "pilgrims": 80367,
+  "tonsures": 27401,
+  "hundiCr": 3.34,
+  "situationDate": "2026-11-08",
+  "compartments": 31,
+  "queueNote": null,
+  "waitText": "15 h",
+  "waitHours": 15.0
+ },
+ "freeQueueNote": "waitHours is for the free Sarva Darshan queue only; ₹300 and SSD ticket holders wait far less.",
+ "tithiToday": "Amavasya, Krishna paksha, Ashwayuja masam",
+ "nextRelease300": {
+  "forMonth": "2027-02",
+  "date": "2026-11-24",
+  "timeIST": "10:00 AM"
+ },
+ "upcomingFestivals": [
+  {
+   "name": "Pushpayagam",
+   "start": "2026-11-15",
+   "end": "2026-11-16",
+   "status": "expected",
+   "page": "https://tirumalatemple.in/festivals/pushpayagam-2026/"
+  },
+  {
+   "name": "Kaisika Ekadasi and Dwadasi",
+   "start": "2026-11-20",
+   "end": "2026-11-21",
+   "status": "expected",
+   "page": "https://tirumalatemple.in/festivals/kaisika-ekadasi-and-dwadasi-2026/"
+  },
+  {
+   "name": "Karthika Pournami Deepotsavam",
+   "start": "2026-11-24",
+   "end": "2026-11-24",
+   "status": "expected",
+   "page": "https://tirumalatemple.in/festivals/karthika-pournami-deepotsavam-2026/"
+  },
+  {
+   "name": "Tiruchanur Padmavathi Ammavari Brahmotsavam",
+   "start": "2026-12-05",
+   "end": "2026-12-14",
+   "status": "confirmed",
+   "page": "https://tirumalatemple.in/festivals/tiruchanur-padmavathi-ammavari-brahmotsavam-2026/"
+  },
+  {
+   "name": "Vaikuntha Ekadasi and Vaikuntha Dwara darshan",
+   "start": "2026-12-20",
+   "end": "2026-12-29",
+   "status": "expected",
+   "page": "https://tirumalatemple.in/festivals/vaikuntha-ekadasi-and-vaikuntha-dwara-darshan-2026/"
+  },
+  {
+   "name": "New Year's Day",
+   "start": "2027-01-01",
+   "end": "2027-01-01",
+   "status": "confirmed",
+   "page": "https://tirumalatemple.in/festivals/new-year-s-day-2027/"
+  },
+  {
+   "name": "Bhogi, Sankranti, Kanuma",
+   "start": "2027-01-13",
+   "end": "2027-01-15",
+   "status": "expected",
+   "page": "https://tirumalatemple.in/festivals/bhogi-sankranti-kanuma-2027/"
+  },
+  {
+   "name": "Ratha Saptami",
+   "start": "2027-02-13",
+   "end": "2027-02-13",
+   "status": "expected",
+   "page": "https://tirumalatemple.in/festivals/ratha-saptami-2027/"
+  }
+ ],
+ "weekdayAvgWaitHours": {
+  "Monday": 12.9,
+  "Tuesday": 13.2,
+  "Wednesday": 12.7,
+  "Thursday": 13.6,
+  "Friday": 17.3,
+  "Saturday": 16.6,
+  "Sunday": 17.2
+ }
+}

@@ -1,0 +1,32 @@
+# Tirumala Darshan Planner
+
+> Independent planner for darshan at Sri Venkateswara Swamy Temple, Tirumala (Andhra Pradesh, India). Built from TTD's public daily bulletins: free Sarva Darshan queue waiting time, pilgrims, tonsures and hundi, plus festival dates compared with last year and TTD online ticket (quota) release dates. Not affiliated with TTD.
+
+Key facts:
+- Waiting times are for the free Sarva Darshan queue only. ₹300 Special Entry Darshan and SSD token holders wait far less.
+- TTD releases each month's ₹300 tickets online about three months ahead, on the 24th at 10:00 AM IST (rooms 3:00 PM). Book only on ttdevasthanams.ap.gov.in.
+- No broker can sell darshan or rooms. Report brokers to TTD Vigilance: 9866898630. TTD call centre: 155257.
+
+## Pages
+- [Crowd today](https://tirumalatemple.in/today/): latest queue, today's tithi, next ticket release
+- [Tickets for January 2027](https://tirumalatemple.in/tickets/january-2027/)
+- [Tickets for February 2027](https://tirumalatemple.in/tickets/february-2027/)
+- [Tickets for March 2027](https://tirumalatemple.in/tickets/march-2027/)
+- [Tickets for April 2027](https://tirumalatemple.in/tickets/april-2027/)
+- [Pushpayagam (15 Nov – 16 Nov 2026)](https://tirumalatemple.in/festivals/pushpayagam-2026/)
+- [Kaisika Ekadasi and Dwadasi (20 Nov – 21 Nov 2026)](https://tirumalatemple.in/festivals/kaisika-ekadasi-and-dwadasi-2026/)
+- [Karthika Pournami Deepotsavam (24 Nov 2026)](https://tirumalatemple.in/festivals/karthika-pournami-deepotsavam-2026/)
+- [Tiruchanur Padmavathi Ammavari Brahmotsavam (5 Dec – 14 Dec 2026)](https://tirumalatemple.in/festivals/tiruchanur-padmavathi-ammavari-brahmotsavam-2026/)
+- [Vaikuntha Ekadasi and Vaikuntha Dwara darshan (20 Dec – 29 Dec 2026)](https://tirumalatemple.in/festivals/vaikuntha-ekadasi-and-vaikuntha-dwara-darshan-2026/)
+- [New Year's Day (1 Jan 2027)](https://tirumalatemple.in/festivals/new-year-s-day-2027/)
+- [Bhogi, Sankranti, Kanuma (13 Jan – 15 Jan 2027)](https://tirumalatemple.in/festivals/bhogi-sankranti-kanuma-2027/)
+- [Ratha Saptami (13 Feb 2027)](https://tirumalatemple.in/festivals/ratha-saptami-2027/)
+- [Maha Shivaratri (6 Mar 2027)](https://tirumalatemple.in/festivals/maha-shivaratri-2027/)
+- [Ugadi (7 Apr 2027)](https://tirumalatemple.in/festivals/ugadi-2027/)
+- [Sri Rama Navami (15 Apr 2027)](https://tirumalatemple.in/festivals/sri-rama-navami-2027/)
+- [Interactive planner](https://tirumalatemple.in/): date checker, darshan types, local tips
+
+## Data (JSON, updated twice daily)
+- [today.json](https://tirumalatemple.in/data/today.json): latest bulletin, tithi, next release, upcoming festivals, weekday averages
+- [bulletins.json](https://tirumalatemple.in/data/bulletins.json): every daily bulletin for the last two years
+- [plan.json](https://tirumalatemple.in/data/plan.json): festival dates and quota release pattern

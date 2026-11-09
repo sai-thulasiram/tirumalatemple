@@ -217,6 +217,8 @@ section{scroll-margin-top:16px}
 .occ .dt span{font-size:12.5px;color:var(--muted)}
 .occ .nm{display:flex;flex-direction:column;gap:3px;min-width:0}
 .occ .nm strong{font-size:16.5px}
+.flink{color:inherit;text-decoration:none;border-bottom:1px dotted var(--gold)}
+.flink:hover{color:var(--indigo)}
 .occ .nm small{color:var(--muted);font-size:13px}
 .occ .hist{display:flex;flex-direction:column;gap:4px;font-size:13.5px;border-left:1px solid var(--line);padding-left:16px;min-width:0}
 .occ .hist .k{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
@@ -491,6 +493,7 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
     <p class="callout small" style="margin:0">Choose the month you plan to visit to see when its tickets go on sale. Quotas usually sell out the day they open, so set a reminder. Missed them? TTD also issues free SSD (Slotted Sarva Darshan) time-slot tokens at counters in Tirupati, subject to a daily limit.</p>
     <div class="panel">
       <div class="next" id="nextRelease"><span class="eyebrow">Next release</span><b>—</b></div>
+      <p class="small" style="margin:0"><a href="/today/">Crowd today</a> · ticket dates by month are listed at the bottom of the page.</p>
       <div class="months" id="monthTabs" role="group" aria-label="Darshan month"></div>
       <ul class="quota" id="quota"></ul>
     </div>
@@ -584,6 +587,7 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
   <footer>
     <span>Figures come from TTD's own daily bulletins on <a href="https://news.tirumala.org/category/darshan/" target="_blank" rel="noopener">news.tirumala.org</a>. Each bulletin covers the previous day; the queue line describes the morning it was published. Book only on TTD's official site, <a href="https://ttdevasthanams.ap.gov.in" target="_blank" rel="noopener">ttdevasthanams.ap.gov.in</a>.</span>
     <span>This is an independent page, not affiliated with TTD. The data is gathered from TTD's website and news reports, so it can sometimes be missing, delayed or incorrect. Festival dates marked expected may change. Days missing from the archive appear as grey cells.</span>
+    <span>Quick answers: {{PAGE_LINKS}}</span>
     <span>This site uses Google Analytics to count visits and see which features are used. It does not collect names or contact details.</span>
   </footer>
 </div>
@@ -738,6 +742,7 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
     const sed=(plan.quotaPattern.find(q=>/300/.test(q.name)));
     $('nextRelease').innerHTML=best?`<span class="eyebrow">Next release</span><b>${esc(best.name)} for ${MONL[best.for.m]} ${best.for.y}</b><span class="small">${best.date.getUTCDate()} ${MONL[best.date.getUTCMonth()]}, ${esc(best.time)} IST on ttdevasthanams.ap.gov.in</span>`:'<span class="eyebrow">Next release</span><b>—</b>';
   }
+  const festSlug=(n,s)=>n.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'-'+s.slice(0,4); // matches scripts/pages.py
   const addDays=(iso,n)=>new Date(dt(iso).getTime()+n*864e5).toISOString().slice(0,10);
   const short=iso=>{const d=dt(iso);return d.getUTCDate()+' '+MON[d.getUTCMonth()]+(d.getUTCFullYear()!==dt(istToday()).getUTCFullYear()?' '+String(d.getUTCFullYear()).slice(2):'')};
   const rangeTxt=(a,b)=>!b||a===b?short(a):short(a)+' – '+short(b);
@@ -780,7 +785,7 @@ details.more>.inner{padding:0 18px 18px;display:flex;flex-direction:column;gap:1
           tk=`<span class="tk ${left<0?'gone':'soon'}">${left<0?`₹300 tickets and rooms opened ${short(sed.iso)}. Check for cancellations or SSD tokens.`:`₹300 tickets open ${short(sed.iso)}, ${sed.time}${room?` · rooms ${room.time}`:''}${left<=30?` · in ${left} day${left===1?'':'s'}`:''}`}</span>` }
       }
       return `<li class="o"><span class="dt"><b>${d.getUTCDate()} ${MON[d.getUTCMonth()]}</b><span>${esc(span)}</span><span class="in">${days<=0?'Now':'In '+days+' day'+(days>1?'s':'')}</span></span>
-        <span class="nm"><strong>${esc(o.name)}</strong><small>${esc(o.note||'')}${o.status==='expected'?' Date expected; TTD has not confirmed it yet.':''}</small>${tk}</span>
+        <span class="nm"><strong>${/holidays/i.test(o.name)?esc(o.name):`<a class="flink" href="/festivals/${festSlug(o.name,o.start)}/">${esc(o.name)}</a>`}</strong><small>${esc(o.note||'')}${o.status==='expected'?' Date expected; TTD has not confirmed it yet.':''}</small>${tk}</span>
         <span class="hist">${past?histLine(c,'Last time · '+rangeTxt(past.start,past.end)):'<span class="k">Last time</span><span class="muted">Not in the history yet.</span>'}</span></li>`;
     }).join('');
     const rec=(key,el,title,blurb)=>{
