@@ -3,15 +3,15 @@
  "generated": "2026-11-10",
  "source": "TTD daily bulletins, news.tirumala.org",
  "latestBulletin": {
-  "date": "2026-11-08",
-  "pilgrims": 78228,
-  "tonsures": 25564,
-  "hundiCr": 4.01,
-  "situationDate": "2026-11-09",
+  "date": "2026-11-09",
+  "pilgrims": 83609,
+  "tonsures": 24816,
+  "hundiCr": 3.95,
+  "situationDate": "2026-11-10",
   "compartments": null,
-  "queueNote": "Outside line at Krishna Teja guest house",
-  "waitText": "15 h",
-  "waitHours": 15.0
+  "queueNote": "Outside line at Silatharanam",
+  "waitText": "20 h",
+  "waitHours": 20.0
  },
  "freeQueueNote": "waitHours is for the free Sarva Darshan queue only; ₹300 and SSD ticket holders wait far less.",
  "tithiToday": "Pratipada, Shukla paksha, Kartika masam",
@@ -80,7 +80,7 @@
  ],
  "weekdayAvgWaitHours": {
   "Monday": 12.8,
-  "Tuesday": 13.2,
+  "Tuesday": 13.3,
   "Wednesday": 12.7,
   "Thursday": 13.6,
   "Friday": 17.3,
