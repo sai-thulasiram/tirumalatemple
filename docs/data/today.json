@@ -1,20 +1,20 @@
 {
  "site": "https://tirumalatemple.in/",
- "generated": "2026-11-15",
+ "generated": "2026-11-16",
  "source": "TTD daily bulletins, news.tirumala.org",
  "latestBulletin": {
-  "date": "2026-11-14",
-  "pilgrims": 83670,
-  "tonsures": 35785,
-  "hundiCr": 4.02,
-  "situationDate": "2026-11-15",
-  "compartments": null,
-  "queueNote": "Outside line at Silathoranam",
-  "waitText": "18 h",
+  "date": "2026-11-15",
+  "pilgrims": 82173,
+  "tonsures": 27058,
+  "hundiCr": 4.95,
+  "situationDate": "2026-11-16",
+  "compartments": 31,
+  "queueNote": null,
+  "waitText": "15-18 h",
   "waitHours": 18.0
  },
  "freeQueueNote": "waitHours is for the free Sarva Darshan queue only; ₹300 and SSD ticket holders wait far less.",
- "tithiToday": "Shashthi, Shukla paksha, Kartika masam",
+ "tithiToday": "Saptami, Shukla paksha, Kartika masam",
  "nextRelease300": {
   "forMonth": "2027-02",
   "date": "2026-11-24",
@@ -79,12 +79,12 @@
   }
  ],
  "weekdayAvgWaitHours": {
-  "Monday": 12.8,
+  "Monday": 12.9,
   "Tuesday": 13.2,
   "Wednesday": 12.8,
   "Thursday": 13.8,
   "Friday": 17.4,
   "Saturday": 16.7,
-  "Sunday": 17.3
+  "Sunday": 17.2
  }
 }
