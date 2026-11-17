@@ -1,6 +1,6 @@
 {
  "site": "https://tirumalatemple.in/",
- "generated": "2026-11-16",
+ "generated": "2026-11-17",
  "source": "TTD daily bulletins, news.tirumala.org",
  "latestBulletin": {
   "date": "2026-11-15",
@@ -14,20 +14,13 @@
   "waitHours": 18.0
  },
  "freeQueueNote": "waitHours is for the free Sarva Darshan queue only; ₹300 and SSD ticket holders wait far less.",
- "tithiToday": "Saptami, Shukla paksha, Kartika masam",
+ "tithiToday": "Ashtami, Shukla paksha, Kartika masam",
  "nextRelease300": {
   "forMonth": "2027-02",
   "date": "2026-11-24",
   "timeIST": "10:00 AM"
  },
  "upcomingFestivals": [
-  {
-   "name": "Pushpayagam",
-   "start": "2026-11-15",
-   "end": "2026-11-16",
-   "status": "expected",
-   "page": "https://tirumalatemple.in/festivals/pushpayagam-2026/"
-  },
   {
    "name": "Kaisika Ekadasi and Dwadasi",
    "start": "2026-11-20",
@@ -76,10 +69,17 @@
    "end": "2027-02-13",
    "status": "expected",
    "page": "https://tirumalatemple.in/festivals/ratha-saptami-2027/"
+  },
+  {
+   "name": "Maha Shivaratri",
+   "start": "2027-03-06",
+   "end": "2027-03-06",
+   "status": "expected",
+   "page": "https://tirumalatemple.in/festivals/maha-shivaratri-2027/"
   }
  ],
  "weekdayAvgWaitHours": {
-  "Monday": 12.9,
+  "Monday": 13.0,
   "Tuesday": 13.2,
   "Wednesday": 12.8,
   "Thursday": 13.8,
