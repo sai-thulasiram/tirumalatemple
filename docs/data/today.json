@@ -1,20 +1,20 @@
 {
  "site": "https://tirumalatemple.in/",
- "generated": "2026-11-17",
+ "generated": "2026-11-18",
  "source": "TTD daily bulletins, news.tirumala.org",
  "latestBulletin": {
-  "date": "2026-11-16",
-  "pilgrims": 68495,
-  "tonsures": 26977,
-  "hundiCr": 4.08,
-  "situationDate": "2026-11-17",
-  "compartments": null,
-  "queueNote": "Outside line at Krishna Teja guest house",
-  "waitText": "12-15 h",
-  "waitHours": 15.0
+  "date": "2026-11-17",
+  "pilgrims": 80833,
+  "tonsures": 24771,
+  "hundiCr": 4.06,
+  "situationDate": "2026-11-18",
+  "compartments": 22,
+  "queueNote": null,
+  "waitText": "6-8 h",
+  "waitHours": 8.0
  },
  "freeQueueNote": "waitHours is for the free Sarva Darshan queue only; ₹300 and SSD ticket holders wait far less.",
- "tithiToday": "Ashtami, Shukla paksha, Kartika masam",
+ "tithiToday": "Navami, Shukla paksha, Kartika masam",
  "nextRelease300": {
   "forMonth": "2027-02",
   "date": "2026-11-24",
@@ -81,7 +81,7 @@
  "weekdayAvgWaitHours": {
   "Monday": 13.0,
   "Tuesday": 13.3,
-  "Wednesday": 12.8,
+  "Wednesday": 12.7,
   "Thursday": 13.8,
   "Friday": 17.4,
   "Saturday": 16.7,
