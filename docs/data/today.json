@@ -1,33 +1,26 @@
 {
  "site": "https://tirumalatemple.in/",
- "generated": "2026-11-21",
+ "generated": "2026-11-22",
  "source": "TTD daily bulletins, news.tirumala.org",
  "latestBulletin": {
-  "date": "2026-11-20",
-  "pilgrims": 56695,
-  "tonsures": 24786,
+  "date": "2026-11-21",
+  "pilgrims": 84014,
+  "tonsures": 30116,
   "hundiCr": 4.28,
-  "situationDate": "2026-11-21",
-  "compartments": 6,
+  "situationDate": "2026-11-22",
+  "compartments": 31,
   "queueNote": null,
-  "waitText": "4-6 h",
-  "waitHours": 6.0
+  "waitText": "8 h",
+  "waitHours": 8.0
  },
  "freeQueueNote": "waitHours is for the free Sarva Darshan queue only; ₹300 and SSD ticket holders wait far less.",
- "tithiToday": "Ekadashi, Shukla paksha, Kartika masam",
+ "tithiToday": "Trayodashi, Shukla paksha, Kartika masam",
  "nextRelease300": {
   "forMonth": "2027-02",
   "date": "2026-11-24",
   "timeIST": "10:00 AM"
  },
  "upcomingFestivals": [
-  {
-   "name": "Kaisika Ekadasi and Dwadasi",
-   "start": "2026-11-20",
-   "end": "2026-11-21",
-   "status": "expected",
-   "page": "https://tirumalatemple.in/festivals/kaisika-ekadasi-and-dwadasi-2026/"
-  },
   {
    "name": "Karthika Pournami Deepotsavam",
    "start": "2026-11-24",
@@ -76,6 +69,13 @@
    "end": "2027-03-06",
    "status": "expected",
    "page": "https://tirumalatemple.in/festivals/maha-shivaratri-2027/"
+  },
+  {
+   "name": "Ugadi",
+   "start": "2027-04-07",
+   "end": "2027-04-07",
+   "status": "expected",
+   "page": "https://tirumalatemple.in/festivals/ugadi-2027/"
   }
  ],
  "weekdayAvgWaitHours": {
@@ -84,7 +84,7 @@
   "Wednesday": 12.7,
   "Thursday": 13.9,
   "Friday": 17.5,
-  "Saturday": 16.5,
-  "Sunday": 17.2
+  "Saturday": 16.6,
+  "Sunday": 17.1
  }
 }
