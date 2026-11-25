@@ -1,6 +1,6 @@
 {
  "site": "https://tirumalatemple.in/",
- "generated": "2026-11-24",
+ "generated": "2026-11-25",
  "source": "TTD daily bulletins, news.tirumala.org",
  "latestBulletin": {
   "date": "2026-11-23",
@@ -14,20 +14,13 @@
   "waitHours": 0.0
  },
  "freeQueueNote": "waitHours is for the free Sarva Darshan queue only; ₹300 and SSD ticket holders wait far less.",
- "tithiToday": "Purnima, Shukla paksha, Kartika masam",
+ "tithiToday": "Pratipada, Krishna paksha, Kartika masam",
  "nextRelease300": {
-  "forMonth": "2027-02",
-  "date": "2026-11-24",
+  "forMonth": "2027-03",
+  "date": "2026-12-24",
   "timeIST": "10:00 AM"
  },
  "upcomingFestivals": [
-  {
-   "name": "Karthika Pournami Deepotsavam",
-   "start": "2026-11-24",
-   "end": "2026-11-24",
-   "status": "expected",
-   "page": "https://tirumalatemple.in/festivals/karthika-pournami-deepotsavam-2026/"
-  },
   {
    "name": "Tiruchanur Padmavathi Ammavari Brahmotsavam",
    "start": "2026-12-05",
@@ -76,11 +69,18 @@
    "end": "2027-04-07",
    "status": "expected",
    "page": "https://tirumalatemple.in/festivals/ugadi-2027/"
+  },
+  {
+   "name": "Sri Rama Navami",
+   "start": "2027-04-15",
+   "end": "2027-04-15",
+   "status": "expected",
+   "page": "https://tirumalatemple.in/festivals/sri-rama-navami-2027/"
   }
  ],
  "weekdayAvgWaitHours": {
   "Monday": 13.0,
-  "Tuesday": 13.0,
+  "Tuesday": 12.8,
   "Wednesday": 12.7,
   "Thursday": 13.9,
   "Friday": 17.5,
