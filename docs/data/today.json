@@ -3,12 +3,12 @@
  "generated": "2026-11-26",
  "source": "TTD daily bulletins, news.tirumala.org",
  "latestBulletin": {
-  "date": "2026-11-24",
-  "pilgrims": 59413,
-  "tonsures": 20015,
-  "hundiCr": 4.5,
-  "situationDate": "2026-11-25",
-  "compartments": 23,
+  "date": "2026-11-25",
+  "pilgrims": 74873,
+  "tonsures": 22810,
+  "hundiCr": 3.38,
+  "situationDate": "2026-11-26",
+  "compartments": 12,
   "queueNote": null,
   "waitText": "12 h",
   "waitHours": 12.0
@@ -82,7 +82,7 @@
   "Monday": 13.0,
   "Tuesday": 12.8,
   "Wednesday": 12.7,
-  "Thursday": 13.9,
+  "Thursday": 13.8,
   "Friday": 17.5,
   "Saturday": 16.6,
   "Sunday": 17.1
