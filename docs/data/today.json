@@ -3,15 +3,15 @@
  "generated": "2026-11-27",
  "source": "TTD daily bulletins, news.tirumala.org",
  "latestBulletin": {
-  "date": "2026-11-25",
-  "pilgrims": 74873,
-  "tonsures": 22810,
-  "hundiCr": 3.38,
-  "situationDate": "2026-11-26",
-  "compartments": 12,
+  "date": "2026-11-26",
+  "pilgrims": 57756,
+  "tonsures": 21917,
+  "hundiCr": 4.3,
+  "situationDate": "2026-11-27",
+  "compartments": 31,
   "queueNote": null,
-  "waitText": "12 h",
-  "waitHours": 12.0
+  "waitText": "12-14 h",
+  "waitHours": 14.0
  },
  "freeQueueNote": "waitHours is for the free Sarva Darshan queue only; ₹300 and SSD ticket holders wait far less.",
  "tithiToday": "Tritiya, Krishna paksha, Kartika masam",
@@ -83,7 +83,7 @@
   "Tuesday": 12.8,
   "Wednesday": 12.7,
   "Thursday": 13.9,
-  "Friday": 17.5,
+  "Friday": 17.4,
   "Saturday": 16.6,
   "Sunday": 17.1
  }
