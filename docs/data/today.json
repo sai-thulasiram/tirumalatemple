@@ -1,6 +1,6 @@
 {
  "site": "https://tirumalatemple.in/",
- "generated": "2026-11-26",
+ "generated": "2026-11-27",
  "source": "TTD daily bulletins, news.tirumala.org",
  "latestBulletin": {
   "date": "2026-11-25",
@@ -14,7 +14,7 @@
   "waitHours": 12.0
  },
  "freeQueueNote": "waitHours is for the free Sarva Darshan queue only; ₹300 and SSD ticket holders wait far less.",
- "tithiToday": "Dvitiya, Krishna paksha, Kartika masam",
+ "tithiToday": "Tritiya, Krishna paksha, Kartika masam",
  "nextRelease300": {
   "forMonth": "2027-03",
   "date": "2026-12-24",
@@ -82,7 +82,7 @@
   "Monday": 13.0,
   "Tuesday": 12.8,
   "Wednesday": 12.7,
-  "Thursday": 13.8,
+  "Thursday": 13.9,
   "Friday": 17.5,
   "Saturday": 16.6,
   "Sunday": 17.1
